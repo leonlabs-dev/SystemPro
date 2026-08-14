@@ -67,7 +67,7 @@ systemPro 面向园区、楼宇、工厂与能源项目，提供面向园区能�
 欢迎与模块索引是平台的统一入口，聚合设备、能源、财务与平台能力各业务模块的概览与导航。
 
 <p align="center">
-  <img src="./assets/screenshots/欢迎.png" width="720" alt="平台首页" />
+  <img src="./assets/screenshots/欢迎.png" width="800" alt="平台首页" />
 </p>
 
 **能源驾驶舱**
@@ -75,11 +75,11 @@ systemPro 面向园区、楼宇、工厂与能源项目，提供面向园区能�
 双碳·光储充一体化驾驶舱与综合运营看板，融合经营、能源与 IoT 指标，管理层一屏掌握全貌。
 
 <p align="center">
-  <img src="./assets/screenshots/驾驶舱.png" width="720" alt="双碳·光储充一体化驾驶舱" />
+  <img src="./assets/screenshots/驾驶舱.png" width="800" alt="双碳·光储充一体化驾驶舱" />
 </p>
 
 <p align="center">
-  <img src="./assets/screenshots/综合运营看板.png" width="400" alt="综合运营看板" />
+  <img src="./assets/screenshots/综合运营看板.png" width="800" alt="综合运营看板" />
 </p>
 
 **空调设备 · 集中控制**
@@ -87,11 +87,11 @@ systemPro 面向园区、楼宇、工厂与能源项目，提供面向园区能�
 > 面向空调系统的统一纳管与集中控制：覆盖中央空调、分体空调、多联机与新风系统，单台设备的接入档案、运行状态与所属系统一目了然；整栋楼宇的分区策略与场景联动集中配置，将「单机分散管理」升级为「集中可控、场景联动」。
 
 <p align="center">
-  <img src="./assets/screenshots/空调卡片.png" width="400" alt="空调设备卡片" />
-  <img src="./assets/screenshots/新增空调2.png" width="400" alt="新增空调设备" />
+  <img src="./assets/screenshots/空调卡片.png" width="800" alt="空调设备卡片" />
 </p>
 
 <p align="center">
+  <img src="./assets/screenshots/新增空调2.png" width="400" alt="新增空调设备" />
   <img src="./assets/screenshots/新增空调系统.png" width="400" alt="新增空调系统" />
 </p>
 
@@ -100,7 +100,7 @@ systemPro 面向园区、楼宇、工厂与能源项目，提供面向园区能�
 电表、水表、空调、照明、停车、充电、光伏、储能八类设备资产统一建档，维护总表分表关系、倍率与采集状态，覆盖电表预付费等常见场景。
 
 <p align="center">
-  <img src="./assets/screenshots/电表.png" width="400" alt="电表管理" />
+  <img src="./assets/screenshots/电表.png" width="800" alt="电表管理" />
 </p>
 
 **能源流向**
@@ -108,8 +108,11 @@ systemPro 面向园区、楼宇、工厂与能源项目，提供面向园区能�
 能源拓扑图与光储充能源概览，实时呈现光伏、储能、负载与公共电网的能量平衡。
 
 <p align="center">
-  <img src="./assets/screenshots/能源拓扑.png" width="400" alt="能源拓扑图" />
-  <img src="./assets/screenshots/光储充能源概览.png" width="400" alt="光储充能源概览" />
+  <img src="./assets/screenshots/能源拓扑.png" width="800" alt="能源拓扑图" />
+</p>
+
+<p align="center">
+  <img src="./assets/screenshots/光储充能源概览.png" width="800" alt="光储充能源概览" />
 </p>
 
 **能源计量**
@@ -117,11 +120,11 @@ systemPro 面向园区、楼宇、工厂与能源项目，提供面向园区能�
 计费方案与计费开通让用能账目可追溯到每一个空间和租户。
 
 <p align="center">
-  <img src="./assets/screenshots/计费开通.png" width="400" alt="计费开通" />
-  <img src="./assets/screenshots/新增计费方案.png" width="400" alt="新增计费方案" />
+  <img src="./assets/screenshots/计费开通.png" width="800" alt="计费开通" />
 </p>
 
 <p align="center">
+  <img src="./assets/screenshots/新增计费方案.png" width="400" alt="新增计费方案" />
   <img src="./assets/screenshots/新增计费开通1.png" width="400" alt="新增计费开通" />
 </p>
 
@@ -130,12 +133,12 @@ systemPro 面向园区、楼宇、工厂与能源项目，提供面向园区能�
 设备实时监控、网关/链路状态、并离网切换与视频监控接入；告警从规则配置、转工单到历史统计形成闭环。
 
 <p align="center">
-  <img src="./assets/screenshots/并离网切换状态.png" width="400" alt="并离网切换状态" />
-  <img src="./assets/screenshots/停车场监控.png" width="400" alt="停车场监控" />
+  <img src="./assets/screenshots/告警.png" width="800" alt="告警工单" />
 </p>
 
 <p align="center">
-  <img src="./assets/screenshots/告警.png" width="720" alt="告警工单" />
+  <img src="./assets/screenshots/停车场监控.png" width="400" alt="停车场监控" />
+  <img src="./assets/screenshots/并离网切换状态.png" width="400" alt="并离网切换状态" />
 </p>
 
 **财务账单**
@@ -143,8 +146,11 @@ systemPro 面向园区、楼宇、工厂与能源项目，提供面向园区能�
 银企直连、收款核销、调账退款与开票管理；依据冻结用量和生效费率生成可追溯账单，跟踪支付、开票、逾期和关闭状态。
 
 <p align="center">
-  <img src="./assets/screenshots/银企直连.png" width="400" alt="财务中心" />
-  <img src="./assets/screenshots/账单.png" width="400" alt="账单管理" />
+  <img src="./assets/screenshots/银企直连.png" width="800" alt="财务中心" />
+</p>
+
+<p align="center">
+  <img src="./assets/screenshots/账单.png" width="800" alt="账单管理" />
 </p>
 
 **平台能力**
@@ -156,18 +162,18 @@ systemPro 面向园区、楼宇、工厂与能源项目，提供面向园区能�
   <img src="./assets/screenshots/组织项目.png" width="400" alt="组织项目" />
 </p>
 
-<details>
-<summary>查看更多平台能力截图</summary>
-
 <p align="center">
   <img src="./assets/screenshots/菜单权限.png" width="400" alt="菜单权限" />
+  <img src="./assets/screenshots/操作权限.png" width="400" alt="操作权限" />
+</p>
+
+<p align="center">
+  <img src="./assets/screenshots/数据权限.png" width="400" alt="数据权限" />
   <img src="./assets/screenshots/菜单按钮级权限.png" width="400" alt="菜单按钮级权限" />
 </p>
 
-<p align="center">
-  <img src="./assets/screenshots/操作权限.png" width="400" alt="操作权限" />
-  <img src="./assets/screenshots/数据权限.png" width="400" alt="数据权限" />
-</p>
+<details>
+<summary>查看更多截图</summary>
 
 <p align="center">
   <img src="./assets/screenshots/空间层级.png" width="400" alt="空间层级" />
