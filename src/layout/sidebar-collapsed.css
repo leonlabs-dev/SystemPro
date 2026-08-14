@@ -1,0 +1,32 @@
+.app-sidebar.is-collapsed .el-menu.app-sidebar__menu.el-menu--collapse {
+  --el-menu-icon-width: 16px;
+  --el-menu-base-level-padding: 0px;
+  width: 100% !important;
+}
+
+.app-sidebar.is-collapsed .el-menu.app-sidebar__menu.el-menu--collapse > .el-menu-item,
+.app-sidebar.is-collapsed .el-menu.app-sidebar__menu.el-menu--collapse > .el-sub-menu {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.app-sidebar.is-collapsed .el-menu.app-sidebar__menu.el-menu--collapse > .el-menu-item,
+.app-sidebar.is-collapsed .el-menu.app-sidebar__menu.el-menu--collapse > .el-sub-menu > .el-sub-menu__title {
+  display: inline-flex !important;
+  width: 40px !important;
+  height: 40px !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.app-sidebar.is-collapsed .el-menu.app-sidebar__menu.el-menu--collapse .el-menu-item [class^='el-icon'],
+.app-sidebar.is-collapsed .el-menu.app-sidebar__menu.el-menu--collapse .el-sub-menu__title [class^='el-icon'] {
+  margin: 0 !important;
+}
+
+.app-sidebar.is-collapsed .el-menu.app-sidebar__menu.el-menu--collapse .el-sub-menu__icon-arrow {
+  display: none !important;
+}

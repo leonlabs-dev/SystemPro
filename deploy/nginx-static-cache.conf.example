@@ -1,0 +1,16 @@
+# Include these locations inside the production server block that serves dist/.
+# Vite adds content hashes to emitted asset names, so one-year immutable caching
+# is safe. HTML must be revalidated so releases become visible immediately.
+location ^~ /assets/ {
+    try_files $uri =404;
+    add_header Cache-Control "public, max-age=31536000, immutable" always;
+    add_header X-Content-Type-Options "nosniff" always;
+}
+
+location = /index.html {
+    add_header Cache-Control "no-cache, no-store, must-revalidate" always;
+}
+
+location / {
+    try_files $uri $uri/ /index.html;
+}

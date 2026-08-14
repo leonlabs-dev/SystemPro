@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="description" content="SystemPro enterprise operations platform for IoT, energy and business workflows." />
+    <title>SystemPro</title>
+    <script src="%BASE_URL%app-config.js"></script>
+    <style>
+      .boot-shell { position: fixed; inset: 0; display: grid; place-items: center; color: #526077; background: #f5f7fb; font: 14px/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .boot-shell__content { display: grid; justify-items: center; gap: 14px; text-align: center; }
+      .boot-shell__brand { color: #172033; font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+      .boot-shell__spinner { width: 26px; height: 26px; border: 3px solid #dbe5f5; border-top-color: #2f6bff; border-radius: 50%; animation: boot-spin .8s linear infinite; }
+      .boot-shell__hint { display: none; max-width: 420px; padding: 10px 14px; color: #8a5a18; background: #fff8e8; border: 1px solid #f0d9a8; border-radius: 7px; }
+      .boot-shell__hint.is-visible { display: block; }
+      @media (prefers-color-scheme: dark) { .boot-shell { color: #aebbd2; background: #0b1220; }.boot-shell__brand { color: #eaf0ff; }.boot-shell__hint { color: #e9bd72; background: #2b2315; border-color: #584523; } }
+      @keyframes boot-spin { to { transform: rotate(360deg); } }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="boot-shell" role="status" aria-live="polite">
+        <div class="boot-shell__content">
+          <strong class="boot-shell__brand">SystemPro</strong>
+          <span class="boot-shell__spinner" aria-hidden="true"></span>
+          <span>正在加载 / Loading…</span>
+          <span class="boot-shell__hint">静态资源加载时间较长，请检查网络后刷新页面。<br />Resources are taking longer than expected. Check your connection and reload.</span>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+    <script>setTimeout(function(){var hint=document.querySelector('.boot-shell__hint');if(hint)hint.classList.add('is-visible')},12000)</script>
+  </body>
+</html>

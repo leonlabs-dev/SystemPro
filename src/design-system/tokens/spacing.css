@@ -1,0 +1,213 @@
+:root {
+  /* --- Spacing --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* --- Typography --- */
+  --font-h1: 24px;
+  --font-h2: 20px;
+  --font-h3: 16px;
+  --font-body: 14px;
+  --font-caption: 12px;
+  --line-h1: 32px;
+  --line-h2: 28px;
+  --line-h3: 24px;
+  --line-body: 22px;
+  --line-caption: 18px;
+
+  /* --- Font weight --- */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* --- Row heights --- */
+  --row-compact: 40px;
+  --row-default: 48px;
+  --row-comfortable: 56px;
+
+  /* --- Radius --- */
+  --radius-xs: 3px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-pill: 999px;
+
+  /* --- Layout --- */
+  --layout-sidebar-expanded: 208px;
+  --layout-sidebar-collapsed: 48px;
+  --layout-topbar-height: 56px;
+  --ds-master-pane-width: 300px;
+  --ds-master-pane-width-compact: 260px;
+
+  /* --- Z-index layers --- */
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-tooltip: 50;
+
+  /* --- Opacity --- */
+  --opacity-disabled: 0.48;
+
+  /* --- Preview colors --- */
+  --preview-light-panel: #FFFFFF;
+  --preview-muted-panel: #F1F5F9;
+  --preview-subtle-panel: #EEF2F7;
+  --preview-dark-panel: #001529;
+  --preview-dark-panel-soft: #26384D;
+  --preview-muted-line: #CBD5E1;
+
+  /* ==========================================
+     Density-sensitive component tokens
+     (comfortable / default mode values)
+     ========================================== */
+
+  /* -- DataTable -- */
+  --ds-datatable-header-h: 44px;
+  --ds-datatable-row-h: 62px;
+  --ds-datatable-font: 13px;
+  --ds-datatable-cell-px: 14px;
+
+  /* -- Tag -- */
+  --ds-tag-default-min-h: 22px;
+  --ds-tag-default-px: var(--space-2);
+  --ds-tag-small-min-h: 20px;
+  --ds-tag-small-px: 6px;
+
+  /* -- Pagination -- */
+  --ds-pagination-font: 13px;
+  --ds-pagination-item-size: 32px;
+  --ds-pagination-select-h: 32px;
+
+  /* -- BatchBar -- */
+  --ds-batchbar-font: 13px;
+  --ds-batchbar-min-h: 32px;
+
+  /* -- Common controls (filters, buttons in table context) -- */
+  --ds-control-h: 40px;
+  --ds-control-font: 14px;
+
+  /* -- Avatar (in table context) -- */
+  --ds-avatar-size: 30px;
+  --ds-avatar-font: 12px;
+
+  /* -- Page layout (list pages) -- */
+  --ds-page-inset: 28px;
+  --ds-page-header-min-h: 78px;
+  --ds-page-filter-py-top: 22px;
+  --ds-page-filter-py-bottom: 24px;
+  --ds-table-footer-min-h: 56px;
+  --ds-table-footer-px: 14px;
+  --ds-list-workspace-h: 744px;
+}
+
+/* ==========================================
+   Compact density overrides
+   Scale factor: ~0.83 of comfortable defaults,
+   derived from --row-default / --row-comfortable
+   ========================================== */
+
+.is-compact {
+  /* Spacing: shift ~1 step tighter in the 4-8-12-16-20-24-32-48-64 gradient */
+  --space-1: 4px;
+  --space-2: 6px;
+  --space-3: 10px;
+  --space-4: 12px;
+  --space-5: 16px;
+  --space-6: 20px;
+  --space-8: 24px;
+  --space-12: 40px;
+  --space-16: 48px;
+
+  /* Typography: keep min readability floor at 12px */
+  --font-h1: 22px;
+  --font-h2: 18px;
+  --font-h3: 15px;
+  --font-body: 13px;
+  --font-caption: 12px;
+  --line-h1: 30px;
+  --line-h2: 26px;
+  --line-h3: 22px;
+  --line-body: 20px;
+  --line-caption: 18px;
+
+  /* Row heights: one step down in the 40-48-56 gradient */
+  --row-compact: 36px;
+  --row-default: 40px;
+  --row-comfortable: 48px;
+
+  /* -- DataTable -- */
+  --ds-datatable-header-h: 34px;
+  --ds-datatable-row-h: 41px;
+  --ds-datatable-font: var(--font-caption);
+  --ds-datatable-cell-px: 8px;
+
+  /* -- Tag -- */
+  --ds-tag-default-min-h: 20px;
+  --ds-tag-default-px: 6px;
+  --ds-tag-small-min-h: 18px;
+  --ds-tag-small-px: 4px;
+
+  /* -- BatchBar -- */
+  --ds-batchbar-font: 12px;
+  --ds-batchbar-min-h: 28px;
+
+  /* -- Common controls -- */
+  --ds-control-h: 32px;
+  --ds-control-font: 13px;
+
+  /* -- Avatar (in table context) -- */
+  --ds-avatar-size: 20px;
+  --ds-avatar-font: 8px;
+
+  /* -- Page layout (list pages) -- */
+  --ds-page-inset: 24px;
+  --ds-page-header-min-h: 64px;
+  --ds-page-filter-py-top: 18px;
+  --ds-page-filter-py-bottom: 20px;
+  --ds-table-footer-min-h: 48px;
+  --ds-table-footer-px: 12px;
+  --ds-list-workspace-h: 568px;
+}
+
+/*
+ * Dense operational workspace
+ *
+ * Device and metering pages carry more columns and more cross-domain context
+ * than ordinary CRUD lists. This density tier stays local to pages that opt in
+ * through `ds-domain-dense`, so the global user preference and other closed-loop
+ * pages are not changed.
+ */
+.ds-domain-dense {
+  --font-h2: 17px;
+  --font-h3: 14px;
+  --font-body: 12px;
+  --font-caption: 11px;
+  --line-h2: 24px;
+  --line-h3: 20px;
+  --line-body: 18px;
+  --line-caption: 16px;
+
+  --ds-datatable-header-h: 32px;
+  --ds-datatable-row-h: 38px;
+  --ds-datatable-font: 12px;
+  --ds-datatable-cell-px: 8px;
+  --ds-control-h: 30px;
+  --ds-control-font: 12px;
+  --ds-page-inset: 16px;
+  --ds-page-header-min-h: 54px;
+  --ds-page-filter-py-top: 10px;
+  --ds-page-filter-py-bottom: 12px;
+  --ds-table-footer-min-h: 42px;
+  --ds-table-footer-px: 10px;
+  --ds-list-workspace-h: 500px;
+}

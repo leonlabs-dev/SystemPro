@@ -1,0 +1,664 @@
+.ds-list-page {
+  --ds-list-control-bg: color-mix(in srgb, var(--color-bg-surface) 94%, var(--color-bg-muted));
+  --ds-list-control-border: color-mix(in srgb, var(--color-border-default) 88%, transparent);
+  --ds-list-control-hover: color-mix(in srgb, var(--color-primary-500) 34%, var(--color-border-default));
+  --ds-list-divider: color-mix(in srgb, var(--color-border-default) 82%, transparent);
+  --ds-filter-keyword-width: 340px;
+  --ds-filter-select-short-width: 132px;
+  --ds-filter-select-width: 160px;
+  --ds-filter-date-width: 300px;
+
+  width: 100%;
+  max-width: 100%;
+  min-height: 0;
+}
+
+.ds-list-page-card {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--ds-list-divider);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
+}
+
+.ds-list-page__header {
+  display: flex;
+  min-height: var(--ds-page-header-min-h);
+  align-items: center;
+  gap: var(--space-4);
+  padding: 0 var(--ds-page-inset);
+}
+
+.ds-list-page__header h1 {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: var(--font-h2);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-h2);
+}
+
+.ds-list-density-toggle {
+  display: inline-flex;
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--ds-list-control-border);
+  border-radius: var(--radius-md);
+  background: var(--ds-list-control-border);
+}
+
+.ds-list-density-toggle__btn {
+  height: calc(var(--ds-control-h) - 4px);
+  min-width: 44px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 0;
+  background: var(--ds-list-control-bg);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-size: var(--font-caption);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  outline: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.ds-list-density-toggle__btn:hover {
+  color: var(--color-primary-500);
+  background: color-mix(in srgb, var(--color-primary-500) 6%, var(--ds-list-control-bg));
+}
+
+.ds-list-density-toggle__btn.is-active {
+  color: var(--color-primary-500);
+  background: color-mix(in srgb, var(--color-primary-500) 12%, var(--ds-list-control-bg));
+  font-weight: var(--font-weight-semibold);
+}
+
+.ds-list-page__primary-action {
+  height: var(--ds-control-h);
+  margin-left: auto;
+  padding: 0 18px;
+  border-radius: var(--radius-md);
+  font-size: var(--ds-control-font);
+}
+
+.ds-list-page__divider {
+  height: 1px;
+  background: var(--ds-list-divider);
+}
+
+.ds-list-page__subtitle {
+  min-width: 0;
+  flex: 1 1 auto;
+  margin: 0;
+  overflow: hidden;
+  color: var(--color-text-secondary);
+  font-size: var(--font-caption);
+  line-height: var(--line-caption);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-list-page__meta {
+  flex: 0 0 auto;
+  color: var(--color-text-secondary);
+  font-size: var(--font-caption);
+  white-space: nowrap;
+}
+
+.ds-list-page__alert {
+  margin: var(--space-3) var(--ds-page-inset) 0;
+}
+
+.ds-list-page.ds-domain-dense .ds-list-page__header {
+  gap: 10px;
+}
+
+.ds-list-page.ds-domain-dense .ds-list-page__header .el-button,
+.ds-list-page.ds-domain-dense .el-button {
+  min-height: var(--ds-control-h);
+  height: var(--ds-control-h);
+  padding: 0 10px;
+  font-size: var(--ds-control-font);
+}
+
+.ds-list-page.ds-domain-dense .el-input__wrapper,
+.ds-list-page.ds-domain-dense .el-select__wrapper,
+.ds-list-page.ds-domain-dense .el-input-number {
+  min-height: var(--ds-control-h);
+  height: var(--ds-control-h);
+  font-size: var(--ds-control-font);
+}
+
+.ds-list-page.ds-domain-dense .el-table {
+  font-size: var(--ds-datatable-font);
+}
+
+.ds-list-page.ds-domain-dense .el-table th.el-table__cell {
+  padding: 5px 0;
+}
+
+.ds-list-page.ds-domain-dense .el-table td.el-table__cell {
+  padding: 4px 0;
+}
+
+.ds-list-page.ds-domain-dense .el-table .cell {
+  padding-right: var(--ds-datatable-cell-px);
+  padding-left: var(--ds-datatable-cell-px);
+  line-height: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ds-list-page.ds-domain-dense .el-table .cell > * {
+  min-width: 0;
+}
+
+/*
+ * Comfortable flow list pages
+ *
+ * Metering workspaces are laid out in the normal document flow. The table
+ * expands with the selected page size and the app content area owns the only
+ * vertical scrollbar. This keeps headers, rows and action columns in one flat
+ * surface and avoids nested table-body scrollbars covering fixed columns.
+ */
+.ds-list-page.ds-flow-list-page {
+  min-height: 0;
+}
+
+.ds-list-page.ds-flow-list-page > .ds-list-page-card {
+  overflow: visible;
+}
+
+.ds-flow-list-workspace {
+  margin: 0 var(--ds-page-inset) var(--ds-page-inset);
+  min-width: 0;
+  overflow: visible;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--ds-list-divider);
+  border-radius: var(--radius-md);
+}
+
+.ds-list-page.ds-flow-list-page .el-table {
+  font-size: var(--font-body);
+}
+
+.ds-list-page.ds-flow-list-page .el-table th.el-table__cell {
+  padding: 9px 0;
+}
+
+.ds-list-page.ds-flow-list-page .el-table td.el-table__cell {
+  padding: 8px 0;
+}
+
+.ds-list-page.ds-flow-list-page .el-table .cell {
+  line-height: 20px;
+}
+
+.ds-list-filter {
+  display: grid;
+  min-width: 0;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--ds-page-filter-py-top) var(--ds-page-inset) var(--ds-page-filter-py-bottom);
+  background: var(--color-bg-surface);
+}
+
+.ds-list-filter > * {
+  min-width: 0;
+}
+
+.ds-list-filter__keyword,
+.ds-list-filter__select {
+  width: 100%;
+}
+
+/*
+ * Filter sizing contract
+ * keyword: free text/search; short: status/yes-no; normal: typed enum;
+ * date: date range. Pages choose semantics, the design system owns dimensions.
+ */
+.ds-list-filter--adaptive {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ds-list-filter--adaptive > .ds-list-filter__keyword {
+  width: var(--ds-filter-keyword-width);
+  max-width: var(--ds-filter-keyword-width);
+  flex: 1 1 280px;
+}
+
+.ds-list-filter--adaptive > .el-input:not(.ds-list-filter__select) {
+  width: var(--ds-filter-keyword-width);
+  max-width: var(--ds-filter-keyword-width);
+  flex: 1 1 280px;
+}
+
+.ds-list-filter--adaptive > .ds-list-filter__select {
+  width: var(--ds-filter-select-width);
+  max-width: var(--ds-filter-select-width);
+  flex: 0 0 var(--ds-filter-select-width);
+}
+
+.ds-list-filter--adaptive > .el-select {
+  width: var(--ds-filter-select-width);
+  max-width: var(--ds-filter-select-width);
+  flex: 0 0 var(--ds-filter-select-width);
+}
+
+.ds-list-filter--adaptive > .ds-list-filter__select--short {
+  width: var(--ds-filter-select-short-width);
+  max-width: var(--ds-filter-select-short-width);
+  flex-basis: var(--ds-filter-select-short-width);
+}
+
+.ds-list-filter--adaptive > .ds-list-filter__date {
+  width: var(--ds-filter-date-width);
+  max-width: var(--ds-filter-date-width);
+  flex: 0 0 var(--ds-filter-date-width);
+}
+
+.ds-list-filter--adaptive > .el-date-editor {
+  width: var(--ds-filter-date-width);
+  max-width: var(--ds-filter-date-width);
+  flex: 0 0 var(--ds-filter-date-width);
+}
+
+.ds-list-filter--adaptive > .ds-list-filter__spacer {
+  min-width: 16px;
+  flex: 1 1 16px;
+}
+
+.ds-list-filter--adaptive > .ds-list-filter__actions {
+  margin-left: auto;
+  flex: 0 0 auto;
+}
+
+.ds-list-filter .el-input__wrapper,
+.ds-list-filter .el-select__wrapper,
+.ds-list-filter .el-select__wrapper .el-select__input {
+  min-width: 0 !important;
+  width: 100%;
+}
+
+.ds-list-filter .el-input__wrapper,
+.ds-list-filter__select .el-input__wrapper,
+.ds-list-filter__select .el-select__wrapper {
+  height: var(--ds-control-h);
+  box-sizing: border-box;
+  border: 1px solid var(--ds-list-control-border);
+  border-radius: var(--radius-md);
+  background: var(--ds-list-control-bg);
+  box-shadow: none !important;
+  font-size: var(--ds-control-font);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ds-list-filter .el-input__wrapper:hover,
+.ds-list-filter .el-input__wrapper.is-focus,
+.ds-list-filter__select .el-select__wrapper:hover,
+.ds-list-filter__select .el-select__wrapper.is-focused {
+  border-color: var(--ds-list-control-hover);
+  background: var(--ds-list-control-bg);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary-500) 10%, transparent) !important;
+}
+
+.ds-list-filter .el-input__inner::placeholder,
+.ds-list-filter .el-range-input::placeholder {
+  color: var(--color-text-disabled);
+  opacity: 1;
+}
+
+.ds-list-filter .ds-list-filter__date.el-input__wrapper {
+  width: 100%;
+  height: var(--ds-control-h);
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0 12px;
+  border: 1px solid var(--ds-list-control-border);
+  border-radius: var(--radius-md);
+  background: var(--ds-list-control-bg);
+  box-shadow: none;
+  font-size: var(--ds-control-font);
+}
+
+.ds-list-filter .ds-list-filter__date.el-input__wrapper:hover,
+.ds-list-filter .ds-list-filter__date.el-input__wrapper.is-active {
+  border-color: var(--ds-list-control-hover);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary-500) 10%, transparent);
+}
+
+.ds-list-filter .ds-list-filter__date .el-range__icon {
+  width: 16px;
+  margin-right: 8px;
+}
+
+.ds-list-filter .ds-list-filter__date .el-range-input {
+  width: auto;
+  min-width: 0;
+  flex: 1 1 0;
+  color: var(--color-text-primary);
+  background: transparent;
+  font-size: var(--ds-control-font);
+  text-align: center;
+}
+
+.ds-list-filter .ds-list-filter__date .el-range-separator {
+  width: auto;
+  flex: 0 0 auto;
+  padding: 0 var(--space-2);
+  color: var(--color-text-secondary);
+  font-size: var(--ds-control-font);
+  line-height: calc(var(--ds-control-h) - 2px);
+}
+
+.ds-list-filter__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  white-space: nowrap;
+}
+
+.ds-list-filter__actions .el-button + .el-button {
+  margin-left: 0;
+}
+
+.ds-list-filter--nested {
+  display: grid;
+  grid-template-columns: minmax(240px, 360px) minmax(128px, 168px) minmax(0, 1fr) auto;
+  padding: var(--space-3);
+}
+
+/* Shared row-action contract: primary action, optional secondary action, then More. */
+.ds-row-actions {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-2);
+  white-space: nowrap;
+}
+
+.ds-row-actions .el-button,
+.ds-row-actions .el-dropdown {
+  flex: 0 0 auto;
+}
+
+.ds-row-actions .el-button {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  font-size: var(--ds-datatable-font);
+}
+
+.ds-row-actions .el-button + .el-button {
+  margin-left: 0;
+}
+
+.ds-row-actions .el-dropdown {
+  display: inline-flex;
+}
+
+.ds-card-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.ds-card-actions > * {
+  min-width: 0;
+}
+
+.ds-card-actions .el-button {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  min-height: 40px !important;
+  height: auto !important;
+  overflow: visible !important;
+  padding: 5px 4px !important;
+  line-height: 15px;
+  white-space: normal;
+}
+
+.ds-card-actions .el-button span {
+  min-width: 0;
+  overflow: visible;
+  text-align: center;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+.ds-card-actions .el-dropdown {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  align-items: stretch;
+}
+
+.ds-card-actions .el-dropdown .el-button,
+.ds-card-actions .el-dropdown > button {
+  width: 100%;
+  min-height: 40px !important;
+  height: 40px !important;
+  margin: 0;
+}
+
+.ds-card-actions > button {
+  min-height: 40px !important;
+  height: 40px !important;
+  overflow: visible !important;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  line-height: 15px;
+  white-space: normal;
+}
+
+.ds-list-filter__button {
+  height: var(--ds-control-h);
+  min-width: 72px;
+  padding: 0 12px;
+  color: var(--color-text-primary);
+  background: var(--ds-list-control-bg);
+  border-color: var(--ds-list-control-border);
+  border-radius: var(--radius-md);
+  font-size: var(--ds-control-font);
+  font-weight: var(--font-weight-medium);
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.ds-list-filter__button:hover {
+  color: var(--color-primary-500);
+  background: var(--ds-list-control-bg);
+  border-color: var(--ds-list-control-hover);
+}
+
+.ds-list-table-shell {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  margin: 0 var(--ds-page-inset) var(--space-6);
+  overflow: hidden;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--ds-list-divider);
+  border-radius: var(--radius-lg);
+}
+
+.ds-list-table-shell .ds-data-table {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.ds-list-table-shell .el-table__inner-wrapper::before {
+  display: none;
+}
+
+.ds-list-table-shell .el-table th:last-child .cell,
+.ds-list-table-shell .el-table td:last-child .cell {
+  padding-right: 20px;
+  padding-left: 18px;
+}
+
+.ds-list-table-footer {
+  display: grid;
+  grid-template-columns: minmax(360px, 1fr) auto;
+  min-height: var(--ds-table-footer-min-h);
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--ds-table-footer-px);
+  background: var(--color-bg-surface);
+  border-top: 1px solid var(--ds-list-divider);
+}
+
+.ds-list-table-shell--embedded {
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
+.ds-list-master-detail {
+  display: grid;
+  min-width: 0;
+  min-height: var(--ds-list-workspace-h);
+  grid-template-columns: var(--ds-master-pane-width) minmax(0, 1fr);
+  margin: var(--ds-page-filter-py-top) var(--ds-page-inset) var(--space-6);
+  overflow: hidden;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--ds-list-divider);
+  border-radius: var(--radius-lg);
+}
+
+.ds-list-master-detail__master,
+.ds-list-master-detail__detail {
+  min-width: 0;
+  min-height: 0;
+}
+
+.ds-list-master-detail__master {
+  border-right: 1px solid var(--ds-list-divider);
+}
+
+.ds-list-master-detail__detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-list-embedded-section {
+  min-width: 0;
+  overflow: hidden;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--ds-list-divider);
+  border-radius: var(--radius-lg);
+}
+
+/* Energy metering follows the same separated-surface hierarchy as Finance:
+   summary, filters and results are distinct surfaces instead of one grey block. */
+.ds-list-embedded-section.metering-list-workspace {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0 16px 16px;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.metering-list-workspace > .ds-list-filter {
+  min-height: 52px;
+  padding: 8px 12px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--ds-list-divider);
+  border-radius: var(--radius-md);
+}
+
+.metering-list-workspace > .ds-list-table-shell {
+  overflow: hidden;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--ds-list-divider);
+  border-radius: var(--radius-md);
+}
+
+.ds-list-table-footer--pagination-only {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: end;
+}
+
+@media (max-width: 1320px) {
+  .ds-list-table-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .ds-list-table-footer--pagination-only {
+    justify-items: end;
+  }
+
+}
+
+@media (max-width: 820px) {
+  .ds-list-page-card {
+    min-height: 0;
+  }
+
+  .ds-list-page__header {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 16px 20px;
+  }
+
+  .ds-list-filter {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    padding: 18px 20px;
+  }
+
+  .ds-list-filter__keyword,
+  .ds-list-filter__select,
+  .ds-list-filter__date,
+  .ds-list-filter__actions {
+    width: 100%;
+    max-width: none;
+    flex-basis: auto;
+  }
+
+  .ds-list-filter--adaptive > .ds-list-filter__keyword,
+  .ds-list-filter--adaptive > .ds-list-filter__select,
+  .ds-list-filter--adaptive > .ds-list-filter__select--short,
+  .ds-list-filter--adaptive > .ds-list-filter__date,
+  .ds-list-filter--adaptive > .ds-list-filter__actions {
+    width: 100%;
+    max-width: none;
+    flex: 1 1 100%;
+    margin-left: 0;
+  }
+
+  .ds-list-filter--adaptive > .el-input,
+  .ds-list-filter--adaptive > .el-select,
+  .ds-list-filter--adaptive > .el-date-editor {
+    width: 100%;
+    max-width: none;
+    flex: 1 1 100%;
+  }
+
+  .ds-list-filter--adaptive > .ds-list-filter__spacer {
+    display: none;
+  }
+
+  .ds-list-filter .ds-list-filter__date.el-input__wrapper {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .ds-list-filter__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ds-list-filter__button {
+    width: 100%;
+  }
+
+}

@@ -1,0 +1,69 @@
+<script setup lang="ts">
+import {Plus,Refresh,Search} from '@element-plus/icons-vue';
+import {computed,onMounted,ref} from 'vue';
+import {ElMessage,ElMessageBox} from 'element-plus';
+import {ApiError} from '@/core/api/contracts';
+import {enumLabel} from '@/core/i18n/enum-labels';
+import {useAuthStore} from '@/core/auth/auth.store';
+import DsDataTable from '@/design-system/components/DsDataTable.vue';
+import DsEmpty from '@/design-system/components/DsEmpty.vue';
+import DsListPageShell from '@/design-system/components/DsListPageShell.vue';
+import DsPagination from '@/design-system/components/DsPagination.vue';
+import DsTag from '@/design-system/components/DsTag.vue';
+import {useListPageState} from '@/design-system/composables/useListPageState';
+import {enterpriseMeteringApi,type BalanceMeteringAnalysis,type BoundaryAdjustmentInput,type BoundaryAdjustmentRecord} from '@/domain/iot/metering-loss';
+import './enterprise-metering.css';
+
+const auth=useAuthStore();const loading=ref(true),saving=ref(false),dates=ref<[string,string]>(defaultRange());
+const dialogVisible=ref(false),adjustments=ref<BoundaryAdjustmentRecord[]>([]);
+const result=ref<BalanceMeteringAnalysis>({periodStart:'',periodEnd:'',sourceBoundary:'',totalInput:0,totalOutput:0,totalApprovedAdjustments:0,totalUnexplained:0,overallUnexplainedRate:0,rows:[]});
+const form=ref<BoundaryAdjustmentInput>(emptyForm());
+function localDate(value:Date){return new Date(value.getTime()-value.getTimezoneOffset()*60000).toISOString().slice(0,10)}
+function defaultRange():[string,string]{const end=new Date(),start=new Date(end.getFullYear(),end.getMonth(),1);return[localDate(start),localDate(end)]}
+function periodParams(){return{periodStart:`${dates.value[0]}T00:00:00`,periodEnd:`${dates.value[1]}T23:59:59`}}
+function emptyForm():BoundaryAdjustmentInput{return{balanceGroupId:0,adjustmentType:'TEMPORARY_BYPASS',balanceSide:'OUTPUT',quantity:0,periodStart:`${dates.value?.[0]||localDate(new Date())}T00:00:00`,periodEnd:`${dates.value?.[1]||localDate(new Date())}T23:59:59`,sourceType:'WORK_ORDER',reason:'',evidenceReference:''}}
+const rows=computed(()=>result.value.rows),adjustmentRows=computed(()=>adjustments.value);
+const {page,pageSize,pagedRows}=useListPageState({rows,resetDeps:()=>[dates.value[0],dates.value[1]]});
+const {page:adjustmentPage,pageSize:adjustmentPageSize,pagedRows:pagedAdjustments}=useListPageState({rows:adjustmentRows,resetDeps:()=>[dates.value[0],dates.value[1]]});
+const canAdjust=computed(()=>auth.can('platform:enterprise-metering:balance:adjust'));
+const canApprove=computed(()=>auth.can('platform:enterprise-metering:balance:approve'));
+const canShowAdjust=computed(()=>auth.canShow('platform:enterprise-metering:balance:adjust'));
+const canShowApprove=computed(()=>auth.canShow('platform:enterprise-metering:balance:approve'));
+const typeLabels:Record<string,string>={TEMPORARY_BYPASS:'临时旁路跨界',BOUNDARY_CHANGEOVER:'计量边界切换',EXTERNAL_TRANSFER:'外送/转供/反送',DOCUMENTED_AUXILIARY_LOAD:'有凭证辅助用电'};
+const sourceLabels:Record<string,string>={WORK_ORDER:'工单',METER_EVENT:'表计事件',SETTLEMENT_DOCUMENT:'结算凭证',IMPORT_DOCUMENT:'导入凭证'};
+function format(value:number){return Number(value||0).toLocaleString('zh-CN',{minimumFractionDigits:3,maximumFractionDigits:3})}
+function tone(status:string){return status==='NORMAL'?'success':status==='WARNING'?'warning':'error'}
+function approvalTone(status:string){return status==='APPROVED'?'success':status==='REJECTED'?'error':'warning'}
+function errorMessage(error:unknown,fallback:string){return error instanceof ApiError?error.message:fallback}
+async function load(){loading.value=true;try{const params=periodParams();[result.value,adjustments.value]=await Promise.all([enterpriseMeteringApi.balance(params),enterpriseMeteringApi.boundaryAdjustments(params)])}catch(error){ElMessage.error(errorMessage(error,'损耗与平衡加载失败'))}finally{loading.value=false}}
+function openCreate(){if(!auth.canEnter('platform:enterprise-metering:balance:adjust'))return;form.value={...emptyForm(),balanceGroupId:result.value.rows[0]?.id||0};dialogVisible.value=true}
+async function saveAdjustment(){if(!canAdjust.value)return;if(!form.value.balanceGroupId||form.value.quantity<=0||!form.value.reason.trim()||!form.value.evidenceReference.trim()){ElMessage.warning('请选择平衡组，并填写正数电量、原因和凭证编号');return}saving.value=true;try{await enterpriseMeteringApi.createBoundaryAdjustment(form.value);dialogVisible.value=false;await load();ElMessage.success('边界调整已提交审批，未批准前不会进入平衡计算')}catch(error){ElMessage.error(errorMessage(error,'提交边界调整失败'))}finally{saving.value=false}}
+async function review(row:BoundaryAdjustmentRecord,decision:'APPROVED'|'REJECTED'){
+  try{
+    let comment='核验凭证与边界时间范围后批准';
+    if(decision==='APPROVED')await ElMessageBox.confirm('确认凭证真实、调整类型合法且电量确实跨越该平衡边界？','批准边界调整',{type:'warning',confirmButtonText:'批准',cancelButtonText:'取消'});
+    else{const answer=await ElMessageBox.prompt('请输入驳回原因','驳回边界调整',{inputPattern:/\S+/,inputErrorMessage:'必须填写驳回原因',confirmButtonText:'驳回',cancelButtonText:'取消'});comment=answer.value}
+    await enterpriseMeteringApi.reviewBoundaryAdjustment(row.id,{decision,comment,version:row.version});await load();ElMessage.success(decision==='APPROVED'?'已批准并纳入平衡计算':'已驳回');
+  }catch(error){if(error!=='cancel'&&error!=='close')ElMessage.error(errorMessage(error,'审批失败'))}
+}
+onMounted(load);
+</script>
+
+<template>
+  <DsListPageShell title="损耗与平衡" subtitle="按明确输入输出边界识别差额；未经证据确认的部分始终保留为未解释差额" page-class="enterprise-metering-page" :loading="loading">
+    <div class="enterprise-content">
+      <section class="enterprise-query-bar"><div class="enterprise-query-bar__field enterprise-query-bar__field--date"><label>平衡周期</label><el-date-picker v-model="dates" type="daterange" value-format="YYYY-MM-DD" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期"/></div><div class="enterprise-query-bar__summary"><span>核算范围</span><strong>输入、输出与批准调整量</strong><small>按已发布平衡组汇总</small></div><div class="enterprise-query-bar__actions"><el-button type="primary" :icon="Search" @click="load">查询</el-button><el-button :icon="Refresh" @click="load">刷新</el-button><el-button v-if="canShowAdjust" v-permission.preview="'platform:enterprise-metering:balance:adjust'" :icon="Plus" @click="openCreate">发起边界调整</el-button></div></section>
+      <section class="enterprise-kpis"><article><span>输入电量</span><strong>{{ format(result.totalInput) }} kWh</strong><small>仅主汇总边界，不重复累计下级</small></article><article><span>输出电量</span><strong>{{ format(result.totalOutput) }} kWh</strong><small>平衡组输出成员</small></article><article><span>批准边界调整</span><strong>{{ format(result.totalApprovedAdjustments) }} kWh</strong><small>有分类、有凭证、有审批</small></article><article><span>未解释差额</span><strong :class="{'enterprise-warning':result.overallUnexplainedRate>=3}">{{ format(result.totalUnexplained) }} kWh</strong><small>{{ result.overallUnexplainedRate }}%</small></article></section>
+      <section class="enterprise-panel enterprise-table-shell"><header class="enterprise-panel__header"><div><h2>平衡组明细</h2><p>常态能量流必须成为正式节点；仅临时、例外且有依据的跨边界电量允许进入调整。</p></div></header><section class="ds-list-table-shell ds-list-table-shell--embedded"><DsDataTable :rows="pagedRows as unknown as Record<string,unknown>[]" :columns="[]" table-layout="fixed"><el-table-column label="平衡组" min-width="190"><template #default="{row}"><div class="enterprise-primary-cell"><strong>{{ row.name }}</strong><small>{{ row.code }} · 输入 {{ row.inputMemberCount }} / 输出 {{ row.outputMemberCount }}</small></div></template></el-table-column><el-table-column label="输入" width="130" align="right"><template #default="{row}">{{ format(row.inputQuantity) }}</template></el-table-column><el-table-column label="输出" width="130" align="right"><template #default="{row}">{{ format(row.outputQuantity) }}</template></el-table-column><el-table-column label="批准调整" width="120" align="right"><template #default="{row}">{{ format(row.inputAdjustment+row.outputAdjustment) }}</template></el-table-column><el-table-column label="未解释差额" min-width="140" align="right"><template #default="{row}"><strong>{{ format(row.unexplainedQuantity) }} {{ row.unitSymbol }}</strong></template></el-table-column><el-table-column label="差额率" width="90" align="right"><template #default="{row}">{{ row.unexplainedRate }}%</template></el-table-column><el-table-column label="阈值" width="110"><template #default="{row}">{{ row.warningRate }} / {{ row.criticalRate }}%</template></el-table-column><el-table-column label="状态" width="90"><template #default="{row}"><DsTag :type="tone(row.status)">{{ row.status==='NORMAL'?'正常':row.status==='WARNING'?'关注':'异常' }}</DsTag></template></el-table-column><template #empty><DsEmpty description="暂无有效平衡组"/></template></DsDataTable><footer v-if="rows.length" class="ds-list-table-footer ds-list-table-footer--pagination-only"><DsPagination v-model:page="page" v-model:page-size="pageSize" :total="rows.length"/></footer></section></section>
+
+      <section class="enterprise-panel enterprise-table-shell"><header class="enterprise-panel__header"><div><h2>合法边界调整台账</h2><p>未解释差额、行业标准损耗率、拓扑错误和无依据缺数都不允许作为调整量。</p></div></header><section class="ds-list-table-shell ds-list-table-shell--embedded"><DsDataTable :rows="pagedAdjustments as unknown as Record<string,unknown>[]" :columns="[]" table-layout="fixed"><el-table-column label="调整单" min-width="210"><template #default="{row}"><div class="enterprise-primary-cell"><strong>{{ enumLabel('adjustmentType',row.adjustmentType) }}</strong><small>{{ row.code }} · {{ row.balanceGroupName }}</small></div></template></el-table-column><el-table-column label="方向 / 电量" width="135"><template #default="{row}"><strong>{{ row.balanceSide==='INPUT'?'输入':'输出' }} {{ format(row.quantity) }} {{ row.unitSymbol }}</strong></template></el-table-column><el-table-column label="适用区间" width="185"><template #default="{row}"><div class="enterprise-primary-cell"><strong>{{ row.periodStart.replace('T',' ').slice(0,16) }}</strong><small>至 {{ row.periodEnd.replace('T',' ').slice(0,16) }}</small></div></template></el-table-column><el-table-column label="依据" min-width="220" show-overflow-tooltip><template #default="{row}"><div class="enterprise-primary-cell"><strong>{{ row.reason }}</strong><small>{{ enumLabel('meteringSourceType',row.sourceType) }} · {{ row.evidenceReference }}</small></div></template></el-table-column><el-table-column label="审批" width="100"><template #default="{row}"><DsTag :type="approvalTone(row.approvalStatus)">{{ enumLabel('approvalStatus',row.approvalStatus) }}</DsTag></template></el-table-column><el-table-column v-if="canShowApprove" label="操作" width="140" fixed="right"><template #default="{row}"><div v-if="row.approvalStatus==='PENDING'" class="ds-row-actions"><DsTag v-if="row.requestedBy===auth.account?.id" type="info">职责分离</DsTag><template v-else><el-button v-permission="'platform:enterprise-metering:balance:approve'" link type="success" :disabled="!canApprove" @click="review(row,'APPROVED')">批准</el-button><el-button v-permission="'platform:enterprise-metering:balance:approve'" link type="danger" :disabled="!canApprove" @click="review(row,'REJECTED')">驳回</el-button></template></div><span v-else>--</span></template></el-table-column><template #empty><DsEmpty description="当前期间暂无边界调整"/></template></DsDataTable><footer v-if="adjustmentRows.length" class="ds-list-table-footer ds-list-table-footer--pagination-only"><DsPagination v-model:page="adjustmentPage" v-model:page-size="adjustmentPageSize" :total="adjustmentRows.length"/></footer></section></section>
+    </div>
+
+    <el-dialog v-model="dialogVisible" title="发起合法边界调整" width="680px" destroy-on-close><el-alert type="warning" :closable="false" title="只能登记真实跨边界且有凭证的例外电量；不得用来冲平差额。"/><el-form label-position="top" class="adjustment-form"><el-form-item label="平衡边界" required><el-select v-model="form.balanceGroupId" style="width:100%"><el-option v-for="item in result.rows" :key="item.id" :label="item.name" :value="item.id"/></el-select></el-form-item><el-form-item label="调整类型" required><el-select v-model="form.adjustmentType" style="width:100%"><el-option v-for="(label,value) in typeLabels" :key="value" :label="label" :value="value"/></el-select></el-form-item><el-form-item label="边界方向" required><el-radio-group v-model="form.balanceSide"><el-radio-button label="INPUT">输入</el-radio-button><el-radio-button label="OUTPUT">输出</el-radio-button></el-radio-group></el-form-item><el-form-item label="电量（kWh）" required><el-input-number v-model="form.quantity" :min="0" :precision="3" :step="100"/></el-form-item><el-form-item label="开始时间" required><el-date-picker v-model="form.periodStart" type="datetime" value-format="YYYY-MM-DDTHH:mm:ss" style="width:100%"/></el-form-item><el-form-item label="结束时间" required><el-date-picker v-model="form.periodEnd" type="datetime" value-format="YYYY-MM-DDTHH:mm:ss" style="width:100%"/></el-form-item><el-form-item label="凭证来源" required><el-select v-model="form.sourceType" style="width:100%"><el-option v-for="(label,value) in sourceLabels" :key="value" :label="label" :value="value"/></el-select></el-form-item><el-form-item label="凭证编号/地址" required><el-input v-model="form.evidenceReference" maxlength="255"/></el-form-item><el-form-item label="调整原因" required><el-input v-model="form.reason" type="textarea" :rows="3" maxlength="500"/></el-form-item></el-form><template #footer><el-button @click="dialogVisible=false">取消</el-button><el-button v-permission="'platform:enterprise-metering:balance:adjust'" type="primary" :loading="saving" :disabled="!canAdjust" @click="saveAdjustment">提交审批</el-button></template></el-dialog>
+  </DsListPageShell>
+</template>
+
+<style scoped>
+.adjustment-form{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;margin-top:16px}.adjustment-form :deep(.el-form-item:last-child){grid-column:1/-1}
+@media(max-width:900px){.adjustment-form{grid-template-columns:1fr}.adjustment-form :deep(.el-form-item){grid-column:1}}
+</style>

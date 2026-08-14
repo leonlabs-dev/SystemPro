@@ -1,0 +1,46 @@
+{
+  "name": "systempro-console",
+  "version": "0.1.0",
+  "description": "SystemPro enterprise operations platform for IoT, energy and business workflows.",
+  "private": true,
+  "homepage": "https://gitee.com/sitepulse/system-pro",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/sitepulse/system-pro.git"
+  },
+  "engines": {
+    "node": ">=14.21.0",
+    "npm": ">=6.14.0"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "node scripts/check-public-repository.mjs && node scripts/verify-theme-contract.mjs && vue-tsc --noEmit && vite build && node scripts/check-performance-budget.mjs",
+    "test:public-repository": "node scripts/check-public-repository.mjs",
+    "test:performance-budget": "node scripts/check-performance-budget.mjs",
+    "test:ui-contracts": "node scripts/verify-ui-state-contracts.mjs",
+    "test:theme-contract": "node scripts/verify-theme-contract.mjs",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "2.1.0",
+    "china-geojson": "1.0.0",
+    "echarts": "5.4.3",
+    "element-plus": "2.4.4",
+    "pinia": "2.1.7",
+    "simple-icons": "^16.25.0",
+    "vue": "3.3.13",
+    "vue-i18n": "9.2.2",
+    "vue-router": "4.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "4.5.2",
+    "nanoid": "3.3.18",
+    "postcss": "8.5.26",
+    "typescript": "4.9.5",
+    "unimport": "3.7.2",
+    "unplugin-auto-import": "0.17.8",
+    "unplugin-vue-components": "0.27.5",
+    "vite": "4.5.3",
+    "vue-tsc": "0.40.13"
+  }
+}

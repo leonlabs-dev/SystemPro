@@ -1,0 +1,11 @@
+node_modules/
+artifacts/
+dist/
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+.npmrc
+*.pem
+*.key

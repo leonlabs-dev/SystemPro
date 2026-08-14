@@ -1,0 +1,212 @@
+.alarm-stat-page {
+  --stat-gap: var(--space-3);
+  color: var(--color-text-primary);
+}
+.alarm-stat-kpis {
+  display: grid;
+  min-height: 82px;
+  flex: 0 0 auto;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--stat-gap);
+  margin: var(--space-4) var(--ds-page-inset) 0;
+}
+.alarm-stat-kpis article {
+  display: grid;
+  min-width: 0;
+  align-content: center;
+  padding: 12px 16px;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+}
+.alarm-stat-kpis span {
+  overflow: hidden;
+  color: var(--color-text-secondary);
+  font-size: var(--font-caption);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.alarm-stat-kpis strong {
+  margin-top: 5px;
+  font-size: 24px;
+  line-height: 26px;
+  font-variant-numeric: tabular-nums;
+}
+.alarm-stat-kpis strong em {
+  font-size: var(--font-caption);
+  font-style: normal;
+  font-weight: 500;
+}
+.alarm-stat-kpis small {
+  margin-top: 5px;
+  overflow: hidden;
+  color: var(--color-text-tertiary);
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.alarm-stat-kpis .is-warning {
+  color: var(--color-warning-default);
+}
+.alarm-stat-kpis .is-success {
+  color: var(--color-success-default);
+}
+.alarm-stat-kpis .is-danger {
+  color: var(--color-error-default);
+}
+.alarm-stat-charts {
+  display: grid;
+  height: 258px;
+  min-height: 220px;
+  flex: 0 0 31vh;
+  grid-template-columns: 1.18fr 0.88fr 1fr;
+  gap: var(--stat-gap);
+  margin: var(--stat-gap) var(--ds-page-inset) 0;
+}
+.alarm-stat-charts article {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+}
+.alarm-stat-charts article > header {
+  display: flex;
+  min-height: 46px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border-default) 72%, transparent);
+}
+.alarm-stat-charts article > header strong {
+  font-size: var(--font-body);
+}
+.alarm-stat-charts article > header span {
+  color: var(--color-text-tertiary);
+  font-size: var(--font-caption);
+}
+.alarm-stat-chart {
+  min-height: 0;
+  flex: 1;
+}
+.alarm-severity-card {
+  position: relative;
+}
+.alarm-donut-center {
+  position: absolute;
+  left: 34%;
+  top: 54%;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+.alarm-donut-center strong {
+  font-size: 20px;
+  line-height: 22px;
+}
+.alarm-donut-center span {
+  margin-top: 2px;
+  color: var(--color-text-secondary);
+  font-size: 8px;
+}
+.alarm-stat-workspace {
+  margin: var(--stat-gap) var(--ds-page-inset) var(--space-6);
+}
+.alarm-stat-tabs {
+  height: 42px;
+  padding: 0 12px;
+}
+.alarm-stat-tabs :deep(.el-tabs__header) {
+  margin: 0;
+}
+.alarm-stat-tabs :deep(.el-tabs__item) {
+  height: 42px;
+  padding: 0 18px;
+  font-size: 11px;
+}
+.alarm-stat-tabs :deep(.el-tabs__content) {
+  display: none;
+}
+.alarm-stat-toolbar {
+  border-top: 1px solid var(--color-border-default);
+  border-bottom: 1px solid var(--color-border-default);
+}
+.alarm-stat-link {
+  color: var(--color-primary-500);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.alarm-stat-link:hover {
+  color: var(--color-primary-600);
+}
+.alarm-stat-drawer dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 20px;
+  margin: 0;
+  padding: 20px;
+}
+.alarm-stat-drawer dl div {
+  min-width: 0;
+}
+.alarm-stat-drawer dl div.is-wide {
+  grid-column: 1/-1;
+}
+.alarm-stat-drawer dt {
+  color: var(--color-text-secondary);
+  font-size: 10px;
+}
+.alarm-stat-drawer dd {
+  margin: 4px 0 0;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 18px;
+  text-overflow: ellipsis;
+}
+.alarm-stat-drawer dl div:not(.is-wide) dd {
+  white-space: nowrap;
+}
+@media (max-height: 800px) {
+  .alarm-stat-kpis {
+    min-height: 68px;
+  }
+  .alarm-stat-kpis strong {
+    font-size: 18px;
+  }
+  .alarm-stat-kpis small {
+    display: none;
+  }
+  .alarm-stat-charts {
+    flex-basis: 28vh;
+    min-height: 190px;
+  }
+}
+@media (max-width: 1380px) {
+  .alarm-stat-kpis {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .alarm-stat-kpis article {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .alarm-stat-kpis strong {
+    font-size: 18px;
+  }
+  .alarm-stat-charts {
+    grid-template-columns: 1.1fr 0.9fr 1fr;
+  }
+}
+@media (max-width: 1180px) {
+  .alarm-stat-toolbar > .el-input {
+    width: 205px;
+  }
+  .alarm-stat-toolbar > .el-select {
+    width: 118px;
+  }
+}

@@ -1,0 +1,41 @@
+export default {
+  common: {
+    refresh: '刷新', retry: '重试', detail: '详情', reset: '重置', search: '查询', all: '全部',
+    generatedAt: '更新时间 {time}', noTelemetry: '未接入遥测', configurationOnly: '配置态',
+    active: '启用', disabled: '停用', notConfigured: '未配置', unknown: '未知',
+    system: '业务系统', space: '安装空间', gateway: '网关', channel: '通道', protocol: '协议模板',
+    assetMaster: '资产档案', accessConfig: '接入配置', runtimeSnapshot: '运行快照', configState: '配置状态',
+    masterValue: '当前主数据', version: '版本', driftPolicy: '资产档案为身份主数据；接入配置按资产 ID 关联，配置不完整时提示但不覆盖资产名称。',
+    consistency: { ALIGNED: '配置完整', NO_ACCESS: '未配置接入', ACCESS_DISABLED: '接入已停用', INCOMPLETE: '接入配置不完整' },
+  },
+  device: {
+    title: '设备实时监控', subtitle: '统一查看设备资产、接入配置与最新运行快照',
+    total: '设备总数', configured: '接入完整', unconfigured: '未配置接入', attention: '配置关注', telemetry: '实时遥测',
+    keyword: '设备名称 / 编码', systemType: '全部系统类型', consistency: '全部配置状态',
+    codeName: '设备名称 / 编码', type: '系统类型', subtype: '设备子类', access: '接入方式', runtime: '运行状态', updated: '档案更新时间',
+    empty: '当前管理范围没有设备资产', loadFailed: '设备监控加载失败',
+  },
+  gateway: {
+    title: '网关 / 链路状态', subtitle: '按网关、协议通道与下挂设备检查接入完整性',
+    total: '网关总数', devices: '已绑定设备', incomplete: '配置关注', unbound: '未绑定网关', telemetry: '在线链路',
+    select: '网关', channelCount: '{count} 个通道', deviceCount: '{count} 台设备',
+    health: '链路配置', channels: '下挂通道', empty: '当前没有已配置网关的设备', loadFailed: '网关链路加载失败',
+  },
+  grid: {
+    title: '并 / 离网切换状态', subtitle: '只读呈现光伏与储能配置模式、运行态和联锁条件',
+    systems: '能源系统', configured: '已配置模式', runtime: '实时模式', grid: '电网可用', interlock: '联锁条件', transition: '最近切换',
+    sourceGrid: '公共电网', coupling: '并网连接点', load: '园区负荷', solar: '光伏系统', storage: '储能系统',
+    configuredMode: '配置模式', runtimeMode: '当前运行模式', safety: '本页仅监视状态，不提供远程切换操作。',
+    empty: '当前没有启用的光伏或储能系统', loadFailed: '并离网状态加载失败',
+  },
+  video: {
+    title: '视频监控接入', subtitle: '摄像机通道配置、接入健康与安全预览入口',
+    total: '摄像机', configured: '通道完整', unconfigured: '未配置通道', attention: '配置关注', streams: '实时视频流',
+    keyword: '摄像机名称 / 编码 / 空间', allStates: '全部接入状态', list: '列表', cards: '卡片', preview: '查看接入详情',
+    noStreamTitle: '暂无实时视频', noStreamDescription: '摄像机档案已存在，但尚未接入受控媒体流。',
+    notConfiguredTitle: '视频通道未配置', notConfiguredDescription: '请先维护网关、通道编码和协议模板。',
+    failedTitle: '视频连接不可用', failedDescription: '媒体流暂不可用，请检查接入服务。',
+    secureHint: '预览需由媒体网关签发短期播放凭证；前端不暴露 RTSP 地址或设备密码。',
+    empty: '当前没有摄像机资产', loadFailed: '视频监控接入加载失败',
+  },
+};

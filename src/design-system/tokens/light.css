@@ -1,0 +1,43 @@
+:root[data-theme='light'] {
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-bg-default: #F7F9FC;
+  --color-bg-surface: #FFFFFF;
+  --color-primary-500: #2F6BFF;
+  --color-primary-600: #2558D9;
+  --color-primary-700: #1C46B3;
+  --color-text-primary: #1D2433;
+  --color-text-secondary: #5B6472;
+  --color-text-disabled: #A6AEBC;
+  --color-border-default: #E6EAF2;
+  --color-success-default: #16A34A;
+  --color-success-bg: #EAF7EF;
+  --color-warning-default: #D97706;
+  --color-warning-bg: #FFF7E6;
+  --color-error-default: #DC2626;
+  --color-error-bg: #FDECEC;
+  --color-info-default: #2F6BFF;
+  --color-info-bg: #EAF0FF;
+  --color-bg-muted: #F3F5F8;
+  --color-bg-subtle: #F8F9FB;
+  --color-bg-inset: #FAFBFC;
+  --color-bg-wireframe: #EEF2F8;
+  --color-bg-code: #F8F9FB;
+  --color-wire-block: rgb(255 255 255 / 88%);
+  --color-wire-block-border: rgb(47 107 255 / 16%);
+  --shadow-panel: 0 10px 30px rgb(29 36 51 / 8%);
+  --shadow-soft: 0 6px 18px rgb(29 36 51 / 6%);
+}
+
+/* Accessibility palettes are token-scoped. Global filter/opacity on the app
+   root would create a stacking context and corrupt overlays and previews. */
+:root[data-theme='light'][data-visual-a11y='color-weak'] {
+  --color-success-default: #0072B2;
+  --color-success-bg: #E7F3FA;
+  --color-warning-default: #B85C00;
+  --color-warning-bg: #FFF1DF;
+  --color-error-default: #C23B22;
+  --color-error-bg: #FCEBE7;
+  --color-info-default: #5B4BC4;
+  --color-info-bg: #EFEDFF;
+}

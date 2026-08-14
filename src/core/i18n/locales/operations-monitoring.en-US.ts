@@ -1,0 +1,41 @@
+export default {
+  common: {
+    refresh: 'Refresh', retry: 'Retry', detail: 'Details', reset: 'Reset', search: 'Search', all: 'All',
+    generatedAt: 'Updated {time}', noTelemetry: 'Telemetry not connected', configurationOnly: 'Configuration',
+    active: 'Active', disabled: 'Disabled', notConfigured: 'Not configured', unknown: 'Unknown',
+    system: 'Business system', space: 'Installation space', gateway: 'Gateway', channel: 'Channel', protocol: 'Protocol template',
+    assetMaster: 'Asset master', accessConfig: 'Access configuration', runtimeSnapshot: 'Runtime snapshot', configState: 'Configuration status',
+    masterValue: 'Current master value', version: 'Version', driftPolicy: 'The asset catalog is the identity master. Access configuration links by asset ID and never overrides the asset name.',
+    consistency: { ALIGNED: 'Complete', NO_ACCESS: 'Access not configured', ACCESS_DISABLED: 'Access disabled', INCOMPLETE: 'Incomplete access configuration' },
+  },
+  device: {
+    title: 'Device Realtime Monitoring', subtitle: 'Unified view of asset master data, access configuration and latest runtime snapshot',
+    total: 'Devices', configured: 'Access complete', unconfigured: 'Access missing', attention: 'Needs attention', telemetry: 'Live telemetry',
+    keyword: 'Device name / code', systemType: 'All system types', consistency: 'All configuration states',
+    codeName: 'Device / code', type: 'System type', subtype: 'Subtype', access: 'Access', runtime: 'Runtime', updated: 'Catalog updated',
+    empty: 'No device asset in the current scope', loadFailed: 'Failed to load device monitoring',
+  },
+  gateway: {
+    title: 'Gateway / Link Status', subtitle: 'Inspect access completeness by gateway, protocol channel and attached device',
+    total: 'Gateways', devices: 'Bound devices', incomplete: 'Needs attention', unbound: 'Without gateway', telemetry: 'Online links',
+    select: 'Gateway', channelCount: '{count} channels', deviceCount: '{count} devices',
+    health: 'Link configuration', channels: 'Attached channels', empty: 'No device has a configured gateway', loadFailed: 'Failed to load gateway links',
+  },
+  grid: {
+    title: 'Grid / Off-grid Status', subtitle: 'Read-only view of PV and storage configured modes, runtime state and interlocks',
+    systems: 'Energy systems', configured: 'Configured mode', runtime: 'Runtime mode', grid: 'Grid availability', interlock: 'Interlocks', transition: 'Last transition',
+    sourceGrid: 'Utility grid', coupling: 'Grid connection point', load: 'Site load', solar: 'PV system', storage: 'Storage system',
+    configuredMode: 'Configured mode', runtimeMode: 'Current runtime mode', safety: 'This page is monitoring-only and provides no remote switching control.',
+    empty: 'No active PV or storage system', loadFailed: 'Failed to load grid mode status',
+  },
+  video: {
+    title: 'Video Monitoring Access', subtitle: 'Camera channel configuration, access health and secure preview entry',
+    total: 'Cameras', configured: 'Channels complete', unconfigured: 'Channel missing', attention: 'Needs attention', streams: 'Live streams',
+    keyword: 'Camera name / code / space', allStates: 'All access states', list: 'List', cards: 'Cards', preview: 'Access details',
+    noStreamTitle: 'No live video', noStreamDescription: 'The camera asset exists but no controlled media stream is connected.',
+    notConfiguredTitle: 'Video channel not configured', notConfiguredDescription: 'Configure the gateway, channel code and protocol template first.',
+    failedTitle: 'Video connection unavailable', failedDescription: 'The media stream is unavailable. Check the access service.',
+    secureHint: 'Preview requires a short-lived token from a media gateway. RTSP URLs and device credentials are never exposed to the frontend.',
+    empty: 'No camera asset in the current scope', loadFailed: 'Failed to load video monitoring access',
+  },
+};

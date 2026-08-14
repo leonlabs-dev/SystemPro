@@ -1,0 +1,194 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  color: var(--color-text-primary);
+  background: var(--color-bg-default);
+  font-family:
+    Inter,
+    "PingFang SC",
+    "Microsoft YaHei",
+    Arial,
+    sans-serif;
+  font-size: var(--font-body);
+  line-height: var(--line-body);
+}
+
+:root {
+  --el-color-primary: var(--color-primary-500);
+  --el-color-primary-light-3: var(--color-primary-600);
+  --el-color-primary-dark-2: var(--color-primary-700);
+  --el-bg-color: var(--color-bg-surface);
+  --el-bg-color-page: var(--color-bg-default);
+  --el-bg-color-overlay: var(--color-bg-surface);
+  --el-text-color-primary: var(--color-text-primary);
+  --el-text-color-regular: var(--color-text-primary);
+  --el-text-color-secondary: var(--color-text-secondary);
+  --el-text-color-placeholder: var(--color-text-disabled);
+  --el-text-color-disabled: var(--color-text-disabled);
+  --el-border-color: var(--color-border-default);
+  --el-border-color-light: var(--color-border-default);
+  --el-border-color-lighter: var(--color-border-default);
+  --el-fill-color: var(--color-bg-default);
+  --el-fill-color-light: var(--color-bg-default);
+  --el-fill-color-lighter: var(--color-bg-default);
+  --el-fill-color-blank: var(--color-bg-surface);
+  --el-mask-color: rgb(0 0 0 / 45%);
+  --el-box-shadow-light: var(--shadow-soft);
+  --el-border-radius-base: var(--radius-md);
+  --ds-scrollbar-thumb: color-mix(in srgb, var(--color-primary-500) 54%, var(--color-border-default));
+  --ds-scrollbar-thumb-hover: color-mix(in srgb, var(--color-primary-500) 76%, var(--color-text-secondary));
+  --ds-scrollbar-size: 7px;
+}
+
+* {
+  scrollbar-color: var(--ds-scrollbar-thumb) transparent;
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: var(--ds-scrollbar-size);
+  height: var(--ds-scrollbar-size);
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  min-height: 40px;
+  border-radius: var(--radius-pill);
+  background: var(--ds-scrollbar-thumb);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--ds-scrollbar-thumb-hover);
+}
+
+*::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Element Plus renders table scrollbars with its own div-based implementation,
+   so native ::-webkit-scrollbar rules do not reach them. Keep every data table
+   on the active theme colour instead of Element Plus' neutral grey default. */
+.el-table .el-scrollbar__bar.is-horizontal {
+  height: var(--ds-scrollbar-size);
+}
+
+.el-table .el-scrollbar__bar.is-vertical {
+  width: var(--ds-scrollbar-size);
+}
+
+.el-table .el-scrollbar__thumb {
+  background-color: var(--ds-scrollbar-thumb) !important;
+  opacity: 1;
+}
+
+.el-table .el-scrollbar__thumb:hover {
+  background-color: var(--ds-scrollbar-thumb-hover) !important;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+/* Mouse clicks must not leave Element Plus buttons in their hover-colored focus state.
+   Keyboard focus remains visible through the :focus-visible rule above. */
+.el-button:focus:not(:focus-visible) {
+  color: var(--el-button-text-color);
+  border-color: var(--el-button-border-color);
+  background-color: var(--el-button-bg-color);
+}
+
+.el-button,
+.el-input__wrapper,
+.el-select__wrapper {
+  border-radius: var(--radius-md);
+}
+
+.el-input__wrapper,
+.el-select__wrapper,
+.el-textarea__inner {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  box-shadow: none;
+}
+
+.el-input__inner,
+.el-select__placeholder,
+.el-textarea__inner {
+  color: var(--color-text-primary);
+}
+
+.el-input__wrapper:hover,
+.el-input__wrapper.is-focus,
+.el-select__wrapper:hover,
+.el-select__wrapper.is-focused {
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary-500) 14%, transparent);
+}
+
+.el-card,
+.el-table,
+.el-dialog,
+.el-drawer {
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-default);
+}
+
+.el-table {
+  --el-table-header-bg-color: var(--color-bg-default);
+  --el-table-bg-color: var(--color-bg-surface);
+  --el-table-tr-bg-color: var(--color-bg-surface);
+  --el-table-row-hover-bg-color: var(--color-info-bg);
+  --el-table-border-color: var(--color-border-default);
+  --el-table-header-text-color: var(--color-text-secondary);
+  --el-table-text-color: var(--color-text-primary);
+}
+
+.el-popper,
+.el-dropdown__popper.el-popper,
+.el-picker__popper.el-popper {
+  background: var(--color-bg-surface);
+  border-color: var(--color-border-default);
+  color: var(--color-text-primary);
+}
+
+.el-button--primary {
+  --el-button-bg-color: var(--color-primary-500);
+  --el-button-border-color: var(--color-primary-500);
+  --el-button-hover-bg-color: var(--color-primary-600);
+  --el-button-hover-border-color: var(--color-primary-600);
+  --el-button-active-bg-color: var(--color-primary-700);
+  --el-button-active-border-color: var(--color-primary-700);
+}
+[data-permission-disabled='true'] {
+  cursor: not-allowed !important;
+  opacity: 0.48 !important;
+}
