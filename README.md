@@ -22,7 +22,6 @@
 <p align="center">
   <b>在线体验</b>&nbsp;&nbsp;<a href="http://console.systempro.site">console.systempro.site</a><br/><br/>
   <b>账号</b>&nbsp;<code>system</code>&nbsp;&nbsp;&nbsp;<b>密码</b>&nbsp;<code>12345678</code><br/><br/>
-  <b>官网</b>&nbsp;&nbsp;<a href="http://systempro.site">systempro.site</a><br/><br/>
   <b>源码仓库</b>&nbsp;&nbsp;<a href="https://gitee.com/sitepulse/system-pro">gitee.com/sitepulse/system-pro</a>
 </p>
 
