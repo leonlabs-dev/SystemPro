@@ -14,20 +14,25 @@
   <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white" alt="TypeScript 5" />
   <img src="https://img.shields.io/badge/Vite-4.x-646CFF?logo=vite&logoColor=white" alt="Vite 4" />
   <img src="https://img.shields.io/badge/Element%20Plus-UI-409EFF" alt="Element Plus" />
-  <img src="https://img.shields.io/badge/License-MIT-lightgrey" alt="MIT License" />
+  <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg?logo=apache&logoColor=white" alt="Apache License 2.0" />
 </p>
+
+<br/>
 
 <p align="center">
-  <a href="http://console.systempro.site"><b>在线体验</b></a>
-  &nbsp;·&nbsp;
-  <a href="http://systempro.site"><b>官网</b></a>
-  &nbsp;·&nbsp;
-  <a href="https://gitee.com/sitepulse/system-pro"><b>源码仓库</b></a>
+  <b>在线体验</b>&nbsp;&nbsp;<a href="http://console.systempro.site">console.systempro.site</a><br/><br/>
+  <b>账号</b>&nbsp;<code>system</code>&nbsp;&nbsp;&nbsp;<b>密码</b>&nbsp;<code>12345678</code><br/><br/>
+  <b>官网</b>&nbsp;&nbsp;<a href="http://systempro.site">systempro.site</a><br/><br/>
+  <b>源码仓库</b>&nbsp;&nbsp;<a href="https://gitee.com/sitepulse/system-pro">gitee.com/sitepulse/system-pro</a>
 </p>
 
----
+<p align="center"><sub>演示账号为公开只读账号，账号密码在页面源码和请求中始终可见，不涉及真实安全凭据。</sub></p>
 
-systemPro 面向园区、楼宇、工厂与能源项目，提供面向园区能源运营的**软件平台方案**，覆盖设备接入、分项计量、暖通集中控制、财务结算与权限治理，把设备、能源、财务与组织权限收敛到同一套工程分层，帮助运营方从「设备分散、账目不清」走向「集中可控、账实一致」。
+<br/>
+
+systemPro 是一套面向光储充（光伏 · 储能 · 充电）行业的 IoT 能源管理 SaaS 平台，服务园区、楼宇、工厂等场景的能源运营。从设备接入、分项计量、暖通集中控制，到财务结算与组织权限治理，systemPro 把原本分散在不同系统里的设备、能源、账目和人，收进同一套平台里管理，帮助运营方从「设备分散、账目不清」走向「集中可控、账实一致」。
+
+<br/>
 
 ## 核心能力
 
@@ -42,184 +47,202 @@ systemPro 面向园区、楼宇、工厂与能源项目，提供面向园区能�
 | 多租户与权限体系 | 组织架构、空间层级、RBAC 权限与 SSO 绑定 |
 | 部署无需重新打包 | 接口地址运行时配置，切换环境无需重新构建前端 |
 
----
-
-## 平台架构
-
-平台采用四层架构：设备层接入现场资产，数据接入层统一设备数据，业务能力层沉淀能源、设备、财务与权限能力，应用层面向不同角色提供工作入口。
-
-```text
-设备层        电表 / 水表 / 空调 / 照明 / 停车 / 充电 / 光伏 / 储能
-      ↓
-数据接入层    MQTT / Modbus / REST API
-      ↓
-业务能力层    能源 / 设备 / 财务 / 权限
-      ↓
-应用层        驾驶舱 / 运营后台 / 移动端
-```
-
----
+<br/><br/>
 
 ## 功能导览
 
-**平台首页**
+### 总览
+
+#### 平台首页
 
 欢迎与模块索引是平台的统一入口，聚合设备、能源、财务与平台能力各业务模块的概览与导航。
 
 <p align="center">
-  <img src="./assets/screenshots/欢迎.png" width="800" alt="平台首页" />
+  <img src="./assets/screenshots/欢迎.png" width="760" alt="平台首页" />
 </p>
 
-**能源驾驶舱**
+<br/>
 
-双碳·光储充一体化驾驶舱与综合运营看板，融合经营、能源与 IoT 指标，管理层一屏掌握全貌。
+#### 能源驾驶舱
+
+双碳·光储充一体化驾驶舱，融合经营、能源与 IoT 指标，管理层一屏掌握全貌。
 
 <p align="center">
-  <img src="./assets/screenshots/驾驶舱.png" width="800" alt="双碳·光储充一体化驾驶舱" />
+  <img src="./assets/screenshots/驾驶舱.png" width="760" alt="双碳·光储充一体化驾驶舱" />
 </p>
+
+<br/><br/>
+
+### 设备与能源
+
+#### 空调设备 · 集中控制
+
+面向空调系统的统一纳管与集中控制：覆盖中央空调、分体空调、多联机与新风系统，单台设备的接入档案、运行状态与所属系统一目了然；整栋楼宇的分区策略与场景联动集中配置，将「单机分散管理」升级为「集中可控、场景联动」。
+
+**设备总览**
+
+集中控制台统一展示空调设备清单、在线状态与运行数据，支持按系统、空间和档案状态筛选，批量下发控制指令。
 
 <p align="center">
-  <img src="./assets/screenshots/综合运营看板.png" width="800" alt="综合运营看板" />
+  <img src="./assets/screenshots/空调卡片.png" width="760" alt="空调设备总览" />
 </p>
 
-**空调设备 · 集中控制**
+<br/>
 
-> 面向空调系统的统一纳管与集中控制：覆盖中央空调、分体空调、多联机与新风系统，单台设备的接入档案、运行状态与所属系统一目了然；整栋楼宇的分区策略与场景联动集中配置，将「单机分散管理」升级为「集中可控、场景联动」。
+**新增空调设备**
+
+维护单台空调设备的接入参数、所属系统与运行档案，设备与所属空间、系统的归属关系一步录入。
 
 <p align="center">
-  <img src="./assets/screenshots/空调卡片.png" width="800" alt="空调设备卡片" />
+  <img src="./assets/screenshots/新增空调2.png" width="760" alt="新增空调设备" />
 </p>
+
+<br/>
+
+**新增空调系统**
+
+配置空调系统的组成、控制策略与所属分区，支持多联机等多种系统形态的统一建档。
 
 <p align="center">
-  <img src="./assets/screenshots/新增空调2.png" width="400" alt="新增空调设备" />
-  <img src="./assets/screenshots/新增空调系统.png" width="400" alt="新增空调系统" />
+  <img src="./assets/screenshots/新增空调系统.png" width="760" alt="新增空调系统" />
 </p>
 
-**设备资产**
+<br/>
 
-电表、水表、空调、照明、停车、充电、光伏、储能八类设备资产统一建档，维护总表分表关系、倍率与采集状态，覆盖电表预付费等常见场景。
+#### 设备资产
+
+电表、水表、空调、照明、停车、充电、光伏、储能八类设备资产统一建档，维护总表分表关系、倍率与采集状态，覆盖电表预付费等常见场景，照明分区与场景联动同样纳入统一档案。
 
 <p align="center">
-  <img src="./assets/screenshots/电表.png" width="800" alt="电表管理" />
+  <img src="./assets/screenshots/电表.png" width="760" alt="电表管理" />
 </p>
 
-**能源流向**
+<br/>
 
-能源拓扑图与光储充能源概览，实时呈现光伏、储能、负载与公共电网的能量平衡。
+#### 能源流向
+
+能源拓扑图实时呈现光伏、储能、负载与公共电网的能量平衡。
 
 <p align="center">
-  <img src="./assets/screenshots/能源拓扑.png" width="800" alt="能源拓扑图" />
+  <img src="./assets/screenshots/能源拓扑.png" width="760" alt="能源拓扑图" />
 </p>
+
+<br/>
+
+#### 能源计量
+
+维护总分表拓扑与分项计量口径，管理计费方案与计费开通，用能账目可追溯到每一个空间和租户。
 
 <p align="center">
-  <img src="./assets/screenshots/光储充能源概览.png" width="800" alt="光储充能源概览" />
+  <img src="./assets/screenshots/计费开通.png" width="760" alt="计费开通" />
 </p>
 
-**能源计量**
+<br/>
 
-计费方案与计费开通让用能账目可追溯到每一个空间和租户。
+#### 运营监控
+
+设备实时监控、网关/链路状态、并离网切换与视频监控接入，运行状态一屏统管。
 
 <p align="center">
-  <img src="./assets/screenshots/计费开通.png" width="800" alt="计费开通" />
+  <img src="./assets/screenshots/并离网切换状态.png" width="760" alt="并离网切换状态" />
 </p>
+
+<br/>
+
+#### 告警工单
+
+从告警规则配置、告警转工单到历史告警统计，形成闭环处理机制，告警不再石沉大海。
 
 <p align="center">
-  <img src="./assets/screenshots/新增计费方案.png" width="400" alt="新增计费方案" />
-  <img src="./assets/screenshots/新增计费开通1.png" width="400" alt="新增计费开通" />
+  <img src="./assets/screenshots/告警.png" width="760" alt="历史告警统计" />
 </p>
 
-**运营监控与告警**
+<br/><br/>
 
-设备实时监控、网关/链路状态、并离网切换与视频监控接入；告警从规则配置、转工单到历史统计形成闭环。
+### 财务账单
+
+#### 财务中心
+
+银企直连、收款核销、调账退款与开票管理，真实银行流水与应收账单自动匹配核销。
 
 <p align="center">
-  <img src="./assets/screenshots/告警.png" width="800" alt="告警工单" />
+  <img src="./assets/screenshots/银企直连.png" width="760" alt="财务中心 · 银企直连" />
 </p>
+
+<br/>
+
+#### 账单管理
+
+依据冻结用量和生效费率生成可追溯账单，跟踪账单支付、开票、逾期和关闭状态。
 
 <p align="center">
-  <img src="./assets/screenshots/停车场监控.png" width="400" alt="停车场监控" />
-  <img src="./assets/screenshots/并离网切换状态.png" width="400" alt="并离网切换状态" />
+  <img src="./assets/screenshots/账单.png" width="760" alt="账单管理" />
 </p>
 
-**财务账单**
+<br/><br/>
 
-银企直连、收款核销、调账退款与开票管理；依据冻结用量和生效费率生成可追溯账单，跟踪支付、开票、逾期和关闭状态。
+### 平台能力
+
+#### 用户权限
+
+账号、角色、菜单、操作与数据权限构成企业级 RBAC 体系，权限可以细到按钮级别。
 
 <p align="center">
-  <img src="./assets/screenshots/银企直连.png" width="800" alt="财务中心" />
+  <img src="./assets/screenshots/角色权限.png" width="760" alt="角色权限" />
 </p>
+
+<br/>
+
+#### 组织项目
+
+组织架构树、部门岗位、空间层级与租户客户档案，物理空间与组织关系解耦管理。
 
 <p align="center">
-  <img src="./assets/screenshots/账单.png" width="800" alt="账单管理" />
+  <img src="./assets/screenshots/组织项目.png" width="760" alt="组织项目" />
 </p>
 
-**平台能力**
+<br/>
 
-账号、角色、菜单、操作与数据权限构成企业级 RBAC 体系；组织架构、空间层级与租户档案解耦管理。
+#### 系统设置
+
+基础参数、数据字典与国际化，支持深浅色主题与导航布局自定义。
 
 <p align="center">
-  <img src="./assets/screenshots/角色权限.png" width="400" alt="角色权限" />
-  <img src="./assets/screenshots/组织项目.png" width="400" alt="组织项目" />
+  <img src="./assets/screenshots/基础参数.png" width="760" alt="基础参数" />
 </p>
 
-<p align="center">
-  <img src="./assets/screenshots/菜单权限.png" width="400" alt="菜单权限" />
-  <img src="./assets/screenshots/操作权限.png" width="400" alt="操作权限" />
-</p>
+<br/><br/>
 
-<p align="center">
-  <img src="./assets/screenshots/数据权限.png" width="400" alt="数据权限" />
-  <img src="./assets/screenshots/菜单按钮级权限.png" width="400" alt="菜单按钮级权限" />
-</p>
+## 更多界面
 
-<details>
-<summary>查看更多截图</summary>
+<table>
+<tr>
+<td align="center" width="33%"><a href="./assets/screenshots/综合运营看板.png"><img src="./assets/screenshots/综合运营看板.png" width="220" alt="综合运营看板" /></a><br/><sub>综合运营看板</sub></td>
+<td align="center" width="33%"><a href="./assets/screenshots/光储充能源概览.png"><img src="./assets/screenshots/光储充能源概览.png" width="220" alt="光储充能源概览" /></a><br/><sub>光储充能源概览</sub></td>
+<td align="center" width="33%"><a href="./assets/screenshots/新增计费方案.png"><img src="./assets/screenshots/新增计费方案.png" width="220" alt="新增计费方案" /></a><br/><sub>新增计费方案</sub></td>
+</tr>
+<tr>
+<td align="center" width="33%"><a href="./assets/screenshots/新增计费开通1.png"><img src="./assets/screenshots/新增计费开通1.png" width="220" alt="新增计费开通" /></a><br/><sub>新增计费开通</sub></td>
+<td align="center" width="33%"><a href="./assets/screenshots/停车场监控.png"><img src="./assets/screenshots/停车场监控.png" width="220" alt="停车场监控" /></a><br/><sub>停车场监控</sub></td>
+<td align="center" width="33%"><a href="./assets/screenshots/菜单权限.png"><img src="./assets/screenshots/菜单权限.png" width="220" alt="菜单权限" /></a><br/><sub>菜单权限</sub></td>
+</tr>
+<tr>
+<td align="center" width="33%"><a href="./assets/screenshots/操作权限.png"><img src="./assets/screenshots/操作权限.png" width="220" alt="操作权限" /></a><br/><sub>操作权限</sub></td>
+<td align="center" width="33%"><a href="./assets/screenshots/数据权限.png"><img src="./assets/screenshots/数据权限.png" width="220" alt="数据权限" /></a><br/><sub>数据权限</sub></td>
+<td align="center" width="33%"><a href="./assets/screenshots/菜单按钮级权限.png"><img src="./assets/screenshots/菜单按钮级权限.png" width="220" alt="菜单按钮级权限" /></a><br/><sub>菜单按钮级权限</sub></td>
+</tr>
+<tr>
+<td align="center" width="33%"><a href="./assets/screenshots/空间层级.png"><img src="./assets/screenshots/空间层级.png" width="220" alt="空间层级" /></a><br/><sub>空间层级</sub></td>
+<td align="center" width="33%"><a href="./assets/screenshots/多语言管理.png"><img src="./assets/screenshots/多语言管理.png" width="220" alt="国际化" /></a><br/><sub>国际化</sub></td>
+<td width="33%"></td>
+</tr>
+</table>
 
-<p align="center">
-  <img src="./assets/screenshots/空间层级.png" width="400" alt="空间层级" />
-  <img src="./assets/screenshots/基础参数.png" width="400" alt="基础参数" />
-</p>
-
-<p align="center">
-  <img src="./assets/screenshots/多语言管理.png" width="400" alt="多语言管理" />
-  <img src="./assets/screenshots/风格设置.png" width="400" alt="风格设置" />
-</p>
-
-<p align="center">
-  <img src="./assets/screenshots/导航设置.png" width="400" alt="导航设置" />
-</p>
-
-</details>
-
----
-
-## 工程架构
-
-工程按职责分层：`core` 提供平台基础能力，`design-system` 沉淀统一设计体系，`domain` 承载业务领域模块，`pages` 只做页面入口。完整目录与分层说明见 [docs/architecture.md](./docs/architecture.md)。
-
-```text
-systemPro
-│
-├── core            平台基础能力
-│
-├── design-system   统一设计体系
-│
-├── domain          业务领域模块
-│
-├── pages           页面入口
-│
-└── router / store  应用基础设施
-```
-
----
+<br/><br/>
 
 ## 快速开始
 
-| 项 | 值 |
-| --- | --- |
-| Node.js | ≥ 18（建议 LTS） |
-| 体验地址 | [console.systempro.site](http://console.systempro.site) |
-| 体验账号 | `system` / `12345678`（公开只读） |
+环境要求：Node.js ≥ 18（建议使用 LTS 版本）
 
 ```bash
 npm install
@@ -243,9 +266,9 @@ window.__SYSTEMPRO_PUBLIC_CONFIG__ = {
 }
 ```
 
-本地开发可将 `apiBaseUrl` 指向自有后端，或使用官方演示后端 `http://console.systempro.site` 体验只读数据。
+本地开发可将 `apiBaseUrl` 指向自有后端，或使用官方演示后端 `http://console.systempro.site` 体验只读数据（账号见文首）。
 
----
+<br/>
 
 ## 技术栈
 
@@ -270,12 +293,12 @@ window.__SYSTEMPRO_PUBLIC_CONFIG__ = {
 | IoT | MQTT · Modbus · REST API |
 | 安全 | Spring Security · OAuth2 / JWT |
 
----
+<br/>
 
 ## License
 
-本项目基于 [MIT](https://opensource.org/licenses/MIT) 许可证开源。
+本项目基于 [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) 许可证开源。
 
 ---
 
-<p align="center"><sub>systemPro —— 面向企业能源运营场景构建的数字化平台基础。</sub></p>
+<p align="center"><sub>systemPro —— 让每一度电、每一笔账，都说得清楚。</sub></p>
