@@ -30,7 +30,7 @@
 
 <br/>
 
-systemPro 是一套面向光储充（光伏 · 储能 · 充电）行业的 IoT 能源管理 SaaS 平台，服务园区、楼宇、工厂等场景的能源运营。从设备接入、分项计量、暖通集中控制，到财务结算与组织权限治理，systemPro 把原本分散在不同系统里的设备、能源、账目和人，收进同一套平台里管理，帮助运营方从「设备分散、账目不清」走向「集中可控、账实一致」。
+systemPro 是一套面向光储充（光伏 · 储能 · 充电）行业的 IoT 能源管理 SaaS 平台，服务园区、楼宇、工厂等场景的能源运营。从设备接入、分项计量、暖通集中控制，到财务结算与组织权限治理，systemPro 将原本分散在不同系统中的设备、能源、账目与人员统一收敛至同一平台，支撑运营方由「设备分散、账目不清」向「集中可控、账实一致」演进。
 
 <br/>
 
@@ -38,12 +38,12 @@ systemPro 是一套面向光储充（光伏 · 储能 · 充电）行业的 IoT 
 
 | 能力域 | 说明 |
 | --- | --- |
-| 一体化能源驾驶舱 | 双碳指标与光储充一体化看板，管理层一屏掌握经营与能源全貌 |
+| 一体化能源驾驶舱 | 双碳指标与光储充一体化看板，经营与能源指标一屏总览 |
 | 八类设备统一建档 | 电表、水表、空调、照明、停车、充电、光伏、储能资产档案统一纳管 |
 | 空调集中控制 | 中央空调、多联机与新风系统统一纳管，分区控制与场景联动 |
 | 分项计量与损耗分析 | 真实供电拓扑与分项计量口径，用能账目追溯至空间与租户 |
 | 告警转工单闭环 | 规则配置、转工单与历史统计，形成完整处理闭环 |
-| 财务全流程 | 银企直连、收款核销、调账退款与开票管理，业务财务数据打通 |
+| 财务全流程 | 银企直连、收款核销、调账退款与开票管理，业务与财务数据互通 |
 | 多租户与权限体系 | 组织架构、空间层级、RBAC 权限与 SSO 绑定 |
 | 部署无需重新打包 | 接口地址运行时配置，切换环境无需重新构建前端 |
 
@@ -65,7 +65,7 @@ systemPro 是一套面向光储充（光伏 · 储能 · 充电）行业的 IoT 
 
 #### 能源驾驶舱
 
-双碳·光储充一体化驾驶舱，融合经营、能源与 IoT 指标，管理层一屏掌握全貌。
+双碳·光储充一体化驾驶舱，融合经营、能源与 IoT 指标，支撑经营与能源指标一屏总览。
 
 <p align="center">
   <img src="./assets/screenshots/驾驶舱.png" width="760" alt="双碳·光储充一体化驾驶舱" />
@@ -77,7 +77,7 @@ systemPro 是一套面向光储充（光伏 · 储能 · 充电）行业的 IoT 
 
 #### 空调设备 · 集中控制
 
-面向空调系统的统一纳管与集中控制：覆盖中央空调、分体空调、多联机与新风系统，单台设备的接入档案、运行状态与所属系统一目了然；整栋楼宇的分区策略与场景联动集中配置，将「单机分散管理」升级为「集中可控、场景联动」。
+面向空调系统的统一纳管与集中控制：覆盖中央空调、分体空调、多联机与新风系统，单台设备的接入档案、运行状态与所属系统完整呈现；整栋楼宇的分区策略与场景联动集中配置，由「单机分散管理」演进为「集中可控、场景联动」。
 
 **设备总览**
 
@@ -91,7 +91,7 @@ systemPro 是一套面向光储充（光伏 · 储能 · 充电）行业的 IoT 
 
 **新增空调设备**
 
-维护单台空调设备的接入参数、所属系统与运行档案，设备与所属空间、系统的归属关系一步录入。
+维护单台空调设备的接入参数、所属系统与运行档案，设备与所属空间、系统的归属关系一次录入。
 
 <p align="center">
   <img src="./assets/screenshots/新增空调2.png" width="760" alt="新增空调设备" />
@@ -131,7 +131,7 @@ systemPro 是一套面向光储充（光伏 · 储能 · 充电）行业的 IoT 
 
 #### 能源计量
 
-维护总分表拓扑与分项计量口径，管理计费方案与计费开通，用能账目可追溯到每一个空间和租户。
+维护总分表拓扑与分项计量口径，管理计费方案与计费开通，用能账目可追溯至空间与租户。
 
 <p align="center">
   <img src="./assets/screenshots/计费开通.png" width="760" alt="计费开通" />
@@ -141,7 +141,7 @@ systemPro 是一套面向光储充（光伏 · 储能 · 充电）行业的 IoT 
 
 #### 运营监控
 
-设备实时监控、网关/链路状态、并离网切换与视频监控接入，运行状态一屏统管。
+设备实时监控、网关/链路状态、并离网切换与视频监控接入，运行状态集中管控。
 
 <p align="center">
   <img src="./assets/screenshots/并离网切换状态.png" width="760" alt="并离网切换状态" />
@@ -151,7 +151,7 @@ systemPro 是一套面向光储充（光伏 · 储能 · 充电）行业的 IoT 
 
 #### 告警工单
 
-从告警规则配置、告警转工单到历史告警统计，形成闭环处理机制，告警不再石沉大海。
+覆盖告警规则配置、告警转工单与历史告警统计，形成闭环处理机制，处理全程可追溯。
 
 <p align="center">
   <img src="./assets/screenshots/告警.png" width="760" alt="历史告警统计" />
@@ -185,7 +185,7 @@ systemPro 是一套面向光储充（光伏 · 储能 · 充电）行业的 IoT 
 
 #### 用户权限
 
-账号、角色、菜单、操作与数据权限构成企业级 RBAC 体系，权限可以细到按钮级别。
+账号、角色、菜单、操作与数据权限构成企业级 RBAC 体系，权限粒度细化至按钮级操作。
 
 <p align="center">
   <img src="./assets/screenshots/角色权限.png" width="760" alt="角色权限" />
@@ -217,24 +217,24 @@ systemPro 是一套面向光储充（光伏 · 储能 · 充电）行业的 IoT 
 
 <table>
 <tr>
-<td align="center" width="33%"><a href="./assets/screenshots/综合运营看板.png"><img src="./assets/screenshots/综合运营看板.png" width="220" alt="综合运营看板" /></a><br/><sub>综合运营看板</sub></td>
-<td align="center" width="33%"><a href="./assets/screenshots/光储充能源概览.png"><img src="./assets/screenshots/光储充能源概览.png" width="220" alt="光储充能源概览" /></a><br/><sub>光储充能源概览</sub></td>
-<td align="center" width="33%"><a href="./assets/screenshots/新增计费方案.png"><img src="./assets/screenshots/新增计费方案.png" width="220" alt="新增计费方案" /></a><br/><sub>新增计费方案</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/综合运营看板.png" width="220" alt="综合运营看板" /><br/><sub>综合运营看板</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/光储充能源概览.png" width="220" alt="光储充能源概览" /><br/><sub>光储充能源概览</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/新增计费方案.png" width="220" alt="新增计费方案" /><br/><sub>新增计费方案</sub></td>
 </tr>
 <tr>
-<td align="center" width="33%"><a href="./assets/screenshots/新增计费开通1.png"><img src="./assets/screenshots/新增计费开通1.png" width="220" alt="新增计费开通" /></a><br/><sub>新增计费开通</sub></td>
-<td align="center" width="33%"><a href="./assets/screenshots/停车场监控.png"><img src="./assets/screenshots/停车场监控.png" width="220" alt="停车场监控" /></a><br/><sub>停车场监控</sub></td>
-<td align="center" width="33%"><a href="./assets/screenshots/菜单权限.png"><img src="./assets/screenshots/菜单权限.png" width="220" alt="菜单权限" /></a><br/><sub>菜单权限</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/新增计费开通1.png" width="220" alt="新增计费开通" /><br/><sub>新增计费开通</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/停车场监控.png" width="220" alt="停车场监控" /><br/><sub>停车场监控</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/菜单权限.png" width="220" alt="菜单权限" /><br/><sub>菜单权限</sub></td>
 </tr>
 <tr>
-<td align="center" width="33%"><a href="./assets/screenshots/操作权限.png"><img src="./assets/screenshots/操作权限.png" width="220" alt="操作权限" /></a><br/><sub>操作权限</sub></td>
-<td align="center" width="33%"><a href="./assets/screenshots/数据权限.png"><img src="./assets/screenshots/数据权限.png" width="220" alt="数据权限" /></a><br/><sub>数据权限</sub></td>
-<td align="center" width="33%"><a href="./assets/screenshots/菜单按钮级权限.png"><img src="./assets/screenshots/菜单按钮级权限.png" width="220" alt="菜单按钮级权限" /></a><br/><sub>菜单按钮级权限</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/操作权限.png" width="220" alt="操作权限" /><br/><sub>操作权限</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/数据权限.png" width="220" alt="数据权限" /><br/><sub>数据权限</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/菜单按钮级权限.png" width="220" alt="菜单按钮级权限" /><br/><sub>菜单按钮级权限</sub></td>
 </tr>
 <tr>
-<td align="center" width="33%"><a href="./assets/screenshots/空间层级.png"><img src="./assets/screenshots/空间层级.png" width="220" alt="空间层级" /></a><br/><sub>空间层级</sub></td>
-<td align="center" width="33%"><a href="./assets/screenshots/多语言管理.png"><img src="./assets/screenshots/多语言管理.png" width="220" alt="国际化" /></a><br/><sub>国际化</sub></td>
-<td width="33%"></td>
+<td align="center" width="33%"><img src="./assets/screenshots/空间层级.png" width="220" alt="空间层级" /><br/><sub>空间层级</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/多语言管理.png" width="220" alt="国际化" /><br/><sub>国际化</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/照明设备.png" width="220" alt="照明设备" /><br/><sub>照明设备</sub></td>
 </tr>
 </table>
 
