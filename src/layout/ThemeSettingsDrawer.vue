@@ -12,6 +12,7 @@ defineProps<{
 
 const emit = defineEmits<{
   'update:modelValue': [value: boolean];
+  closed: [];
 }>();
 
 const { t } = useI18n();
@@ -76,9 +77,6 @@ function setTableDensity(value: string | number | boolean | Record<string, unkno
 }
 
 function setThemeMode(value: 'light' | 'dark') {
-  if (layoutStore.weakMode) {
-    layoutStore.setWeakMode(false);
-  }
   themeStore.setTheme(value);
 }
 
@@ -94,11 +92,13 @@ function setWeakMode(value: string | number | boolean) {
     size="380px"
     :with-header="false"
     :modal="true"
+    modal-class="theme-settings-overlay"
     append-to-body
     destroy-on-close
     :close-on-click-modal="true"
     :lock-scroll="false"
     @update:model-value="emit('update:modelValue', $event)"
+    @closed="emit('closed')"
   >
     <div class="settings-shell">
       <header class="settings-header">
@@ -462,6 +462,10 @@ function setWeakMode(value: string | number | boolean) {
 
 :deep(.el-drawer__body) {
   padding: 0;
+}
+
+:global(.theme-settings-overlay) {
+  background-color: transparent !important;
 }
 
 @media (max-width: 520px) {

@@ -11,6 +11,7 @@ defineProps<{ modelValue: boolean }>();
 const emit = defineEmits<{
   'update:modelValue': [value: boolean];
   'open-theme-settings': [];
+  closed: [];
 }>();
 
 const { locale } = useI18n();
@@ -32,7 +33,6 @@ async function setLocale(value: string | number | boolean | Record<string, unkno
   await switchApplicationLocale(String(value));
 }
 function setThemeMode(value: 'light' | 'dark') {
-  if (layoutStore.weakMode) layoutStore.setWeakMode(false);
   themeStore.setTheme(value);
 }
 </script>
@@ -49,6 +49,7 @@ function setThemeMode(value: 'light' | 'dark') {
     :close-on-click-modal="true"
     :lock-scroll="false"
     @update:model-value="emit('update:modelValue', $event)"
+    @closed="emit('closed')"
   >
     <div class="profile-shell">
       <header class="profile-header">

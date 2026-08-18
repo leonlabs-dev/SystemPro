@@ -25,6 +25,7 @@ const layoutStore = useLayoutStore();
 const runtimeSettings = useRuntimeSettingsStore();
 const settingsVisible = ref(false);
 const profileVisible = ref(false);
+const panelAfterClose = ref<'theme' | 'profile'>();
 const activeRoot = computed(() => getActiveRootNavigation(route.path));
 const isImmersiveRoute = computed(() => route.meta.immersive === true);
 const showRouteTabs = computed(() => layoutStore.showHeader && !isImmersiveRoute.value);
@@ -49,6 +50,36 @@ async function syncAuthorization(force = false) {
 function syncOnFocus() { void syncAuthorization(true).catch(() => undefined); }
 function syncOnVisibility() {
   if (document.visibilityState === 'visible') syncOnFocus();
+}
+function openThemeSettings() {
+  if (settingsVisible.value) return;
+  if (profileVisible.value) {
+    panelAfterClose.value = 'theme';
+    profileVisible.value = false;
+    return;
+  }
+  panelAfterClose.value = undefined;
+  settingsVisible.value = true;
+}
+function openProfileSettings() {
+  if (profileVisible.value) return;
+  if (settingsVisible.value) {
+    panelAfterClose.value = 'profile';
+    settingsVisible.value = false;
+    return;
+  }
+  panelAfterClose.value = undefined;
+  profileVisible.value = true;
+}
+function handleProfileClosed() {
+  if (panelAfterClose.value !== 'theme') return;
+  panelAfterClose.value = undefined;
+  settingsVisible.value = true;
+}
+function handleThemeClosed() {
+  if (panelAfterClose.value !== 'profile') return;
+  panelAfterClose.value = undefined;
+  profileVisible.value = true;
 }
 onMounted(() => {
   runtimeSettings.load().catch(() => undefined);
@@ -76,7 +107,8 @@ onBeforeUnmount(() => {
       'is-immersive-route': isImmersiveRoute,
     }"
   >
-    <AppTopbar v-if="layoutStore.showHeader" @open-settings="settingsVisible = true" @open-profile="profileVisible = true" />
+    <div v-if="layoutStore.weakMode" class="app-layout__visual-a11y-layer" aria-hidden="true" />
+    <AppTopbar v-if="layoutStore.showHeader" @open-settings="openThemeSettings" @open-profile="openProfileSettings" />
     <div class="app-layout__body">
       <AppSidebar v-if="shouldShowSidebar" />
       <main class="app-layout__content">
@@ -116,12 +148,16 @@ onBeforeUnmount(() => {
       </main>
     </div>
     <el-tooltip :content="t('userMenu.theme')" placement="left">
-      <button class="app-layout__settings-trigger" type="button" :aria-label="t('userMenu.theme')" @click="settingsVisible = true">
+      <button class="app-layout__settings-trigger" type="button" :aria-label="t('userMenu.theme')" @click="openThemeSettings">
         <el-icon><Operation /></el-icon>
       </button>
     </el-tooltip>
-    <ThemeSettingsDrawer v-model="settingsVisible" />
-    <PersonalSettingsDrawer v-model="profileVisible" @open-theme-settings="profileVisible = false; settingsVisible = true" />
+    <ThemeSettingsDrawer v-model="settingsVisible" @closed="handleThemeClosed" />
+    <PersonalSettingsDrawer
+      v-model="profileVisible"
+      @open-theme-settings="openThemeSettings"
+      @closed="handleProfileClosed"
+    />
   </div>
 </template>
 
@@ -139,6 +175,15 @@ onBeforeUnmount(() => {
 
 .has-hidden-header {
   grid-template-rows: minmax(0, 1fr);
+}
+
+.app-layout__visual-a11y-layer {
+  position: fixed;
+  z-index: 90;
+  inset: 0;
+  pointer-events: none;
+  backdrop-filter: saturate(0.55) contrast(1.04);
+  -webkit-backdrop-filter: saturate(0.55) contrast(1.04);
 }
 
 .has-fixed-header :deep(.app-topbar) {

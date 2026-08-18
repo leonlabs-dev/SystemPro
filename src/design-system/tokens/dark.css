@@ -30,6 +30,12 @@
 }
 
 :root[data-theme='dark'][data-visual-a11y='color-weak'] {
+  --color-primary-500: #56B4E9 !important;
+  --color-primary-600: #74C6EE !important;
+  --color-primary-700: #90D2F2 !important;
+  --el-color-primary: #56B4E9 !important;
+  --el-color-primary-light-3: #74C6EE !important;
+  --el-color-primary-dark-2: #90D2F2 !important;
   --color-success-default: #56B4E9;
   --color-success-bg: #102B3A;
   --color-warning-default: #E69F00;

@@ -32,6 +32,12 @@
 /* Accessibility palettes are token-scoped. Global filter/opacity on the app
    root would create a stacking context and corrupt overlays and previews. */
 :root[data-theme='light'][data-visual-a11y='color-weak'] {
+  --color-primary-500: #005A9C !important;
+  --color-primary-600: #004A80 !important;
+  --color-primary-700: #003B66 !important;
+  --el-color-primary: #005A9C !important;
+  --el-color-primary-light-3: #004A80 !important;
+  --el-color-primary-dark-2: #003B66 !important;
   --color-success-default: #0072B2;
   --color-success-bg: #E7F3FA;
   --color-warning-default: #B85C00;
