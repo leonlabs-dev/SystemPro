@@ -300,4 +300,4 @@ window.__SYSTEMPRO_PUBLIC_CONFIG__ = {
 
 ---
 
-<p align="center"><sub>systemPro —— 让每一度电、每一笔账，都说得清楚。</sub></p>
+<p align="center"><sub>systemPro —— 让复杂业务，变得清晰可控。</sub></p>
