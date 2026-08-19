@@ -4,7 +4,7 @@ import path from 'node:path';
 const root = process.cwd();
 const allowedEnv = new Set(['.env.example']);
 const ignoredDirectories = new Set(['.git', 'dist', 'node_modules']);
-const ignoredFiles = new Set(['README.md', 'package-lock.json', 'check-public-repository.mjs']);
+const ignoredFiles = new Set(['README.md', 'README.zh-CN.md', 'package-lock.json', 'check-public-repository.mjs']);
 const publicRuntimeConfig = 'public/app-config.js';
 const forbiddenPrivateImplementationPaths = [
   'src/domain/finance/finance.api.ts',
