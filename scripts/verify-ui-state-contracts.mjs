@@ -15,6 +15,8 @@ const checks = [
   ['双碳看板刷新失败保留历史结果', 'src/pages/cockpit/CarbonCockpitPage.vue', '刷新失败，当前保留上次成功结果'],
   ['个人设置入口已接通', 'src/layout/AppTopbar.vue', "emit('open-profile')"],
   ['个人设置遵循 Client 数据范围', 'src/layout/PersonalSettingsDrawer.vue', '当前 Client 全部授权数据'],
+  ['登录地域兼容香港特别行政区英文别名', 'src/domain/platform/workbench/china-region.ts', 'Hong Kong SAR China'],
+  ['登录城市榜隐藏全未知地域记录', 'src/pages/workbench/WorkbenchPage.vue', 'visibleTopLoginCities'],
   ['停车平面图使用优化资源', 'src/pages/monitoring/ParkingMonitoringPage.vue', 'car-display.webp'],
   ['水表卡片行按内容高度排列', 'src/pages/assets/WaterMeterManagementPage.vue', 'grid-auto-rows:max-content;align-items:start'],
   ['RBAC 菜单树等待节点注册后回显', 'src/pages/user-permission/RolePermissionPage.vue', 'menuTreeSyncRevision'],

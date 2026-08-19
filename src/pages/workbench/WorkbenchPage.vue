@@ -74,7 +74,7 @@ const copy = computed(() => {
   return {
     platform: text('platform'), welcome: text('welcome'), subtitle: text('subtitle'), demo: text('demo'), real: text('real'), limited: text('limited'),
     role: text('role'), scope: text('scope'), allData: text('allData'), items: text('items'), health: text('health'), normal: text('normal'), minor: text('minor'), serious: text('serious'), healthUnit: text('healthUnit'),
-    operations: text('operations'), successRate: text('successRate'), failedLogin: text('failedLogin'), actors: text('actors'), regionTitle: text('regionTitle'), regionSub: text('regionSub'), totalLogins: text('totalLogins'), activeRegions: text('activeRegions'), activeCities: text('activeCities'), unknownRegion: text('unknownRegion'), cityRank: text('cityRank'), geoCredit: text('geoCredit'),
+    operations: text('operations'), successRate: text('successRate'), failedLogin: text('failedLogin'), actors: text('actors'), regionTitle: text('regionTitle'), totalLogins: text('totalLogins'), activeRegions: text('activeRegions'), activeCities: text('activeCities'), cityRank: text('cityRank'), geoCredit: text('geoCredit'),
     analysis: text('analysis'), analysisSub: text('analysisSub'), energy: text('energy'), device: text('device'), alarm: text('alarm'), today: text('today'), recent7: text('recent7'), pv: text('pv'), grid: text('grid'), total: text('total'), online: text('online'), offline: text('offline'), pending: text('pending'), alarmTotal: text('alarmTotal'), unhandled: text('unhandled'), handled: text('handled'), handleRate: text('handleRate'),
     audit: text('audit'), auditSub: text('auditSub'), actor: text('actor'), action: text('action'), module: text('module'), time: text('time'), ip: text('ip'), more: text('more'), quick: text('quick'), quickSub: text('quickSub'), noAudit: text('noAudit'), success: text('success'), failure: text('failure'), disabled: text('disabled'),
     kpis: { consumption: text('kpis.consumption'), grid: text('kpis.grid'), pv: text('kpis.pv'), device: text('kpis.device'), meter: text('kpis.meter'), alarm: text('kpis.alarm') },
@@ -221,12 +221,17 @@ const loginMapOption = computed(() => {
 });
 
 function formatLoginCity(regionName: string, cityName: string) {
+  const normalizedRegion = normalizeChinaRegionName(regionName);
+  const normalizedCity = normalizeChinaRegionName(cityName);
   const parts = [
     isUnknownLoginRegion(regionName) ? null : displayLoginRegionName(regionName, isZh.value),
-    isUnknownLoginRegion(cityName) ? copy.value.unknownRegion : cityName,
+    isUnknownLoginRegion(cityName) || (normalizedRegion && normalizedCity === normalizedRegion) ? null : cityName,
   ].filter((value): value is string => Boolean(value));
-  return [...new Set(parts)].join(' · ') || copy.value.unknownRegion;
+  return [...new Set(parts)].join(' · ');
 }
+
+const visibleTopLoginCities = computed(() => real.value.loginRegions?.topCities
+  .filter((city) => !isUnknownLoginRegion(city.regionName) || !isUnknownLoginRegion(city.cityName)) ?? []);
 
 const analysisOption = computed(() => {
   if (analysisMode.value === 'device') return {
@@ -418,7 +423,7 @@ onActivated(() => { if (business.value) void load(); });
 
       <aside class="surface-card region-card">
         <header class="rail-header region-header">
-          <div><h2>{{ copy.regionTitle }}</h2><p>{{ copy.regionSub }}</p></div>
+          <div><h2>{{ copy.regionTitle }}</h2></div>
           <div class="range-tabs">
             <button v-for="days in ([1, 7, 30] as const)" :key="days" type="button" :class="{ active: loginRange === days }" @click="changeLoginRange(days)">{{ days === 1 ? (isZh ? '今日' : 'Today') : `${days}${isZh ? '天' : 'd'}` }}</button>
           </div>
@@ -426,9 +431,9 @@ onActivated(() => { if (business.value) void load(); });
         <div class="region-stats"><span v-for="item in loginRegionStats" :key="item.label"><small>{{ item.label }}</small><b>{{ item.value }}</b></span></div>
         <div class="region-map"><DsChart :option="loginMapOption" /></div>
         <div class="city-ranking">
-          <div class="city-ranking__title"><strong>{{ copy.cityRank }}</strong><span>{{ copy.unknownRegion }} {{ real.loginRegions?.unknownLogins ?? 0 }}</span></div>
-          <ol v-if="real.loginRegions?.topCities.length">
-            <li v-for="(city, index) in real.loginRegions.topCities" :key="`${city.regionName}-${city.cityName}`"><i>{{ index + 1 }}</i><span :title="formatLoginCity(city.regionName, city.cityName)">{{ formatLoginCity(city.regionName, city.cityName) }}</span><b>{{ city.loginCount }}</b></li>
+          <div class="city-ranking__title"><strong>{{ copy.cityRank }}</strong></div>
+          <ol v-if="visibleTopLoginCities.length">
+            <li v-for="(city, index) in visibleTopLoginCities" :key="`${city.regionName}-${city.cityName}`"><i>{{ index + 1 }}</i><span :title="formatLoginCity(city.regionName, city.cityName)">{{ formatLoginCity(city.regionName, city.cityName) }}</span><b>{{ city.loginCount }}</b></li>
           </ol>
           <div v-else class="region-empty">{{ authStore.can('platform:audit:log:view') ? copy.empty : copy.noAudit }}</div>
           <a class="geo-credit" href="https://db-ip.com" target="_blank" rel="noreferrer">{{ copy.geoCredit }}</a>
@@ -540,7 +545,7 @@ onActivated(() => { if (business.value) void load(); });
 .region-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 13px 12px 11px; border-bottom: 1px solid #edf0f5; }
 .region-stats span { min-width: 0; padding: 0 9px; border-right: 1px solid #e7ebf2; }.region-stats span:last-child { border: 0; }.region-stats small { display: block; overflow: hidden; margin-bottom: 5px; color: #7a8699; font-size: 8px; text-overflow: ellipsis; white-space: nowrap; }.region-stats b { color: #1f2b40; font-size: 18px; }
 .region-map { min-height: 205px; height: 205px; flex: 0 0 auto; padding: 4px 9px 0; }
-.city-ranking { min-height: 0; flex: 1; padding: 10px 16px 12px; border-top: 1px solid #edf0f5; }.city-ranking__title { display: flex; min-height: 26px; align-items: center; justify-content: space-between; gap: 8px; }.city-ranking__title strong { color: #344157; font-size: 10px; }.city-ranking__title span { color: #8b95a7; font-size: 8px; }
+.city-ranking { min-height: 0; flex: 1; padding: 10px 16px 12px; border-top: 1px solid #edf0f5; }.city-ranking__title { display: flex; min-height: 26px; align-items: center; }.city-ranking__title strong { color: #344157; font-size: 10px; }
 .city-ranking ol { display: grid; margin: 3px 0 0; padding: 0; list-style: none; }.city-ranking li { display: grid; min-height: 25px; grid-template-columns: 20px minmax(0, 1fr) auto; align-items: center; gap: 7px; color: #657187; border-bottom: 1px solid #f0f2f6; font-size: 9px; }.city-ranking li:last-child { border: 0; }.city-ranking li i { display: grid; width: 17px; height: 17px; place-items: center; color: #5574a8; background: #eef3fb; border-radius: 4px; font-size: 8px; font-style: normal; }.city-ranking li span { min-width: 0; overflow: hidden; word-break: keep-all; text-overflow: ellipsis; white-space: nowrap; }.city-ranking li b { color: #2c3950; }.region-empty { display: grid; min-height: 80px; place-items: center; color: #98a2b3; font-size: 9px; }
 .geo-credit { display: inline-flex; margin-top: 6px; color: #77849a; font-size: 8px; line-height: 16px; text-decoration: none; }.geo-credit:hover { color: #2f6bcb; text-decoration: underline; }
 
@@ -575,7 +580,6 @@ onActivated(() => { if (business.value) void load(); });
 .workbench.is-dark .analysis-stats small,
 .workbench.is-dark .analysis-stats i,
 .workbench.is-dark .region-stats small,
-.workbench.is-dark .city-ranking__title span,
 .workbench.is-dark .city-ranking li,
 .workbench.is-dark .geo-credit,
 .workbench.is-dark .audit-head,

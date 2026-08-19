@@ -31,7 +31,7 @@ const REGION_ALIASES: ReadonlyArray<readonly [string, readonly string[]]> = [
   ['西藏', ['Tibet', 'Xizang']],
   ['宁夏', ['Ningxia']],
   ['新疆', ['Xinjiang']],
-  ['香港', ['Hong Kong']],
+  ['香港', ['Hong Kong', 'Hong Kong SAR', 'Hong Kong S.A.R.', 'Hong Kong SAR China', 'HKSAR', '中国香港']],
   ['澳门', ['Macao', 'Macau']],
 ];
 
