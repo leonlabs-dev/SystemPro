@@ -66,12 +66,12 @@ systemPro 是一套面向光储充（光伏 · 储能 · 充电）行业的 IoT 
 
 <br/>
 
-#### 能源驾驶舱
+#### 综合运营看板
 
-双碳·光储充一体化驾驶舱，融合经营、能源与 IoT 指标，支撑经营与能源指标一屏总览。
+综合运营看板集中呈现项目、设备、能源、告警与运营数据，帮助管理人员在一个视图中掌握平台整体运行状态。
 
 <p align="center">
-  <img src="./assets/screenshots/驾驶舱.png" width="760" alt="双碳·光储充一体化驾驶舱" />
+  <img src="./assets/screenshots/综合运营看板.png" width="760" alt="综合运营看板" />
 </p>
 
 <br/><br/>
@@ -220,24 +220,24 @@ systemPro 是一套面向光储充（光伏 · 储能 · 充电）行业的 IoT 
 
 <table>
 <tr>
-<td align="center" width="33%"><img src="./assets/screenshots/综合运营看板.png" width="220" alt="综合运营看板" /><br/><sub>综合运营看板</sub></td>
 <td align="center" width="33%"><img src="./assets/screenshots/光储充能源概览.png" width="220" alt="光储充能源概览" /><br/><sub>光储充能源概览</sub></td>
 <td align="center" width="33%"><img src="./assets/screenshots/新增计费方案.png" width="220" alt="新增计费方案" /><br/><sub>新增计费方案</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/新增计费开通1.png" width="220" alt="新增计费开通" /><br/><sub>新增计费开通</sub></td>
 </tr>
 <tr>
-<td align="center" width="33%"><img src="./assets/screenshots/新增计费开通1.png" width="220" alt="新增计费开通" /><br/><sub>新增计费开通</sub></td>
 <td align="center" width="33%"><img src="./assets/screenshots/停车场监控.png" width="220" alt="停车场监控" /><br/><sub>停车场监控</sub></td>
 <td align="center" width="33%"><img src="./assets/screenshots/菜单权限.png" width="220" alt="菜单权限" /><br/><sub>菜单权限</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/操作权限.png" width="220" alt="操作权限" /><br/><sub>操作权限</sub></td>
 </tr>
 <tr>
-<td align="center" width="33%"><img src="./assets/screenshots/操作权限.png" width="220" alt="操作权限" /><br/><sub>操作权限</sub></td>
 <td align="center" width="33%"><img src="./assets/screenshots/数据权限.png" width="220" alt="数据权限" /><br/><sub>数据权限</sub></td>
 <td align="center" width="33%"><img src="./assets/screenshots/菜单按钮级权限.png" width="220" alt="菜单按钮级权限" /><br/><sub>菜单按钮级权限</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/空间层级.png" width="220" alt="空间层级" /><br/><sub>空间层级</sub></td>
 </tr>
 <tr>
-<td align="center" width="33%"><img src="./assets/screenshots/空间层级.png" width="220" alt="空间层级" /><br/><sub>空间层级</sub></td>
 <td align="center" width="33%"><img src="./assets/screenshots/多语言管理.png" width="220" alt="国际化" /><br/><sub>国际化</sub></td>
 <td align="center" width="33%"><img src="./assets/screenshots/照明设备.png" width="220" alt="照明设备" /><br/><sub>照明设备</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/驾驶舱.png" width="220" alt="双碳·光储充一体化驾驶舱" /><br/><sub>能源驾驶舱</sub></td>
 </tr>
 </table>
 

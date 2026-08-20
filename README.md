@@ -66,12 +66,12 @@ The welcome page and module directory provide a unified entry point with overvie
 
 <br/>
 
-#### Energy Operations Cockpit
+#### Integrated Operations Dashboard
 
-An integrated carbon, solar, storage, and charging cockpit that combines business, energy, and IoT indicators in one operational view.
+The integrated operations dashboard brings together project, device, energy, alarm, and operational data, helping managers understand the platform's overall operating status in a single view.
 
 <p align="center">
-  <img src="./assets/screenshots/驾驶舱.png" width="760" alt="Integrated carbon, solar, storage, and charging cockpit" />
+  <img src="./assets/screenshots/综合运营看板.png" width="760" alt="Integrated operations dashboard" />
 </p>
 
 <br/><br/>
@@ -220,24 +220,24 @@ Manage basic parameters, data dictionaries, and internationalization, with suppo
 
 <table>
 <tr>
-<td align="center" width="33%"><img src="./assets/screenshots/综合运营看板.png" width="220" alt="Integrated operations dashboard" /><br/><sub>Integrated Operations Dashboard</sub></td>
 <td align="center" width="33%"><img src="./assets/screenshots/光储充能源概览.png" width="220" alt="Solar, storage, and charging overview" /><br/><sub>Solar, Storage, and Charging Overview</sub></td>
 <td align="center" width="33%"><img src="./assets/screenshots/新增计费方案.png" width="220" alt="Add a tariff plan" /><br/><sub>Add a Tariff Plan</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/新增计费开通1.png" width="220" alt="Add billing activation" /><br/><sub>Add Billing Activation</sub></td>
 </tr>
 <tr>
-<td align="center" width="33%"><img src="./assets/screenshots/新增计费开通1.png" width="220" alt="Add billing activation" /><br/><sub>Add Billing Activation</sub></td>
 <td align="center" width="33%"><img src="./assets/screenshots/停车场监控.png" width="220" alt="Parking lot monitoring" /><br/><sub>Parking Lot Monitoring</sub></td>
 <td align="center" width="33%"><img src="./assets/screenshots/菜单权限.png" width="220" alt="Menu permissions" /><br/><sub>Menu Permissions</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/操作权限.png" width="220" alt="Action permissions" /><br/><sub>Action Permissions</sub></td>
 </tr>
 <tr>
-<td align="center" width="33%"><img src="./assets/screenshots/操作权限.png" width="220" alt="Action permissions" /><br/><sub>Action Permissions</sub></td>
 <td align="center" width="33%"><img src="./assets/screenshots/数据权限.png" width="220" alt="Data permissions" /><br/><sub>Data Permissions</sub></td>
 <td align="center" width="33%"><img src="./assets/screenshots/菜单按钮级权限.png" width="220" alt="Menu and button-level permissions" /><br/><sub>Menu and Button-Level Permissions</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/空间层级.png" width="220" alt="Spatial hierarchy" /><br/><sub>Spatial Hierarchy</sub></td>
 </tr>
 <tr>
-<td align="center" width="33%"><img src="./assets/screenshots/空间层级.png" width="220" alt="Spatial hierarchy" /><br/><sub>Spatial Hierarchy</sub></td>
 <td align="center" width="33%"><img src="./assets/screenshots/多语言管理.png" width="220" alt="Internationalization" /><br/><sub>Internationalization</sub></td>
 <td align="center" width="33%"><img src="./assets/screenshots/照明设备.png" width="220" alt="Lighting devices" /><br/><sub>Lighting Devices</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/驾驶舱.png" width="220" alt="Integrated carbon, solar, storage, and charging cockpit" /><br/><sub>Energy Operations Cockpit</sub></td>
 </tr>
 </table>
 
