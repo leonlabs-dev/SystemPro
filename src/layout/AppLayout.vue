@@ -14,6 +14,7 @@ import AppSidebar from './AppSidebar.vue';
 import AppTopbar from './AppTopbar.vue';
 import PersonalSettingsDrawer from './PersonalSettingsDrawer.vue';
 import ThemeSettingsDrawer from './ThemeSettingsDrawer.vue';
+import AiAssistantWidget from '@/components/ai/AiAssistantWidget.vue';
 import { appName, appVersion } from '@/core/config/app-runtime';
 
 const { t } = useI18n();
@@ -105,6 +106,7 @@ onBeforeUnmount(() => {
       'is-top-nav': layoutStore.navMode === 'top',
       'is-mix-nav': layoutStore.navMode === 'mix',
       'is-immersive-route': isImmersiveRoute,
+      'is-ai-chat-route': route.name === 'ai-chat',
     }"
   >
     <div v-if="layoutStore.weakMode" class="app-layout__visual-a11y-layer" aria-hidden="true" />
@@ -158,6 +160,7 @@ onBeforeUnmount(() => {
       @open-theme-settings="openThemeSettings"
       @closed="handleProfileClosed"
     />
+    <AiAssistantWidget />
   </div>
 </template>
 
@@ -243,6 +246,23 @@ onBeforeUnmount(() => {
 
 .is-top-nav .app-layout__content {
   padding: 12px 24px 24px;
+}
+
+.is-ai-chat-route .app-layout__content {
+  overflow: hidden;
+}
+
+.is-ai-chat-route .app-layout__content-inner {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100%;
+  min-height: 0;
+}
+
+.is-ai-chat-route .app-layout__route-view {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .is-mix-nav .app-layout__content {

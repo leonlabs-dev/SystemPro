@@ -74,6 +74,15 @@ The integrated operations dashboard brings together project, device, energy, ala
   <img src="./assets/screenshots/综合运营看板.png" width="760" alt="Integrated operations dashboard" />
 </p>
 
+#### AI Assistant
+
+Provides one AI assistant page, a draggable floating entry, and an integration approach. The community edition does not connect to a model service by default; deployers can configure model credentials on their own server and expose a compatible API.
+
+<p align="center">
+  <img src="./assets/screenshots/ai助手.png" width="49%" alt="SystemPro AI assistant page" />
+  <img src="./assets/screenshots/ai悬浮框.png" width="49%" alt="SystemPro AI assistant floating window" />
+</p>
+
 <br/><br/>
 
 ### Devices and Energy

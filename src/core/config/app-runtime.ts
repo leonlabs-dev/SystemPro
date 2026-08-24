@@ -28,6 +28,7 @@ function normalizeOrigin(value: string) {
 const runtimeConfig = readRuntimeConfig();
 const configuredMode = readText(runtimeConfig.appMode || readEnv('VITE_APP_MODE')).toLowerCase();
 const configuredPublicAccount = runtimeConfig.publicDemoAccount;
+const configuredAiAssistantEnabled = runtimeConfig.aiAssistantEnabled ?? readEnv('VITE_AI_ASSISTANT_ENABLED');
 
 export const appMode: AppMode = configuredMode === 'api' ? 'api' : 'demo';
 export const isDemoMode = appMode === 'demo';
@@ -41,6 +42,8 @@ const configuredApiBaseUrl = normalizeOrigin(readText(runtimeConfig.apiBaseUrl) 
 // Development requests stay same-origin and are forwarded by Vite to the API
 // origin declared in public/app-config.js. Production uses the configured origin.
 export const apiBaseUrl = import.meta.env.DEV ? '' : configuredApiBaseUrl;
+export const aiAssistantEnabled = configuredAiAssistantEnabled === true
+  || String(configuredAiAssistantEnabled).trim().toLowerCase() === 'true';
 export const publicDemoAccount: PublicDemoAccount = {
   enabled: appMode === 'api'
     && configuredPublicAccount?.enabled === true

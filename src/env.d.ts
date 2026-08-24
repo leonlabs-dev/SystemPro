@@ -8,6 +8,7 @@ interface ImportMetaEnv {
   readonly VITE_API_BASE_URL?: string;
   readonly VITE_ASSET_BASE_URL?: string;
   readonly VITE_DEV_API_TARGET?: string;
+  readonly VITE_AI_ASSISTANT_ENABLED?: string;
 }
 
 interface ImportMeta {
@@ -20,6 +21,7 @@ type SystemProPublicRuntimeConfig = {
   appDescription?: string;
   projectUrl?: string;
   apiBaseUrl?: string;
+  aiAssistantEnabled?: boolean;
   publicDemoAccount?: {
     enabled?: boolean;
     username?: string;

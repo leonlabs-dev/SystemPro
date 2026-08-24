@@ -66,6 +66,7 @@ const pageComponentMap: Record<string, RouteRecordRaw['component']> = {
   'data-dictionary': () => import('@/pages/settings/DataDictionaryPage.vue'),
   'audit-log': () => import('@/pages/settings/AuditLogPage.vue'),
   'language-management': () => import('@/pages/settings/LanguageManagementPage.vue'),
+  'ai-chat': () => import('@/pages/ai/AiChatPage.vue'),
 };
 
 function createNavigationRoutes(items: NavigationItem[]): RouteRecordRaw[] {

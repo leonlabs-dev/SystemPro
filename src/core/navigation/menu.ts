@@ -235,11 +235,7 @@ export const navigationItems: NavigationItem[] = [
     icon: 'ai',
     group: 'navGroup.platform',
     children: [
-      { id: 'operations-chat',              titleKey: 'routes.operationsChat',              descKey: 'routeDescriptions.operationsChat',              path: '/ai/operations-chat' },
-      { id: 'alarm-diagnosis',              titleKey: 'routes.alarmDiagnosis',              descKey: 'routeDescriptions.alarmDiagnosis',              path: '/ai/alarm-diagnosis' },
-      { id: 'energy-analysis-assistant',    titleKey: 'routes.energyAnalysisAssistant',     descKey: 'routeDescriptions.energyAnalysisAssistant',    path: '/ai/energy-analysis' },
-      { id: 'report-generation-assistant',  titleKey: 'routes.reportGenerationAssistant',   descKey: 'routeDescriptions.reportGenerationAssistant',  path: '/ai/report-generation' },
-      { id: 'knowledge-base',               titleKey: 'routes.knowledgeBase',               descKey: 'routeDescriptions.knowledgeBase',               path: '/ai/knowledge-base' },
+      { id: 'ai-chat', titleKey: 'routes.aiChat', descKey: 'routeDescriptions.aiChat', path: '/ai/chat' },
     ],
   },
 ];

@@ -14,6 +14,10 @@ window.__SYSTEMPRO_PUBLIC_CONFIG__ = {
   // Use the origin only. API paths such as /api/v1/auth/login are appended by the application.
   apiBaseUrl: 'https://console.systempro.site',
 
+  // The browser never contains a model key. Turn this on only after apiBaseUrl
+  // points to a backend whose AI service and server-side model key are ready.
+  aiAssistantEnabled: false,
+
   // Public demonstration credentials. These values are intentionally visible
   // in page source and browser requests; they are not security credentials.
   publicDemoAccount: {

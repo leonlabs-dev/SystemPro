@@ -7,7 +7,7 @@ import type {
 } from '@/core/auth/auth.types';
 import { navigationItems, type NavigationItem } from '@/core/navigation/menu';
 
-const DEMO_MENU_IDS = new Set(['welcome', 'workbench']);
+const DEMO_MENU_IDS = new Set(['welcome', 'workbench', 'ai-assistant']);
 
 export const demoUserContext: AuthUserContext = {
   accountId: 0,
@@ -62,4 +62,3 @@ function toGrantedMenu(item: NavigationItem, index: number): GrantedMenuNode {
     children: (item.children ?? []).map(toGrantedMenu),
   };
 }
-

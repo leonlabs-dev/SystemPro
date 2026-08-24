@@ -74,6 +74,15 @@ systemPro 是一套面向光储充（光伏 · 储能 · 充电）行业的 IoT 
   <img src="./assets/screenshots/综合运营看板.png" width="760" alt="综合运营看板" />
 </p>
 
+#### AI 助手
+
+提供统一的 AI 助手页面和可拖拽悬浮入口；提供对接思路，社区版默认不连接任何模型服务，部署者可在自己的服务端配置模型凭据并接入兼容接口。
+
+<p align="center">
+  <img src="./assets/screenshots/ai助手.png" width="49%" alt="SystemPro AI 助手页面" />
+  <img src="./assets/screenshots/ai悬浮框.png" width="49%" alt="SystemPro AI 助手悬浮窗口" />
+</p>
+
 <br/><br/>
 
 ### 设备与能源
