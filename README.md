@@ -1,320 +1,316 @@
 <p align="center">
-  <img src="./logo.png" width="92" alt="systemPro 企业级物联网与能源管理平台" />
+  <img src="./logo.png" width="88" alt="systemPro" />
 </p>
 
 <h1 align="center">systemPro</h1>
 
 <p align="center">
-  <strong>企业级开源物联网与能源管理平台</strong>
+  English | <a href="./README.zh-CN.md">简体中文</a>
 </p>
 
 <p align="center">
-  支持设备接入、能源计量、告警工单、账单管理与二次开发
+  <b>Enterprise Energy IoT Operations Platform</b><br />
+  <sub>Connected Devices · Energy Metering · Centralized HVAC Control · Financial Settlement · Access Governance</sub>
 </p>
 
 <p align="center">
-  简体中文 · <a href="./README.en-US.md">English</a>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Vue-3.3-4FC08D?logo=vuedotjs&logoColor=white" alt="Vue 3.3" />
-  <img src="https://img.shields.io/badge/TypeScript-4.9-3178C6?logo=typescript&logoColor=white" alt="TypeScript 4.9" />
-  <img src="https://img.shields.io/badge/Vite-4.5-646CFF?logo=vite&logoColor=white" alt="Vite 4.5" />
-  <img src="https://img.shields.io/badge/Element%20Plus-2.4-409EFF" alt="Element Plus 2.4" />
+  <img src="https://img.shields.io/badge/Vue-3.x-4FC08D?logo=vuedotjs&logoColor=white" alt="Vue 3" />
+  <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white" alt="TypeScript 5" />
+  <img src="https://img.shields.io/badge/Vite-4.x-646CFF?logo=vite&logoColor=white" alt="Vite 4" />
+  <img src="https://img.shields.io/badge/Element%20Plus-UI-409EFF" alt="Element Plus" />
   <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg?logo=apache&logoColor=white" alt="Apache License 2.0" />
 </p>
 
-<p align="center">
-  <a href="https://console.systempro.site"><strong>在线演示</strong></a>
-  ·
-  <a href="#快速开始"><strong>快速开始</strong></a>
-  ·
-  <a href="#产品能力"><strong>产品能力</strong></a>
-  ·
-  <a href="./docs/architecture.md"><strong>架构说明</strong></a>
-  ·
-  <a href="./docs/CONFIGURATION.md"><strong>配置文档</strong></a>
-</p>
+<br/>
 
 <p align="center">
-  演示账号：<code>system</code>&nbsp;&nbsp;&nbsp;密码：<code>12345678</code>
+  <b>Live Demo</b>&nbsp;&nbsp;<a href="https://console.systempro.site">console.systempro.site</a><br/><br/>
+  <b>Username</b>&nbsp;<code>system</code>&nbsp;&nbsp;&nbsp;<b>Password</b>&nbsp;<code>12345678</code><br/><br/>
+  <b>Source Repository</b>&nbsp;&nbsp;<a href="https://gitee.com/sitepulse/system-pro">gitee.com/sitepulse/system-pro</a>
 </p>
 
-<p align="center"><sub>演示账号是与企业数据隔离的公开只读账号，请勿在体验环境录入真实敏感信息。</sub></p>
+<p align="center"><sub>The demo account is a public, read-only account. Its credentials are always visible in the page source and network requests and are not sensitive production credentials.</sub></p>
 
-<p align="center">
-  <img src="./assets/screenshots/综合运营看板.png" width="900" alt="systemPro 物联网能源管理综合运营看板" />
-</p>
+<br/>
 
-## systemPro 是什么
+systemPro is an IoT energy management SaaS platform for the solar, storage, and EV charging industry. It supports energy operations across campuses, buildings, factories, and similar environments. From device connectivity, subitem metering, and centralized HVAC control to financial settlement and organization-wide access governance, systemPro brings devices, energy data, accounts, and users that were previously scattered across separate systems into a single platform. It helps operators move from fragmented device management and unclear accounts to centralized control and consistent operational and financial records.
 
-systemPro 是一套面向园区、楼宇、工厂和光储充场景的企业级物联网与能源管理平台。平台将组织权限、设备资产、运行监控、能源计量、告警工单和财务账单放在同一套业务架构中，帮助项目统一管理电表、水表、空调、照明、停车、充电桩、光伏和储能等设备。
+<br/>
 
-它既可以用于了解一套完整的 IoT 能源管理系统如何组织业务，也可以作为 Vue 3 企业管理端、设备管理平台或能源管理项目的二次开发基础。
+## Core Capabilities
 
-> 当前仓库提供 systemPro 公开版管理端源码。部分需要完整后端、真实设备或商业业务流程支持的能力，在公开版中保留稳定菜单、路由和产品说明，但不包含正式版实现。详见[公开源码版能力边界](./docs/public-edition-boundary.md)。
-
-## 为什么选择 systemPro
-
-| 统一设备资产 | 能源业务闭环 | 企业权限底座 | 工程化交付 |
-| --- | --- | --- | --- |
-| 电表、水表、空调、照明、停车、充电、光伏、储能统一建档 | 从能源拓扑、分项计量、费率到告警、工单和账单 | 组织、项目、空间、角色、菜单、操作与数据权限 | Vue 3 + TypeScript，模块化分层，运行时切换接口地址 |
-
-## 产品能力
-
-| 能力域 | 主要能力 | 公开版说明 |
-| --- | --- | --- |
-| 运营驾驶舱 | 项目、设备、能源、告警和运营指标统一呈现 | 已提供 |
-| 设备资产 | 电表、水表、空调、照明、停车、充电桩、光伏、储能 | 已提供 |
-| 能源管理 | 能源流向、物理拓扑、总分表关系、分项计量、损耗分析 | 已提供 |
-| 运行监控 | 设备状态、网关链路、并离网状态、停车与视频接入页面 | 已提供 |
-| 告警工单 | 历史告警；正式版扩展规则、转工单和处理闭环 | 部分提供 |
-| 财务账单 | 计费方案、用量冻结、账单、核销、退款和开票业务 | 正式版场景 |
-| 用户权限 | RBAC、菜单权限、操作权限、数据权限和第三方登录绑定 | 已提供 |
-| 组织项目 | 组织架构、部门岗位、空间层级、租户与项目边界 | 部分提供 |
-| AI 助手 | 统一对话页面、可拖拽悬浮入口和服务端对接思路 | 前端入口已提供 |
-
-### 设备管理与能源计量
-
-围绕企业设备资产和能源数据建立统一模型，覆盖设备档案、设备接入信息、实时状态、总分表关系、能源拓扑、分项计量、费率和损耗分析等常见业务。
-
-<table>
-  <tr>
-    <td width="50%" align="center">
-      <img src="./assets/screenshots/电表.png" alt="电表、水表与能源计量设备管理" />
-      <br/><sub>设备资产与计量档案</sub>
-    </td>
-    <td width="50%" align="center">
-      <img src="./assets/screenshots/能源拓扑.png" alt="光伏储能负载电网能源拓扑" />
-      <br/><sub>能源拓扑与能量流向</sub>
-    </td>
-  </tr>
-</table>
-
-### 空调系统与集中控制
-
-将“系统”和“设备”分层管理：系统负责分区、策略和业务归属，设备负责接入参数、运行状态和执行对象，适用于中央空调、多联机、新风和分体空调等场景。
-
-<table>
-  <tr>
-    <td width="50%" align="center">
-      <img src="./assets/screenshots/空调卡片.png" alt="空调设备集中控制与运行状态" />
-      <br/><sub>空调设备集中控制</sub>
-    </td>
-    <td width="50%" align="center">
-      <img src="./assets/screenshots/新增空调系统.png" alt="新增空调系统与分区策略" />
-      <br/><sub>空调系统与分区策略</sub>
-    </td>
-  </tr>
-</table>
-
-### 告警、工单与运营监控
-
-统一呈现设备告警、链路状态和运行状态；正式版可进一步连接告警规则、工单流转和处理审计，形成从发现异常到跟踪处置的闭环。
-
-<table>
-  <tr>
-    <td width="50%" align="center">
-      <img src="./assets/screenshots/告警.png" alt="设备告警统计与告警管理" />
-      <br/><sub>告警统计</sub>
-    </td>
-    <td width="50%" align="center">
-      <img src="./assets/screenshots/并离网切换状态.png" alt="光伏储能并网离网运行监控" />
-      <br/><sub>并离网运行监控</sub>
-    </td>
-  </tr>
-</table>
-
-### 财务账单与计费场景
-
-产品能力覆盖计费方案、计费开通、用量冻结、账单生成、收款核销、调账退款和开票管理，使能源用量、费率口径和应收账单能够相互追溯。公开仓库展示相关产品场景，完整交易流程属于正式版能力。
-
-<table>
-  <tr>
-    <td width="50%" align="center">
-      <img src="./assets/screenshots/计费开通.png" alt="能源计费方案与计费开通" />
-      <br/><sub>能源计费开通</sub>
-    </td>
-    <td width="50%" align="center">
-      <img src="./assets/screenshots/账单.png" alt="能源账单生成与账单管理" />
-      <br/><sub>账单管理</sub>
-    </td>
-  </tr>
-</table>
-
-### 组织、项目与权限
-
-组织架构、项目空间与账号权限相互解耦，通过角色、菜单、操作和数据权限控制用户能够进入哪些页面、执行哪些操作以及查看哪些数据。
-
-<table>
-  <tr>
-    <td width="50%" align="center">
-      <img src="./assets/screenshots/组织项目.png" alt="企业组织项目和空间层级管理" />
-      <br/><sub>组织、项目与空间层级</sub>
-    </td>
-    <td width="50%" align="center">
-      <img src="./assets/screenshots/角色权限.png" alt="RBAC角色菜单操作数据权限" />
-      <br/><sub>角色与权限治理</sub>
-    </td>
-  </tr>
-</table>
-
-### SystemPro AI 助手
-
-公开版提供统一的 AI 助手页面、历史对话入口和可拖拽悬浮窗口，并给出服务端对接思路。社区版默认不连接任何模型服务，也不会内置模型密钥；部署者可在自己的服务端配置模型凭据并实现兼容接口。
-
-<table>
-  <tr>
-    <td width="50%" align="center">
-      <img src="./assets/screenshots/ai助手.png" alt="SystemPro AI 智能助手对话页面" />
-      <br/><sub>AI 助手页面</sub>
-    </td>
-    <td width="50%" align="center">
-      <img src="./assets/screenshots/ai悬浮框.png" alt="SystemPro AI 助手可拖拽悬浮窗口" />
-      <br/><sub>可拖拽悬浮入口</sub>
-    </td>
-  </tr>
-</table>
-
-<details>
-  <summary><strong>查看更多产品界面</strong></summary>
-  <br/>
-  <table>
-    <tr>
-      <td width="33%" align="center"><img src="./assets/screenshots/光储充能源概览.png" alt="光储充能源管理概览" /><br/><sub>光储充能源概览</sub></td>
-      <td width="33%" align="center"><img src="./assets/screenshots/停车场监控.png" alt="物联网停车场监控" /><br/><sub>停车场监控</sub></td>
-      <td width="33%" align="center"><img src="./assets/screenshots/照明设备.png" alt="智能照明设备管理" /><br/><sub>照明设备</sub></td>
-    </tr>
-    <tr>
-      <td width="33%" align="center"><img src="./assets/screenshots/菜单权限.png" alt="菜单权限管理" /><br/><sub>菜单权限</sub></td>
-      <td width="33%" align="center"><img src="./assets/screenshots/操作权限.png" alt="按钮操作权限管理" /><br/><sub>操作权限</sub></td>
-      <td width="33%" align="center"><img src="./assets/screenshots/数据权限.png" alt="企业数据权限管理" /><br/><sub>数据权限</sub></td>
-    </tr>
-    <tr>
-      <td width="33%" align="center"><img src="./assets/screenshots/空间层级.png" alt="园区楼宇空间层级" /><br/><sub>空间层级</sub></td>
-      <td width="33%" align="center"><img src="./assets/screenshots/多语言管理.png" alt="多语言国际化管理" /><br/><sub>多语言管理</sub></td>
-      <td width="33%" align="center"><img src="./assets/screenshots/驾驶舱.png" alt="双碳光伏储能充电能源驾驶舱" /><br/><sub>能源驾驶舱</sub></td>
-    </tr>
-  </table>
-</details>
-
-## 适用场景
-
-- **园区能源管理**：统一管理园区项目、建筑空间、设备资产、能源计量和费用账单。
-- **楼宇设备运维**：集中查看空调、照明、水电表、网关和视频监控等运行状态。
-- **工厂能耗管理**：建立能源拓扑、分项计量和损耗分析口径，辅助识别异常用能。
-- **光储充一体化**：呈现光伏、储能、充电负荷、公共电网和其他负载之间的能量关系。
-- **企业 IoT 项目二次开发**：复用管理端布局、权限入口、领域分层、设计系统和运行时配置能力。
-
-## 技术架构
-
-```text
-现场设备层     电表 / 水表 / 空调 / 照明 / 停车 / 充电桩 / 光伏 / 储能
-      ↓
-设备接入层     MQTT / Modbus / REST API / 第三方平台
-      ↓
-业务服务层     设备资产 / 能源计量 / 告警工单 / 财务账单 / 权限治理
-      ↓
-应用交互层     运营驾驶舱 / 管理后台 / SystemPro AI 助手
-```
-
-当前公开仓库的工程重点是 Vue 3 管理端：
-
-| 类型 | 技术 |
+| Capability | Description |
 | --- | --- |
-| 前端框架 | Vue 3 · TypeScript · Vite · Pinia · Vue Router |
-| UI 与可视化 | Element Plus · ECharts · CSS Design Tokens |
-| 国际化 | vue-i18n |
-| 工程质量 | vue-tsc · 公开仓库检查 · 主题契约 · 性能预算 |
-| 接口适配 | REST API · 运行时 API 地址配置 |
+| Unified energy operations cockpit | An integrated carbon, solar, storage, and charging dashboard that presents business and energy KPIs in a single view |
+| Unified records for eight device categories | Centralized asset records for electricity meters, water meters, HVAC, lighting, parking, charging, solar, and energy storage equipment |
+| Centralized HVAC control | Unified management of central air conditioning, VRF systems, and fresh-air systems with zone control and scenario-based automation |
+| Subitem metering and loss analysis | Real power-distribution topology and subitem metering definitions, with energy accounts traceable to spaces and tenants |
+| Closed-loop alarm-to-work-order processing | Rule configuration, work-order conversion, and historical statistics for a complete and traceable handling workflow |
+| End-to-end financial operations | Bank connectivity, receipt reconciliation, adjustments, refunds, and invoice management with connected business and financial data |
+| Multi-tenant access control | Organization structures, spatial hierarchies, RBAC permissions, and SSO bindings |
+| Deployment without rebuilding | Runtime API endpoint configuration for switching environments without rebuilding the frontend |
 
-正式版业务服务采用 Java 17、Spring Boot 3、MyBatis-Plus、MySQL、Liquibase、Redis 等技术；后端、数据库和生产密钥不包含在当前公开前端仓库中。完整分层与目录职责见[架构说明](./docs/architecture.md)。
+<br/><br/>
 
-## 快速开始
+## Feature Tour
 
-### 环境要求
+### Overview
 
-- Node.js `>= 14.21.0`，建议使用仍在维护的 LTS 版本。
-- npm `>= 6.14.0`。
-- 不需要为了运行本项目切换或升级已有的全局 Node/npm 环境；请根据自己的开发环境选择合适方式。
+#### Platform Home
 
-### 安装并启动
+The welcome page and module directory provide a unified entry point with overviews and navigation for devices, energy, finance, and platform capabilities.
+
+<p align="center">
+  <img src="./assets/screenshots/欢迎.png" width="760" alt="Platform home" />
+</p>
+
+<br/>
+
+#### Integrated Operations Dashboard
+
+The integrated operations dashboard brings together project, device, energy, alarm, and operational data, helping managers understand the platform's overall operating status in a single view.
+
+<p align="center">
+  <img src="./assets/screenshots/综合运营看板.png" width="760" alt="Integrated operations dashboard" />
+</p>
+
+#### AI Assistant
+
+Provides one AI assistant page, a draggable floating entry, and an integration approach. The community edition does not connect to a model service by default; deployers can configure model credentials on their own server and expose a compatible API.
+
+<p align="center">
+  <img src="./assets/screenshots/ai助手.png" width="49%" alt="SystemPro AI assistant page" />
+  <img src="./assets/screenshots/ai悬浮框.png" width="49%" alt="SystemPro AI assistant floating window" />
+</p>
+
+<br/><br/>
+
+### Devices and Energy
+
+#### HVAC Devices · Centralized Control
+
+Unified management and centralized control for HVAC systems, including central air conditioning, split units, VRF systems, and fresh-air systems. Device connectivity records, operating status, and system ownership are presented together, while building-wide zoning strategies and scenario-based automation are configured centrally. This transforms isolated device management into centralized control with coordinated scenarios.
+
+**Device Overview**
+
+The centralized control console presents HVAC device inventories, online status, and operating data. It supports filtering by system, space, and record status, as well as batch command delivery.
+
+<p align="center">
+  <img src="./assets/screenshots/空调卡片.png" width="760" alt="HVAC device overview" />
+</p>
+
+<br/>
+
+**Add an HVAC Device**
+
+Maintain the connectivity parameters, owning system, and operational record for an individual HVAC device. Its space and system assignments are recorded in the same workflow.
+
+<p align="center">
+  <img src="./assets/screenshots/新增空调2.png" width="760" alt="Add an HVAC device" />
+</p>
+
+<br/>
+
+**Add an HVAC System**
+
+Configure the composition, control strategy, and zone assignment of an HVAC system, with unified records for system types such as VRF.
+
+<p align="center">
+  <img src="./assets/screenshots/新增空调系统.png" width="760" alt="Add an HVAC system" />
+</p>
+
+<br/>
+
+#### Device Assets
+
+Maintain unified asset records for eight device categories: electricity meters, water meters, HVAC, lighting, parking, charging, solar, and energy storage. The records cover parent-child meter relationships, multipliers, collection status, common scenarios such as prepaid electricity meters, and lighting zones and scenario-based automation.
+
+<p align="center">
+  <img src="./assets/screenshots/电表.png" width="760" alt="Electricity meter management" />
+</p>
+
+<br/>
+
+#### Energy Flow
+
+The energy topology displays the real-time energy balance among solar generation, energy storage, loads, and the public grid.
+
+<p align="center">
+  <img src="./assets/screenshots/能源拓扑.png" width="760" alt="Energy topology" />
+</p>
+
+<br/>
+
+#### Energy Metering
+
+Maintain parent-child meter topologies and subitem metering definitions, manage tariff plans and billing activation, and trace energy accounts to spaces and tenants.
+
+<p align="center">
+  <img src="./assets/screenshots/计费开通.png" width="760" alt="Billing activation" />
+</p>
+
+<br/>
+
+#### Operations Monitoring
+
+Centralized operational monitoring covers real-time device status, gateway and link status, grid-connected and off-grid switching, and video surveillance integration.
+
+<p align="center">
+  <img src="./assets/screenshots/并离网切换状态.png" width="760" alt="Grid-connected and off-grid switching status" />
+</p>
+
+<br/>
+
+#### Alarms and Work Orders
+
+Configure alarm rules, convert alarms into work orders, and review historical alarm statistics through a complete and traceable handling workflow.
+
+<p align="center">
+  <img src="./assets/screenshots/告警.png" width="760" alt="Historical alarm statistics" />
+</p>
+
+<br/><br/>
+
+### Finance and Billing
+
+#### Finance Center
+
+Connect banks, reconcile receipts, process adjustments and refunds, and manage invoices. Real bank transactions are automatically matched and reconciled with accounts receivable.
+
+<p align="center">
+  <img src="./assets/screenshots/银企直连.png" width="760" alt="Finance center · Bank connectivity" />
+</p>
+
+<br/>
+
+#### Billing Management
+
+Generate traceable bills from frozen usage and effective rates, and track payment, invoicing, overdue, and closed states.
+
+<p align="center">
+  <img src="./assets/screenshots/账单.png" width="760" alt="Billing management" />
+</p>
+
+<br/><br/>
+
+### Platform Capabilities
+
+#### Users and Permissions
+
+Accounts, roles, menus, actions, and data permissions form an enterprise RBAC system with permission granularity down to button-level operations.
+
+<p align="center">
+  <img src="./assets/screenshots/角色权限.png" width="760" alt="Role permissions" />
+</p>
+
+<br/>
+
+#### Organizations and Projects
+
+Manage organization trees, departments and positions, spatial hierarchies, and tenant/customer records while keeping physical spaces decoupled from organizational relationships.
+
+<p align="center">
+  <img src="./assets/screenshots/组织项目.png" width="760" alt="Organizations and projects" />
+</p>
+
+<br/>
+
+#### System Settings
+
+Manage basic parameters, data dictionaries, and internationalization, with support for light and dark themes and customizable navigation layouts.
+
+<p align="center">
+  <img src="./assets/screenshots/基础参数.png" width="760" alt="Basic parameters" />
+</p>
+
+<br/><br/>
+
+## More Screens
+
+<table>
+<tr>
+<td align="center" width="33%"><img src="./assets/screenshots/光储充能源概览.png" width="220" alt="Solar, storage, and charging overview" /><br/><sub>Solar, Storage, and Charging Overview</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/新增计费方案.png" width="220" alt="Add a tariff plan" /><br/><sub>Add a Tariff Plan</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/新增计费开通1.png" width="220" alt="Add billing activation" /><br/><sub>Add Billing Activation</sub></td>
+</tr>
+<tr>
+<td align="center" width="33%"><img src="./assets/screenshots/停车场监控.png" width="220" alt="Parking lot monitoring" /><br/><sub>Parking Lot Monitoring</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/菜单权限.png" width="220" alt="Menu permissions" /><br/><sub>Menu Permissions</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/操作权限.png" width="220" alt="Action permissions" /><br/><sub>Action Permissions</sub></td>
+</tr>
+<tr>
+<td align="center" width="33%"><img src="./assets/screenshots/数据权限.png" width="220" alt="Data permissions" /><br/><sub>Data Permissions</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/菜单按钮级权限.png" width="220" alt="Menu and button-level permissions" /><br/><sub>Menu and Button-Level Permissions</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/空间层级.png" width="220" alt="Spatial hierarchy" /><br/><sub>Spatial Hierarchy</sub></td>
+</tr>
+<tr>
+<td align="center" width="33%"><img src="./assets/screenshots/多语言管理.png" width="220" alt="Internationalization" /><br/><sub>Internationalization</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/照明设备.png" width="220" alt="Lighting devices" /><br/><sub>Lighting Devices</sub></td>
+<td align="center" width="33%"><img src="./assets/screenshots/驾驶舱.png" width="220" alt="Integrated carbon, solar, storage, and charging cockpit" /><br/><sub>Energy Operations Cockpit</sub></td>
+</tr>
+</table>
+
+<br/><br/>
+
+## Quick Start
+
+Requirements: Node.js 18 or later (an LTS release is recommended)
 
 ```bash
-git clone https://gitee.com/sitepulse/system-pro.git
-cd system-pro
 npm install
 npm run dev
 ```
 
-默认访问地址为 `http://127.0.0.1:5173`。如果端口已被占用，Vite 会选择其他端口，请以终端输出为准。
-
-### 构建生产资源
+The development server is available at `http://127.0.0.1:5173` by default. If that port is already in use, Vite automatically selects another port; refer to the terminal output for the actual address.
 
 ```bash
 npm run build
 npm run preview
 ```
 
-构建产物输出至 `dist/`，可以部署到 Nginx 或其他静态资源服务器。仓库包含一份可参考的 [Nginx 静态缓存配置](./deploy/nginx-static-cache.conf.example)。
+Production assets are written to `dist/` and can be deployed directly to Nginx or any static file server.
 
-## 接入自己的后端
-
-接口地址通过 [`public/app-config.js`](./public/app-config.js) 进行运行时配置。该文件会原样复制到 `dist/app-config.js`，部署后可以修改 API 地址，无需重新构建前端。
+The API endpoint is managed at runtime through `public/app-config.js`. The file is copied unchanged to `dist/app-config.js` during the build, allowing deployment environments to use different API endpoints without rebuilding the frontend.
 
 ```js
 window.__SYSTEMPRO_PUBLIC_CONFIG__ = {
-  appMode: 'api',
   apiBaseUrl: 'https://your-backend-domain.com',
 }
 ```
 
-- `apiBaseUrl` 只填写服务端 Origin，页面会自动拼接 `/api/...` 路径。
-- 设置为自己的兼容后端，即可接入真实登录、权限和业务数据。
-- 设置 `appMode: 'demo'` 可以在没有后端时进入有限的本地只读演示。
-- 浏览器可读取 `app-config.js`，因此禁止在其中配置数据库密码、模型 Key 或其他密钥。
+For local development, set `apiBaseUrl` to your own backend or use the official demo backend at `https://console.systempro.site` to explore read-only data with the account shown above.
 
-详细说明见[运行时配置](./docs/CONFIGURATION.md)和[数据边界](./docs/DATA_BOUNDARIES.md)。
+<br/>
 
-## 文档导航
+## Technology Stack
 
-| 文档 | 内容 |
+<p align="left">
+  <img src="https://img.shields.io/badge/Vue-3.x-4FC08D?logo=vuedotjs&logoColor=white" />
+  <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vite-4.x-646CFF?logo=vite&logoColor=white" />
+  <img src="https://img.shields.io/badge/Element%20Plus-UI-409EFF" />
+  <img src="https://img.shields.io/badge/Java-17-007396?logo=openjdk&logoColor=white" />
+  <img src="https://img.shields.io/badge/Spring%20Boot-3.x-6DB33F?logo=springboot&logoColor=white" />
+  <img src="https://img.shields.io/badge/MySQL-8.x-4479A1?logo=mysql&logoColor=white" />
+  <img src="https://img.shields.io/badge/Redis-7.x-DC382D?logo=redis&logoColor=white" />
+  <img src="https://img.shields.io/badge/MQTT-IoT-660066" />
+</p>
+
+| Layer | Technologies |
 | --- | --- |
-| [公开源码版能力边界](./docs/public-edition-boundary.md) | 已公开实现、正式版占位与维护约束 |
-| [架构说明](./docs/architecture.md) | 前端分层、目录职责与平台架构 |
-| [运行时配置](./docs/CONFIGURATION.md) | API 地址、公开演示账号和离线模式 |
-| [数据边界](./docs/DATA_BOUNDARIES.md) | 演示数据、浏览器数据与生产数据边界 |
-| [安全审查](./docs/SECURITY_REVIEW.md) | 公开仓库安全检查与注意事项 |
-| [仓库内容](./docs/REPOSITORY_CONTENTS.md) | 应提交内容、生成目录和维护文件 |
-| [第三方说明](./THIRD_PARTY_NOTICES.md) | 依赖与素材来源 |
+| Frontend | Vue 3 · TypeScript · Vite · Pinia · Element Plus · ECharts · vue-i18n |
+| Backend | Java 17 · Spring Boot 3 · MyBatis-Plus |
+| Data | MySQL 8 · Liquibase (versioned migrations) |
+| Cache | Redis |
+| IoT | MQTT · Modbus · REST API |
+| Security | Spring Security · OAuth2 / JWT |
 
-## 开源范围与安全说明
-
-- 公开演示账号只能访问隔离的只读体验数据，不能作为生产账号使用。
-- 前端按钮禁用不是权限边界，真实权限必须由后端根据会话、角色、租户和项目范围校验。
-- `public/app-config.js`、前端环境变量和浏览器存储都不能保存密钥。
-- 社区版 AI 助手默认不连接任何模型；模型凭据必须保存在部署者自己的服务端。
-- 正式版专属页面、写接口、数据库结构和商业业务模型不属于当前公开仓库。
-
-## 参与项目
-
-欢迎通过 [Gitee Issues](https://gitee.com/sitepulse/system-pro/issues) 提交：
-
-- 实际物联网、园区、楼宇或能源管理场景建议；
-- 可以稳定复现的问题和修复方案；
-- 文档、交互、可访问性与二次开发体验改进；
-- 新设备类型、能源计量口径和业务模块的设计建议。
-
-提交安全问题前，请先阅读[安全审查说明](./docs/SECURITY_REVIEW.md)，不要在公开 Issue 中粘贴密码、Token、客户数据或其他敏感信息。
+<br/>
 
 ## License
 
-本项目基于 [Apache License 2.0](./LICENSE) 许可证开源。第三方依赖与素材授权见 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。
+This project is open source under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 ---
 
-<p align="center">
-  <strong>物联网 · IoT · 能源管理 · 能耗管理 · 设备管理 · 能源计量 · 告警工单 · 账单管理 · 二次开发</strong>
-</p>
-
-<p align="center"><sub>systemPro —— 让复杂业务，变得清晰可控。</sub></p>
+<p align="center"><sub>systemPro — Clarity and control for complex operations.</sub></p>
