@@ -54,6 +54,18 @@ systemPro 是一套面向园区、楼宇、工厂和光储充场景的企业级�
 
 > 当前仓库提供 systemPro 公开版管理端源码。部分需要完整后端、真实设备或商业业务流程支持的能力，在公开版中保留稳定菜单、路由和产品说明，但不包含正式版实现。详见[公开源码版能力边界](./docs/public-edition-boundary.md)。
 
+## 产品演示
+
+<p align="center">
+  <a href="https://console.systempro.site">
+    <img src="./assets/demo/systempro-demo.gif" width="800" alt="systemPro 物联网与能源管理平台产品演示" />
+  </a>
+</p>
+
+<p align="center">
+  <sub>25 秒了解综合运营、双碳光储充、能源拓扑、能源计量、空调集控与 AI 助手。<a href="./assets/demo/systempro-demo.mp4">查看 MP4 版本</a>。</sub>
+</p>
+
 ## 为什么选择 systemPro
 
 | 统一设备资产 | 能源业务闭环 | 企业权限底座 | 工程化交付 |

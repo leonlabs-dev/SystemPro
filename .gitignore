@@ -1,6 +1,7 @@
 node_modules/
 artifacts/
 dist/
+assets/demo/source/
 *.log
 .DS_Store
 .env

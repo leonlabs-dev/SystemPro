@@ -45,6 +45,20 @@ SystemPro is a Vue 3 and TypeScript administration console for enterprise IoT an
 
 <br/>
 
+## Product Preview
+
+<p align="center">
+  <a href="https://console.systempro.site">
+    <img src="./assets/demo/systempro-demo.gif" width="800" alt="SystemPro IoT and energy operations product preview" />
+  </a>
+</p>
+
+<p align="center">
+  <sub>25-second product tour: operations cockpit, carbon/solar/storage/charging dashboard, energy topology, metering, HVAC, and AI assistant. <a href="./assets/demo/systempro-demo.mp4">Watch the MP4 version</a>.</sub>
+</p>
+
+<br/>
+
 ## What Is Included
 
 | Included in this repository | Integrate with your own services |
