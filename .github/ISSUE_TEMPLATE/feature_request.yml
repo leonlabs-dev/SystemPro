@@ -1,0 +1,44 @@
+name: Feature request
+description: Propose an improvement to the public SystemPro frontend.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Usage scenario
+      description: Who needs this capability, and in which IoT or energy workflow?
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: Describe the current limitation without prescribing implementation details.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed result
+      description: Describe the expected user-visible behavior.
+    validations:
+      required: true
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - Public frontend
+        - Compatible API contract
+        - Documentation
+        - Unsure
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I checked the public-edition scope and existing Issues.
+          required: true

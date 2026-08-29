@@ -1,0 +1,58 @@
+name: Bug report
+description: Report a reproducible problem in the public SystemPro frontend.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for helping improve SystemPro. Do not include credentials, personal data, or private API responses.
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: v0.1.0 or a commit hash
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Runtime mode
+      options:
+        - Local read-only demo
+        - Official public demo
+        - Custom compatible backend
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What happened, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      placeholder: "1. Open...\n2. Click...\n3. Observe..."
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and operating system
+      placeholder: Chrome 128 on Windows 11
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots or sanitized logs
+      description: Remove tokens, contact details, customer information, and private URLs first.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing Issues for the same problem.
+          required: true
+        - label: I removed credentials and private data from this report.
+          required: true

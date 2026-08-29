@@ -1,12 +1,12 @@
 {
   "name": "systempro-console",
   "version": "0.1.0",
-  "description": "SystemPro enterprise operations platform for IoT, energy and business workflows.",
+  "description": "Open-source Vue 3 console for IoT device management, energy metering, HVAC operations, alarms, work orders and billing.",
   "private": true,
-  "homepage": "https://gitee.com/sitepulse/system-pro",
+  "homepage": "https://github.com/leonlabs-dev/SystemPro",
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/sitepulse/system-pro.git"
+    "url": "https://github.com/leonlabs-dev/SystemPro.git"
   },
   "engines": {
     "node": ">=14.21.0",

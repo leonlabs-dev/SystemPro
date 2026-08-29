@@ -2,15 +2,15 @@
   <img src="./logo.png" width="88" alt="systemPro" />
 </p>
 
-<h1 align="center">systemPro</h1>
+<h1 align="center">SystemPro</h1>
 
 <p align="center">
   English | <a href="./README.zh-CN.md">简体中文</a>
 </p>
 
 <p align="center">
-  <b>Enterprise Energy IoT Operations Platform</b><br />
-  <sub>Connected Devices · Energy Metering · Centralized HVAC Control · Financial Settlement · Access Governance</sub>
+  <b>Open-source Vue 3 Console for IoT and Energy Operations</b><br />
+  <sub>Device Management · Energy Metering · HVAC Operations · Alarms & Work Orders · Billing</sub>
 </p>
 
 <p align="center">
@@ -24,16 +24,36 @@
 <br/>
 
 <p align="center">
-  <b>Live Demo</b>&nbsp;&nbsp;<a href="https://console.systempro.site">console.systempro.site</a><br/><br/>
+  <a href="https://systempro.site"><b>Official Website</b></a>&nbsp;&nbsp;·&nbsp;&nbsp;
+  <a href="https://console.systempro.site"><b>Live Demo</b></a>&nbsp;&nbsp;·&nbsp;&nbsp;
+  <a href="#quick-start"><b>Quick Start</b></a>&nbsp;&nbsp;·&nbsp;&nbsp;
+  <a href="./docs/public-edition-boundary.md"><b>Edition Scope</b></a>&nbsp;&nbsp;·&nbsp;&nbsp;
+  <a href="https://github.com/leonlabs-dev/SystemPro/issues"><b>Issues</b></a><br/><br/>
   <b>Username</b>&nbsp;<code>system</code>&nbsp;&nbsp;&nbsp;<b>Password</b>&nbsp;<code>12345678</code><br/><br/>
-  <b>Source Repository</b>&nbsp;&nbsp;<a href="https://gitee.com/sitepulse/system-pro">gitee.com/sitepulse/system-pro</a>
+  <b>Repository</b>&nbsp;&nbsp;<a href="https://github.com/leonlabs-dev/SystemPro">GitHub</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://gitee.com/sitepulse/system-pro">Gitee Mirror</a>
 </p>
 
 <p align="center"><sub>The demo account is a public, read-only account. Its credentials are always visible in the page source and network requests and are not sensitive production credentials.</sub></p>
 
+<p align="center">
+  <img src="./assets/screenshots/综合运营看板.png" width="900" alt="SystemPro IoT and energy operations dashboard" />
+</p>
+
+SystemPro is a Vue 3 and TypeScript administration console for enterprise IoT and energy operations. It provides production-style interfaces for device assets, energy metering, centralized HVAC management, alarms, work orders, billing, multi-tenant access control, and an extensible AI assistant. It is designed for campuses, commercial buildings, factories, and other environments that need one operational view across previously isolated systems.
+
+> **Repository scope:** this repository contains the public SystemPro **frontend console**. It includes the UI, local read-only demo mode, runtime API configuration, and integration contracts. The production Java backend, database schema, device protocol services, and secrets are not included. You can run the interface without a backend or connect it to your own compatible API.
+
 <br/>
 
-systemPro is an IoT energy management SaaS platform for the solar, storage, and EV charging industry. It supports energy operations across campuses, buildings, factories, and similar environments. From device connectivity, subitem metering, and centralized HVAC control to financial settlement and organization-wide access governance, systemPro brings devices, energy data, accounts, and users that were previously scattered across separate systems into a single platform. It helps operators move from fragmented device management and unclear accounts to centralized control and consistent operational and financial records.
+## What Is Included
+
+| Included in this repository | Integrate with your own services |
+| --- | --- |
+| Vue 3 + TypeScript management console | Authentication, tenants, projects, and data permissions |
+| Responsive layouts, light/dark themes, and i18n | IoT ingestion through MQTT, Modbus, or gateways |
+| Local read-only demo mode and public demo endpoint | Energy readings, tariffs, bills, alarms, and work orders |
+| Runtime API endpoint configuration | AI orchestration and model credentials on the server |
+| AI assistant page and draggable floating entry | Production persistence, auditing, and rate limiting |
 
 <br/>
 
@@ -289,21 +309,17 @@ For local development, set `apiBaseUrl` to your own backend or use the official 
   <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white" />
   <img src="https://img.shields.io/badge/Vite-4.x-646CFF?logo=vite&logoColor=white" />
   <img src="https://img.shields.io/badge/Element%20Plus-UI-409EFF" />
-  <img src="https://img.shields.io/badge/Java-17-007396?logo=openjdk&logoColor=white" />
-  <img src="https://img.shields.io/badge/Spring%20Boot-3.x-6DB33F?logo=springboot&logoColor=white" />
-  <img src="https://img.shields.io/badge/MySQL-8.x-4479A1?logo=mysql&logoColor=white" />
-  <img src="https://img.shields.io/badge/Redis-7.x-DC382D?logo=redis&logoColor=white" />
-  <img src="https://img.shields.io/badge/MQTT-IoT-660066" />
+  <img src="https://img.shields.io/badge/Pinia-State-FFD859" />
+  <img src="https://img.shields.io/badge/ECharts-Visualization-AA344D" />
 </p>
 
 | Layer | Technologies |
 | --- | --- |
 | Frontend | Vue 3 · TypeScript · Vite · Pinia · Element Plus · ECharts · vue-i18n |
-| Backend | Java 17 · Spring Boot 3 · MyBatis-Plus |
-| Data | MySQL 8 · Liquibase (versioned migrations) |
-| Cache | Redis |
-| IoT | MQTT · Modbus · REST API |
-| Security | Spring Security · OAuth2 / JWT |
+| API integration | REST API · runtime endpoint configuration · SSE streaming |
+| Quality | vue-tsc · repository safety checks · theme/UI contracts · performance budget |
+
+The production SystemPro architecture uses Java 17, Spring Boot 3, MySQL, Liquibase, Redis, MQTT, and Modbus behind the frontend. Those server-side components are integration targets and are not part of this public repository.
 
 <br/>
 
