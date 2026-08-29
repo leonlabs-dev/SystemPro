@@ -40,14 +40,28 @@ export async function streamAiChat(payload: Record<string, unknown>, onEvent: (e
     const { done, value } = await reader.read();
     buffer += decoder.decode(value || new Uint8Array(), { stream: !done });
     const frames = buffer.split(/\r?\n\r?\n/); buffer = frames.pop() || '';
-    for (const frame of frames) {
-      const eventName = frame.split(/\r?\n/).find((line) => line.startsWith('event:'))?.slice(6).trim();
-      const data = frame.split(/\r?\n/).filter((line) => line.startsWith('data:')).map((line) => line.slice(5).trim()).join('\n');
-      if (!data) continue;
-      try { const parsed = JSON.parse(data) as AiStreamEvent; onEvent({ ...parsed, type: parsed.type || eventName || 'status' }); }
-      catch { onEvent({ type: eventName || 'status', message: data }); }
+    frames.forEach((frame) => dispatchStreamFrame(frame, onEvent));
+    if (done) {
+      dispatchStreamFrame(buffer, onEvent);
+      break;
     }
-    if (done) break;
+  }
+}
+
+function dispatchStreamFrame(frame: string, onEvent: (event: AiStreamEvent) => void) {
+  if (!frame.trim()) return;
+  const lines = frame.split(/\r?\n/);
+  const eventName = lines.find((line) => line.startsWith('event:'))?.slice(6).trim();
+  const data = lines
+    .filter((line) => line.startsWith('data:'))
+    .map((line) => line.slice(5).replace(/^ /, ''))
+    .join('\n');
+  if (!data) return;
+  try {
+    const parsed = JSON.parse(data) as AiStreamEvent;
+    onEvent({ ...parsed, type: parsed.type || eventName || 'status' });
+  } catch {
+    onEvent({ type: eventName || 'status', message: data });
   }
 }
 

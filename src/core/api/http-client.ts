@@ -36,16 +36,29 @@ export async function request<T>(
 export async function requestBlob(path: string): Promise<Blob> {
   routeLoading.beginRequest();
   try {
-    const token = await authSession.ensureAccessToken();
+    let token = await authSession.ensureAccessToken();
     if (!token) throw new ApiError('登录状态已失效', 'UNAUTHORIZED', 401);
-    const response = await fetch(getApiUrl(path), { headers: {
-      Authorization: `Bearer ${token}`,
-      'Accept-Language': localStorage.getItem('systempro.locale') === 'en-US' ? 'en-US' : 'zh-CN',
-    } });
+
+    let response = await requestBlobWithToken(path, token);
+    if (response.status === 401) {
+      token = (await authSession.refresh()).accessToken;
+      response = await requestBlobWithToken(path, token);
+    }
     if (!response.ok) throw new ApiError('文件导出失败', 'EXPORT_FAILED', response.status);
     return response.blob();
   } finally {
     routeLoading.endRequest();
+  }
+}
+
+async function requestBlobWithToken(path: string, token: string) {
+  try {
+    return await fetch(getApiUrl(path), { headers: {
+      Authorization: `Bearer ${token}`,
+      'Accept-Language': localStorage.getItem('systempro.locale') === 'en-US' ? 'en-US' : 'zh-CN',
+    } });
+  } catch {
+    throw new ApiError('无法连接 SystemPro 服务', 'NETWORK_ERROR', 0);
   }
 }
 

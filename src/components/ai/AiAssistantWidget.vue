@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useAuthStore } from '@/core/auth/auth.store';
 import AiChatPanel from './AiChatPanel.vue';
@@ -104,11 +104,21 @@ function startTriggerDragging(event: PointerEvent) {
   trigger.value.setPointerCapture?.(event.pointerId);
   event.preventDefault();
 }
+function keepWidgetInViewport() {
+  if (triggerPosition.value) {
+    triggerPosition.value = clampTrigger(triggerPosition.value.x, triggerPosition.value.y);
+  }
+  if (panelPosition.value) {
+    panelPosition.value = clamp(panelPosition.value.x, panelPosition.value.y);
+  }
+}
 watch(open, async (value) => { if (value) { panelPosition.value = undefined; await nextTick(); } else stopDragging(); });
+onMounted(() => window.addEventListener('resize', keepWidgetInViewport));
 onBeforeUnmount(() => {
   if (blinkTimer) window.clearTimeout(blinkTimer);
   if (dragFrame) window.cancelAnimationFrame(dragFrame);
   if (triggerFrame) window.cancelAnimationFrame(triggerFrame);
+  window.removeEventListener('resize', keepWidgetInViewport);
   stopDragging();
   stopTriggerDragging();
 });
