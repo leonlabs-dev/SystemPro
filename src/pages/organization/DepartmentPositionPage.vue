@@ -25,8 +25,8 @@ import {
   type Position,
   type PositionDraft,
 } from '@/domain/platform/org';
-import type { AccountRecord } from '@/domain/platform/user-permission';
-import { fetchAccounts } from '@/domain/platform/user-permission/api/account.api';
+import type { AccountDirectoryRecord } from '@/domain/platform/user-permission';
+import { fetchAccountDirectory } from '@/domain/platform/user-permission/api/account.api';
 import { fetchAllPages } from '@/core/api/pagination';
 import {
   createPosition as createPositionApi,
@@ -46,7 +46,7 @@ const treeRef = ref<OrgTreeInstance>();
 const { expandedKeys, onNodeExpand, onNodeCollapse, ensureExpanded } = useTreeExpansionState();
 const keyword = ref('');
 const positions = ref<Position[]>([]);
-const accounts = ref<AccountRecord[]>([]);
+const accounts = ref<AccountDirectoryRecord[]>([]);
 const activeOrgId = ref(orgStore.tree[0]?.id || '');
 const dialogVisible = ref(false);
 const savingPosition = ref(false);
@@ -195,7 +195,7 @@ async function loadPageData() {
   await orgStore.load();
   const [positionRows, accountRows] = await Promise.all([
     fetchPositions(),
-    fetchAllPages((page, pageSize) => fetchAccounts({ page, pageSize })),
+    fetchAllPages((page, pageSize) => fetchAccountDirectory({ page, pageSize })),
   ]);
   positions.value = positionRows;
   accounts.value = accountRows;

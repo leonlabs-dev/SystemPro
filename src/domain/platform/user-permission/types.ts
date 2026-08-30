@@ -26,6 +26,12 @@ export interface AccountRecord {
   updatedAt: string;
 }
 
+/** Minimal account shape used by role and organization relationship views. */
+export type AccountDirectoryRecord = Pick<
+  AccountRecord,
+  'id' | 'username' | 'name' | 'role' | 'roles' | 'orgNodeId' | 'positionId' | 'status'
+>;
+
 export type AccountDraft = Omit<
   AccountRecord,
   'id' | 'clientId' | 'createdAt' | 'updatedAt' | 'lastLoginAt'

@@ -4,6 +4,7 @@ export {
   roleDataScopeLabels,
   roleStatusLabels,
   type AccountDraft,
+  type AccountDirectoryRecord,
   type AccountQuery,
   type AccountRecord,
   type AccountRole,

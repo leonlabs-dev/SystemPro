@@ -25,8 +25,8 @@ import {
   type OrganizationType,
   type Position,
 } from '@/domain/platform/org';
-import type { AccountRecord } from '@/domain/platform/user-permission';
-import { fetchAccounts } from '@/domain/platform/user-permission/api/account.api';
+import type { AccountDirectoryRecord } from '@/domain/platform/user-permission';
+import { fetchAccountDirectory } from '@/domain/platform/user-permission/api/account.api';
 import { fetchAllPages } from '@/core/api/pagination';
 import { fetchPositions } from '@/domain/platform/org/api/position.api';
 import {
@@ -42,7 +42,7 @@ interface OrgTreeInstance {
 
 const orgStore = useOrgStore();
 const { t } = useI18n();
-const accounts = ref<AccountRecord[]>([]);
+const accounts = ref<AccountDirectoryRecord[]>([]);
 const positions = ref<Position[]>([]);
 const treeRef = ref<OrgTreeInstance>();
 const keyword = ref('');
@@ -315,7 +315,7 @@ async function loadPageData() {
   const previousOrgId = activeOrgId.value;
   await orgStore.load();
   const [accountRows, positionRows] = await Promise.all([
-    fetchAllPages((page, pageSize) => fetchAccounts({ page, pageSize })),
+    fetchAllPages((page, pageSize) => fetchAccountDirectory({ page, pageSize })),
     fetchPositions(),
   ]);
   if (sequence !== loadSequence) return;
@@ -466,7 +466,7 @@ onBeforeUnmount(() => { loadSequence += 1; });
                 <div v-if="activeAccounts.length" class="org-member-grid">
                   <div v-for="account in activeAccounts" :key="account.id" class="org-member-card">
                     <strong>{{ account.name }}</strong>
-                    <span>{{ account.email }}</span>
+                    <span>{{ account.username }}</span>
                   </div>
                 </div>
                 <DsEmpty v-else class="org-empty-state" :description="t('orgPage.members.empty')" />

@@ -19,13 +19,13 @@ import { createPermissionEntriesFromMenuTree, flattenMenuResources } from '@/cor
 import type { PersistedMenuNode } from '@/core/menu/menu.store';
 import {
   roleStatusLabels,
-  type AccountRecord,
+  type AccountDirectoryRecord,
   type RoleDataScope,
   type RoleDraft,
   type RoleRecord,
   type RoleStatus,
 } from '@/domain/platform/user-permission';
-import { fetchAccounts } from '@/domain/platform/user-permission/api/account.api';
+import { fetchAccountDirectory } from '@/domain/platform/user-permission/api/account.api';
 import { fetchAllPages } from '@/core/api/pagination';
 import {
   createRole as createRoleApi,
@@ -112,7 +112,7 @@ const actionPermissionGroups = computed<PermissionGroup[]>(() => {
 });
 
 const roles = ref<RoleRecord[]>([]);
-const accounts = ref<AccountRecord[]>([]);
+const accounts = ref<AccountDirectoryRecord[]>([]);
 const roleKeyword = ref('');
 const activeRoleId = ref(roles.value[0]?.id || '');
 const activeTab = ref('menu');
@@ -149,7 +149,7 @@ const roleForm = reactive<RoleForm>({
 const menuTree = computed(() => (menuStore.menuTree || []).map(toMenuNode).filter(Boolean) as MenuTreeNode[]);
 const flatMenuNodes = computed(() => flattenMenuNodes(menuTree.value));
 const currentRole = computed(() => roles.value.find((role) => role.id === activeRoleId.value) || null);
-const currentMembers = computed<AccountRecord[]>(() => (
+const currentMembers = computed<AccountDirectoryRecord[]>(() => (
   currentRole.value
     ? accounts.value.filter((account) => (account.roles || [account.role]).includes(currentRole.value!.code))
     : []
@@ -503,7 +503,7 @@ async function loadPageData() {
     ? previousRoleId
     : roleRows[0]?.id || '';
   const accountResult = await Promise.allSettled([
-    fetchAllPages((page, pageSize) => fetchAccounts({ page, pageSize })),
+    fetchAllPages((page, pageSize) => fetchAccountDirectory({ page, pageSize })),
   ]);
   if (accountResult[0].status === 'fulfilled') {
     accounts.value = accountResult[0].value;
@@ -695,7 +695,7 @@ onMounted(async () => {
                     <span class="member-row__avatar">{{ member.name.slice(0, 1) }}</span>
                     <span class="member-row__main">
                       <strong>{{ member.name }}</strong>
-                      <small>{{ member.username }} · {{ member.department }}</small>
+                      <small>{{ member.username }}</small>
                     </span>
                     <DsTag size="small" :type="member.status === 'active' ? 'success' : 'neutral'">
                       {{ member.status === 'active' ? t('rolePage.member.statusActive') : t('rolePage.member.statusInactive') }}
