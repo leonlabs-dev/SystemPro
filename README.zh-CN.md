@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="./logo.png" width="92" alt="systemPro 企业级物联网与能源管理平台" />
+  <img src="./logo.png" width="92" alt="SystemPro 企业级物联网与能源管理平台" />
 </p>
 
-<h1 align="center">systemPro</h1>
+<h1 align="center">SystemPro</h1>
 
 <p align="center">
   <strong>企业级开源物联网与能源管理平台</strong>
@@ -43,22 +43,26 @@
 <p align="center"><sub>演示账号是与企业数据隔离的公开只读账号，请勿在体验环境录入真实敏感信息。</sub></p>
 
 <p align="center">
-  <img src="./assets/screenshots/综合运营看板.png" width="900" alt="systemPro 物联网能源管理综合运营看板" />
+  <img src="./assets/readme/systempro-platform-overview.png" width="100%" alt="SystemPro 从设备接入到能源运营与经营结算的整体产品场景" />
 </p>
 
-## systemPro 是什么
+<p align="center"><sub>从一块电表到一张租户账单，SystemPro 把设备、数据、运营和结算串在一起。</sub></p>
 
-systemPro 是一套面向园区、楼宇、工厂和光储充场景的企业级物联网与能源管理平台。平台将组织权限、设备资产、运行监控、能源计量、告警工单和财务账单放在同一套业务架构中，帮助项目统一管理电表、水表、空调、照明、停车、充电桩、光伏和储能等设备。
+## SystemPro 在做什么
+
+SystemPro 是一套面向园区、楼宇、工厂和光储充场景的企业级物联网与能源管理平台。平台将组织权限、设备资产、运行监控、能源计量、告警工单和财务账单放在同一套业务架构中，帮助项目统一管理电表、水表、空调、照明、停车、充电桩、光伏和储能等设备。
 
 它既可以用于了解一套完整的 IoT 能源管理系统如何组织业务，也可以作为 Vue 3 企业管理端、设备管理平台或能源管理项目的二次开发基础。
 
-> 当前仓库提供 systemPro 公开版管理端源码。部分需要完整后端、真实设备或商业业务流程支持的能力，在公开版中保留稳定菜单、路由和产品说明，但不包含正式版实现。详见[公开源码版能力边界](./docs/public-edition-boundary.md)。
+> 当前仓库提供 SystemPro 公开版管理端源码。部分需要完整后端、真实设备或商业业务流程支持的能力，在公开版中保留稳定菜单、路由和产品说明，但不包含正式版实现。详见[公开源码版能力边界](./docs/public-edition-boundary.md)。
 
-## 产品演示
+## 先看一眼
+
+不想先读完整说明？用 25 秒看看 SystemPro 如何组织综合运营、能源计量、设备控制与 AI 助手。
 
 <p align="center">
   <a href="https://console.systempro.site">
-    <img src="./assets/demo/systempro-demo.gif" width="800" alt="systemPro 物联网与能源管理平台产品演示" />
+    <img src="./assets/demo/systempro-demo.gif" width="800" alt="SystemPro 物联网与能源管理平台产品演示" />
   </a>
 </p>
 
@@ -66,7 +70,7 @@ systemPro 是一套面向园区、楼宇、工厂和光储充场景的企业级�
   <sub>25 秒了解综合运营、双碳光储充、能源拓扑、能源计量、空调集控与 AI 助手。<a href="./assets/demo/systempro-demo.mp4">查看 MP4 版本</a>。</sub>
 </p>
 
-## 为什么选择 systemPro
+## 为什么把这些能力放在一起
 
 | 统一设备资产 | 能源业务闭环 | 企业权限底座 | 工程化交付 |
 | --- | --- | --- | --- |
@@ -210,7 +214,7 @@ systemPro 是一套面向园区、楼宇、工厂和光储充场景的企业级�
   </table>
 </details>
 
-## 适用场景
+## 你可以拿它做什么
 
 - **园区能源管理**：统一管理园区项目、建筑空间、设备资产、能源计量和费用账单。
 - **楼宇设备运维**：集中查看空调、照明、水电表、网关和视频监控等运行状态。
@@ -243,6 +247,8 @@ systemPro 是一套面向园区、楼宇、工厂和光储充场景的企业级�
 正式版业务服务采用 Java 17、Spring Boot 3、MyBatis-Plus、MySQL、Liquibase、Redis 等技术；后端、数据库和生产密钥不包含在当前公开前端仓库中。完整分层与目录职责见[架构说明](./docs/architecture.md)。
 
 ## 快速开始
+
+不想先读完整文档？三条命令跑起来，边用边了解。
 
 ### 环境要求
 
@@ -308,9 +314,9 @@ window.__SYSTEMPRO_PUBLIC_CONFIG__ = {
 - 社区版 AI 助手默认不连接任何模型；模型凭据必须保存在部署者自己的服务端。
 - 正式版专属页面、写接口、数据库结构和商业业务模型不属于当前公开仓库。
 
-## 参与项目
+## 一起把它做得更好
 
-欢迎通过 [Gitee Issues](https://gitee.com/sitepulse/system-pro/issues) 提交：
+如果你也在做园区、楼宇、IoT 或能源管理项目，欢迎通过 [Gitee Issues](https://gitee.com/sitepulse/system-pro/issues) 分享真实场景。具体问题通常比一句“功能很全”更有价值：
 
 - 实际物联网、园区、楼宇或能源管理场景建议；
 - 可以稳定复现的问题和修复方案；
@@ -318,6 +324,8 @@ window.__SYSTEMPRO_PUBLIC_CONFIG__ = {
 - 新设备类型、能源计量口径和业务模块的设计建议。
 
 提交安全问题前，请先阅读[安全审查说明](./docs/SECURITY_REVIEW.md)，不要在公开 Issue 中粘贴密码、Token、客户数据或其他敏感信息。
+
+如果 SystemPro 帮你少画了一套后台、少踩了一个能源业务坑，欢迎给项目一个 Star，让更多正在做类似系统的人看到它。
 
 ## License
 
@@ -329,4 +337,4 @@ window.__SYSTEMPRO_PUBLIC_CONFIG__ = {
   <strong>物联网 · IoT · 能源管理 · 能耗管理 · 设备管理 · 能源计量 · 告警工单 · 账单管理 · 二次开发</strong>
 </p>
 
-<p align="center"><sub>systemPro —— 让复杂业务，变得清晰可控。</sub></p>
+<p align="center"><sub>SystemPro —— 让复杂业务，变得清晰可控。</sub></p>

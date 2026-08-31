@@ -36,8 +36,10 @@
 <p align="center"><sub>The demo account is a public, read-only account. Its credentials are always visible in the page source and network requests and are not sensitive production credentials.</sub></p>
 
 <p align="center">
-  <img src="./assets/screenshots/综合运营看板.png" width="900" alt="SystemPro IoT and energy operations dashboard" />
+  <img src="./assets/readme/systempro-platform-overview-en.png" width="100%" alt="SystemPro platform overview from device connectivity to energy operations and billing" />
 </p>
+
+<p align="center"><sub>From a single meter to a tenant bill, SystemPro connects devices, data, operations, and settlement in one coherent flow.</sub></p>
 
 SystemPro is a Vue 3 and TypeScript administration console for enterprise IoT and energy operations. It provides production-style interfaces for device assets, energy metering, centralized HVAC management, alarms, work orders, billing, multi-tenant access control, and an extensible AI assistant. It is designed for campuses, commercial buildings, factories, and other environments that need one operational view across previously isolated systems.
 
@@ -45,7 +47,9 @@ SystemPro is a Vue 3 and TypeScript administration console for enterprise IoT an
 
 <br/>
 
-## Product Preview
+## Take a Quick Look
+
+Prefer to see it working first? Take a 25-second tour through operations, metering, HVAC, and the AI assistant.
 
 <p align="center">
   <a href="https://console.systempro.site">
@@ -288,6 +292,8 @@ Manage basic parameters, data dictionaries, and internationalization, with suppo
 
 ## Quick Start
 
+Prefer to explore first and read the details later? Get it running with a few commands.
+
 Requirements: Node.js 18 or later (an LTS release is recommended)
 
 ```bash
@@ -337,10 +343,20 @@ The production SystemPro architecture uses Java 17, Spring Boot 3, MySQL, Liquib
 
 <br/>
 
+## Build It With Us
+
+If you are building for campuses, buildings, IoT, or energy operations, share the real scenario behind the request through [GitHub Issues](https://github.com/leonlabs-dev/SystemPro/issues) or [Gitee Issues](https://gitee.com/sitepulse/system-pro/issues). Concrete workflows are usually more valuable than a generic feature wish.
+
+We especially welcome reproducible bugs, accessibility and integration improvements, device or metering scenarios, and ideas that make the public console easier to extend.
+
+If SystemPro saves you from rebuilding another admin console or helps you avoid an energy-domain pitfall, consider giving the project a Star so other teams working on similar systems can find it.
+
+<br/>
+
 ## License
 
 This project is open source under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 ---
 
-<p align="center"><sub>systemPro — Clarity and control for complex operations.</sub></p>
+<p align="center"><sub>SystemPro — Clarity and control for complex operations.</sub></p>
