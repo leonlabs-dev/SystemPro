@@ -292,7 +292,7 @@ window.__SYSTEMPRO_PUBLIC_CONFIG__ = {
 - 设置 `appMode: 'demo'` 可以在没有后端时进入有限的本地只读演示。
 - 浏览器可读取 `app-config.js`，因此禁止在其中配置数据库密码、模型 Key 或其他密钥。
 
-详细说明见[运行时配置](./docs/CONFIGURATION.md)和[数据边界](./docs/DATA_BOUNDARIES.md)。
+详细说明见[后端接入指南](./docs/INTEGRATION.zh-CN.md)、[运行时配置](./docs/CONFIGURATION.md)和[数据边界](./docs/DATA_BOUNDARIES.md)。
 
 ## 文档导航
 
@@ -300,6 +300,7 @@ window.__SYSTEMPRO_PUBLIC_CONFIG__ = {
 | --- | --- |
 | [公开源码版能力边界](./docs/public-edition-boundary.md) | 已公开实现、正式版占位与维护约束 |
 | [架构说明](./docs/architecture.md) | 前端分层、目录职责与平台架构 |
+| [后端接入指南](./docs/INTEGRATION.zh-CN.md) | 响应结构、登录刷新、导航权限、分页与领域接口接入 |
 | [运行时配置](./docs/CONFIGURATION.md) | API 地址、公开演示账号和离线模式 |
 | [数据边界](./docs/DATA_BOUNDARIES.md) | 演示数据、浏览器数据与生产数据边界 |
 | [安全审查](./docs/SECURITY_REVIEW.md) | 公开仓库安全检查与注意事项 |

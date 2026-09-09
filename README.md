@@ -318,7 +318,7 @@ window.__SYSTEMPRO_PUBLIC_CONFIG__ = {
 }
 ```
 
-For local development, set `apiBaseUrl` to your own backend or use the official demo backend at `https://console.systempro.site` to explore read-only data with the account shown above.
+For local development, set `apiBaseUrl` to your own backend or use the official demo backend at `https://console.systempro.site` to explore read-only data with the account shown above. The [backend integration guide](./docs/INTEGRATION.md) documents the response envelope, authentication lifecycle, navigation grants, pagination, CORS, and a meter API vertical slice.
 
 <br/>
 
