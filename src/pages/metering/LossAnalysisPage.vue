@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useLatestRequest } from '@/core/api/useLatestRequest';
 import {Plus,Refresh,Search} from '@element-plus/icons-vue';
 import {computed,onMounted,ref} from 'vue';
 import {ElMessage,ElMessageBox} from 'element-plus';
@@ -15,6 +16,7 @@ import {enterpriseMeteringApi,type BalanceMeteringAnalysis,type BoundaryAdjustme
 import './enterprise-metering.css';
 
 const auth=useAuthStore();const loading=ref(true),saving=ref(false),dates=ref<[string,string]>(defaultRange());
+const { run: runLatest } = useLatestRequest(loading);
 const dialogVisible=ref(false),adjustments=ref<BoundaryAdjustmentRecord[]>([]);
 const result=ref<BalanceMeteringAnalysis>({periodStart:'',periodEnd:'',sourceBoundary:'',totalInput:0,totalOutput:0,totalApprovedAdjustments:0,totalUnexplained:0,overallUnexplainedRate:0,rows:[]});
 const form=ref<BoundaryAdjustmentInput>(emptyForm());
@@ -35,7 +37,13 @@ function format(value:number){return Number(value||0).toLocaleString('zh-CN',{mi
 function tone(status:string){return status==='NORMAL'?'success':status==='WARNING'?'warning':'error'}
 function approvalTone(status:string){return status==='APPROVED'?'success':status==='REJECTED'?'error':'warning'}
 function errorMessage(error:unknown,fallback:string){return error instanceof ApiError?error.message:fallback}
-async function load(){loading.value=true;try{const params=periodParams();[result.value,adjustments.value]=await Promise.all([enterpriseMeteringApi.balance(params),enterpriseMeteringApi.boundaryAdjustments(params)])}catch(error){ElMessage.error(errorMessage(error,'损耗与平衡加载失败'))}finally{loading.value=false}}
+async function load() {
+  await runLatest(
+    () => { const query = periodParams(); return Promise.all([enterpriseMeteringApi.balance(query), enterpriseMeteringApi.boundaryAdjustments(query)]); },
+    ([nextResult, nextAdjustments]) => { result.value = nextResult; adjustments.value = nextAdjustments; },
+    (error) => ElMessage.error(errorMessage(error, '损耗与平衡加载失败')),
+  );
+}
 function openCreate(){if(!auth.canEnter('platform:enterprise-metering:balance:adjust'))return;form.value={...emptyForm(),balanceGroupId:result.value.rows[0]?.id||0};dialogVisible.value=true}
 async function saveAdjustment(){if(!canAdjust.value)return;if(!form.value.balanceGroupId||form.value.quantity<=0||!form.value.reason.trim()||!form.value.evidenceReference.trim()){ElMessage.warning('请选择平衡组，并填写正数电量、原因和凭证编号');return}saving.value=true;try{await enterpriseMeteringApi.createBoundaryAdjustment(form.value);dialogVisible.value=false;await load();ElMessage.success('边界调整已提交审批，未批准前不会进入平衡计算')}catch(error){ElMessage.error(errorMessage(error,'提交边界调整失败'))}finally{saving.value=false}}
 async function review(row:BoundaryAdjustmentRecord,decision:'APPROVED'|'REJECTED'){

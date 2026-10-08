@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useLatestRequest } from '@/core/api/useLatestRequest';
 import {
   Collection,
   Delete,
@@ -54,6 +55,7 @@ const { locale, t } = useI18n();
 const router = useRouter();
 
 const loading = ref(true);
+const { run: runLatest } = useLatestRequest(loading);
 const saving = ref(false);
 const meters = ref<MeterAsset[]>([]);
 const total = ref(0);
@@ -130,10 +132,10 @@ function emptyForm(): MeterMutationInput {
 
 async function loadWorkspace(resetPage = false) {
   if (!canView.value) return;
-  if (resetPage) page.value = 1;
-  loading.value = true;
-  try {
-    const [result, nextStatistics, relationRows, billRows] = await Promise.all([
+  // The pagination watcher owns the reload when returning to page one.
+  if (resetPage && page.value !== 1) { page.value = 1; return; }
+  await runLatest(
+    () => Promise.all([
       meterRepository.page({
         keyword: keyword.value.trim(), status: status.value, communicationStatus: communicationStatus.value,
         spaceNodeId: selectedSpaceId.value, page: page.value, pageSize: pageSize.value,
@@ -141,17 +143,16 @@ async function loadWorkspace(resetPage = false) {
       meterRepository.statistics(),
       canViewMetering.value ? energyRelationApi.list() : Promise.resolve([]),
       authStore.can(usageBillingPermissions.view) ? usageBillingApi.current() : Promise.resolve([]),
-    ]);
-    meters.value = result.items;
-    total.value = result.total;
-    statistics.value = nextStatistics;
-    relations.value = relationRows;
-    currentBills.value = billRows;
-  } catch (error) {
-    showApiError(error, 'meterPage.catalog.messages.loadFailed');
-  } finally {
-    loading.value = false;
-  }
+    ]),
+    ([result, nextStatistics, relationRows, billRows]) => {
+      meters.value = result.items;
+      total.value = result.total;
+      statistics.value = nextStatistics;
+      relations.value = relationRows;
+      currentBills.value = billRows;
+    },
+    (error) => showApiError(error, 'meterPage.catalog.messages.loadFailed'),
+  );
 }
 
 async function loadFoundations() {

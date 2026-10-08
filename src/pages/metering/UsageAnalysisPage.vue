@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useLatestRequest } from '@/core/api/useLatestRequest';
 import { Refresh, Search } from '@element-plus/icons-vue';
 import { computed, onMounted, ref } from 'vue';
 import { ElMessage } from 'element-plus';
@@ -14,6 +15,7 @@ import { enumLabel } from '@/core/i18n/enum-labels';
 import './enterprise-metering.css';
 
 const loading = ref(true);
+const { run: runLatest } = useLatestRequest(loading);
 const dates = ref<[string, string]>(defaultRange());
 const dimension = ref('ALL');
 const result = ref<MeteringUsageAnalysis>({
@@ -45,17 +47,13 @@ const { page, pageSize, pagedRows } = useListPageState({
 });
 
 async function load() {
-  loading.value = true;
-  try {
-    result.value = await enterpriseMeteringApi.usage({
-      periodStart: `${dates.value[0]}T00:00:00`,
-      periodEnd: `${dates.value[1]}T23:59:59`,
-    });
-  } catch (error) {
-    ElMessage.error(error instanceof ApiError ? error.message : '用能分析加载失败');
-  } finally {
-    loading.value = false;
-  }
+  await runLatest(
+    () => enterpriseMeteringApi.usage({
+      periodStart: `${dates.value[0]}T00:00:00`, periodEnd: `${dates.value[1]}T23:59:59`,
+    }),
+    (data) => { result.value = data; },
+    (error) => ElMessage.error(error instanceof ApiError ? error.message : '用能分析加载失败'),
+  );
 }
 
 onMounted(load);

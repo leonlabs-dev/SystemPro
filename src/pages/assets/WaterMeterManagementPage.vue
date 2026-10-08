@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useLatestRequest } from '@/core/api/useLatestRequest';
 import {
   Collection,
   Delete,
@@ -49,6 +50,7 @@ const router = useRouter();
 const { locale } = useI18n();
 
 const loading = ref(true);
+const { run: runLatest } = useLatestRequest(loading);
 const saving = ref(false);
 const visible = ref(false);
 const editingId = ref('');
@@ -146,28 +148,24 @@ function showError(error: unknown, fallback: string) {
 }
 async function load(resetPage = false) {
   if (!canView.value) return;
-  if (resetPage) page.value = 1;
-  loading.value = true;
-  try {
-    const [result, nextStats] = await Promise.all([
+  if (resetPage && page.value !== 1) { page.value = 1; return; }
+  await runLatest(
+    () => Promise.all([
       waterMeterRepository.page({
         keyword: keyword.value.trim(),
         status: status.value as WaterMeterAsset['status'] | '',
         communicationStatus: communication.value as WaterMeterAsset['communicationStatus'] | '',
-        spaceNodeId: selectedSpaceId.value,
-        page: page.value,
-        pageSize: pageSize.value,
+        spaceNodeId: selectedSpaceId.value, page: page.value, pageSize: pageSize.value,
       }),
       waterMeterRepository.statistics(),
-    ]);
-    rows.value = result.items;
-    total.value = result.total;
-    stats.value = nextStats;
-  } catch (error) {
-    showError(error, copy.value.loadFailed);
-  } finally {
-    loading.value = false;
-  }
+    ]),
+    ([result, nextStats]) => {
+      rows.value = result.items;
+      total.value = result.total;
+      stats.value = nextStats;
+    },
+    (error) => showError(error, copy.value.loadFailed),
+  );
 }
 async function loadFoundations() {
   try {

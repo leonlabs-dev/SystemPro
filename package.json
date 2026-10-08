@@ -18,6 +18,7 @@
     "test:public-repository": "node scripts/check-public-repository.mjs",
     "test:performance-budget": "node scripts/check-performance-budget.mjs",
     "test:ui-contracts": "node scripts/verify-ui-state-contracts.mjs",
+    "test:reliability": "node scripts/verify-reliability.mjs",
     "test:theme-contract": "node scripts/verify-theme-contract.mjs",
     "preview": "vite preview --host 127.0.0.1"
   },

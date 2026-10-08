@@ -31,3 +31,6 @@ jobs:
 
       - name: Verify UI state contracts
         run: npm run test:ui-contracts
+
+      - name: Verify request and session reliability
+        run: npm run test:reliability

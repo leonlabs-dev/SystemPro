@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { ApiError } from '@/core/api/contracts';
 import { authApi } from './auth.api';
 import { authSession } from './session.manager';
 import type {
@@ -59,12 +60,17 @@ export const useAuthStore = defineStore('core.auth', {
 
     async establishSession(tokens: AuthTokenResponse, persistent: boolean) {
       authSession.commit(tokens, persistent);
+      const version = authSession.getVersion();
       this.userContext = tokens.user;
       try {
         await this.hydrate();
       } catch (error) {
-        authSession.clear();
-        this.reset();
+        if (version === authSession.getVersion()) {
+          authSession.clear();
+          this.reset();
+        } else if (!authSession.getAccessToken() && !authSession.hasRefreshToken()) {
+          this.reset();
+        }
         throw error;
       }
     },
@@ -80,6 +86,7 @@ export const useAuthStore = defineStore('core.auth', {
     },
 
     async restoreSession() {
+      const version = authSession.getVersion();
       this.status = 'restoring';
       if (isDemoMode) {
         this.activateDemoSession();
@@ -87,26 +94,34 @@ export const useAuthStore = defineStore('core.auth', {
       }
       try {
         const accessToken = await authSession.ensureAccessToken();
+        authSession.assertVersion(version);
         if (!accessToken) {
           this.reset();
           return;
         }
         this.userContext = authSession.getUserContext();
         await this.hydrate();
-      } catch {
-        authSession.clear();
-        this.reset();
+      } catch (error) {
+        // Refresh already clears definitively rejected tokens, but keeps them
+        // on transient outages. Do not erase a newer login from an old restore.
+        if (version === authSession.getVersion()) {
+          if (error instanceof ApiError && (error.status === 401 || error.status === 403)) authSession.clear();
+          this.reset();
+        } else if (!authSession.getAccessToken() && !authSession.hasRefreshToken()) {
+          this.reset();
+        }
       }
     },
 
     async hydrate() {
+      const version = authSession.getVersion();
       const requestVersion = ++authorizationRequestVersion;
       const [account, client, navigation] = await Promise.all([
         authApi.currentAccount(),
         authApi.currentClient(),
         authApi.navigation(),
       ]);
-      if (requestVersion !== authorizationRequestVersion) return;
+      if (requestVersion !== authorizationRequestVersion || version !== authSession.getVersion()) return;
       this.account = account;
       this.client = client;
       this.grantedPermissions = [...navigation.permissions];
@@ -171,11 +186,9 @@ export const useAuthStore = defineStore('core.auth', {
         this.activateDemoSession();
         return;
       }
-      try {
-        await authSession.logout();
-      } finally {
-        this.reset();
-      }
+      const pending = authSession.logout();
+      this.reset();
+      await pending;
     },
 
     reset() {

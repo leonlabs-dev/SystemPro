@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useLatestRequest } from '@/core/api/useLatestRequest';
 import {Edit,Refresh,Search} from '@element-plus/icons-vue';
 import {computed,onMounted,ref,watch} from 'vue';
 import {ElMessage,ElMessageBox} from 'element-plus';
@@ -16,6 +17,7 @@ import './enterprise-metering.css';
 
 const runtime=useRuntimeSettingsStore(),auth=useAuthStore();
 const loading=ref(true),saving=ref(false),dates=ref<[string,string]>(defaultRange()),status=ref(''),page=ref(1),pageSize=ref(runtime.pageSize);
+const { run: runLatest } = useLatestRequest(loading);
 const dialogVisible=ref(false),activeRow=ref<MeteringQualityRow>();
 const correctionForm=ref({intervalEnergyId:0,correctionType:'MULTIPLIER',afterQuantity:0,reason:'',evidenceReference:''});
 const result=ref<MeteringQualityPage>({total:0,page:1,pageSize:runtime.pageSize,goodCount:0,correctedCount:0,estimatedCount:0,issueCount:0,rows:[]});
@@ -28,7 +30,17 @@ const canShowCorrect=computed(()=>auth.canShow('platform:enterprise-metering:qua
 const canShowApprove=computed(()=>auth.canShow('platform:enterprise-metering:quality:approve'));
 function tone(value:string){return value==='GOOD'?'success':value==='CORRECTED'?'primary':value==='MISSING'||value==='SUSPECT'?'error':'warning'}
 function errorMessage(error:unknown,fallback:string){return error instanceof ApiError?error.message:fallback}
-async function load(reset=false){if(reset)page.value=1;loading.value=true;try{result.value=await enterpriseMeteringApi.quality({periodStart:`${dates.value[0]}T00:00:00`,periodEnd:`${dates.value[1]}T23:59:59`,qualityStatus:status.value||undefined,page:page.value,pageSize:pageSize.value})}catch(error){ElMessage.error(errorMessage(error,'计量数据质量加载失败'))}finally{loading.value=false}}
+async function load(reset = false) {
+  if (reset && page.value !== 1) { page.value = 1; return; }
+  await runLatest(
+    () => enterpriseMeteringApi.quality({
+      periodStart: `${dates.value[0]}T00:00:00`, periodEnd: `${dates.value[1]}T23:59:59`,
+      qualityStatus: status.value || undefined, page: page.value, pageSize: pageSize.value,
+    }),
+    (data) => { result.value = data; },
+    (error) => ElMessage.error(errorMessage(error, '计量数据质量加载失败')),
+  );
+}
 function openCorrection(row:MeteringQualityRow){if(!auth.canEnter('platform:enterprise-metering:quality:correct'))return;if(!row.intervalEnergyId){ElMessage.warning('缺失记录需要先补录具有来源依据的区间电量，不能直接改成某个数字');return}activeRow.value=row;correctionForm.value={intervalEnergyId:row.intervalEnergyId,correctionType:'MULTIPLIER',afterQuantity:row.correctedQuantity,reason:'',evidenceReference:''};dialogVisible.value=true}
 async function saveCorrection(){if(!canCorrect.value)return;if(correctionForm.value.afterQuantity===activeRow.value?.correctedQuantity||!correctionForm.value.reason.trim()||!correctionForm.value.evidenceReference.trim()){ElMessage.warning('修正值必须发生变化，并填写原因和证据');return}saving.value=true;try{await enterpriseMeteringApi.createReadingCorrection(correctionForm.value);dialogVisible.value=false;await load();ElMessage.success('计量修正已提交审批，原始值和当前结算值未被覆盖')}catch(error){ElMessage.error(errorMessage(error,'提交计量修正失败'))}finally{saving.value=false}}
 async function reviewCorrection(row:MeteringQualityRow,decision:'APPROVED'|'REJECTED'){

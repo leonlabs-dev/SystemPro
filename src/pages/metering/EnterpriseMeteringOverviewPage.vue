@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useLatestRequest } from '@/core/api/useLatestRequest';
 import {Refresh,Search} from '@element-plus/icons-vue';
 import {onMounted,ref} from 'vue';
 import {ElMessage} from 'element-plus';
@@ -11,13 +12,20 @@ import {enumLabel} from '@/core/i18n/enum-labels';
 import './enterprise-metering.css';
 
 const loading=ref(true);const dates=ref<[string,string]>(defaultRange());
+const { run: runLatest } = useLatestRequest(loading);
 const overview=ref<EnterpriseMeteringOverview>();const balance=ref<BalanceMeteringAnalysis>();
 function localDate(value:Date){return new Date(value.getTime()-value.getTimezoneOffset()*60000).toISOString().slice(0,10)}
 function defaultRange():[string,string]{const end=new Date(),start=new Date(end.getFullYear(),end.getMonth(),1);return[localDate(start),localDate(end)]}
 function params(){return{periodStart:`${dates.value[0]}T00:00:00`,periodEnd:`${dates.value[1]}T23:59:59`}}
 function format(value?:number,digits=2){return Number(value||0).toLocaleString('zh-CN',{minimumFractionDigits:digits,maximumFractionDigits:digits})}
 function tone(status:string){return status==='NORMAL'?'success':status==='WARNING'?'warning':'error'}
-async function load(){loading.value=true;try{[overview.value,balance.value]=await Promise.all([enterpriseMeteringApi.overview(params()),enterpriseMeteringApi.balance(params())])}catch(error){ElMessage.error(error instanceof ApiError?error.message:'计量总览加载失败')}finally{loading.value=false}}
+async function load() {
+  await runLatest(
+    () => { const query = params(); return Promise.all([enterpriseMeteringApi.overview(query), enterpriseMeteringApi.balance(query)]); },
+    ([nextOverview, nextBalance]) => { overview.value = nextOverview; balance.value = nextBalance; },
+    (error) => ElMessage.error(error instanceof ApiError ? error.message : '计量总览加载失败'),
+  );
+}
 onMounted(load);
 </script>
 

@@ -1,4 +1,5 @@
 import { fetchApi } from '@/core/api/base-client';
+import { ApiError } from '@/core/api/contracts';
 import type { AuthTokenResponse, AuthUserContext } from './auth.types';
 
 const LOCAL_REFRESH_KEY = 'systempro.auth.refresh.local';
@@ -8,6 +9,9 @@ const SESSION_SYNC_CHANNEL = 'systempro.auth.session-sync';
 let accessToken = '';
 let userContext: AuthUserContext | null = null;
 let refreshPromise: Promise<AuthTokenResponse> | null = null;
+let sessionVersion = 0;
+// A cleared page must not pick up tokens subsequently written by another tab.
+let acceptsStoredSession = true;
 
 type SessionSyncMessage = {
   type: 'refresh-token';
@@ -18,6 +22,16 @@ type SessionSyncMessage = {
 const sessionSyncChannel = createSessionSyncChannel();
 
 export const authSession = {
+  getVersion() {
+    return sessionVersion;
+  },
+
+  assertVersion(version: number) {
+    if (version !== sessionVersion) {
+      throw new ApiError('登录会话已变更，请重新操作', 'SESSION_CHANGED', 401);
+    }
+  },
+
   getAccessToken() {
     return accessToken;
   },
@@ -31,6 +45,9 @@ export const authSession = {
   },
 
   commit(tokens: AuthTokenResponse, persistent: boolean) {
+    acceptsStoredSession = true;
+    sessionVersion += 1;
+    refreshPromise = null;
     accessToken = tokens.accessToken;
     userContext = tokens.user;
     writeRefreshToken(tokens.refreshToken, persistent);
@@ -52,6 +69,9 @@ export const authSession = {
   },
 
   clear() {
+    acceptsStoredSession = false;
+    sessionVersion += 1;
+    refreshPromise = null;
     accessToken = '';
     userContext = null;
     safeRemove(localStorage, LOCAL_REFRESH_KEY);
@@ -68,15 +88,13 @@ export const authSession = {
 
   async logout() {
     const refreshToken = readRefreshToken();
-    try {
-      if (refreshToken) {
-        await fetchApi<void>('/api/v1/auth/logout', {
-          method: 'POST',
-          body: JSON.stringify({ refreshToken }),
-        });
-      }
-    } finally {
-      this.clear();
+    // Invalidate in-flight refreshes immediately, not after the logout response.
+    this.clear();
+    if (refreshToken) {
+      await fetchApi<void>('/api/v1/auth/logout', {
+        method: 'POST',
+        body: JSON.stringify({ refreshToken }),
+      });
     }
   },
 };
@@ -84,6 +102,8 @@ export const authSession = {
 sessionSyncChannel?.addEventListener('message', (event: MessageEvent<SessionSyncMessage>) => {
   const message = event.data;
   if (message?.type !== 'refresh-token' || !message.refreshToken) return;
+  // A delayed peer message must not resurrect an explicitly cleared session.
+  if (!acceptsStoredSession || (!accessToken && !readRefreshToken())) return;
   writeRefreshToken(message.refreshToken, message.persistent, false);
 });
 
@@ -94,28 +114,36 @@ async function refresh(): Promise<AuthTokenResponse> {
     throw new Error('当前没有可刷新的登录会话');
   }
   const persistent = safeGet(localStorage, LOCAL_REFRESH_KEY) === refreshToken;
+  const version = sessionVersion;
 
-  refreshPromise = fetchApi<AuthTokenResponse>('/api/v1/auth/refresh', {
+  const pending = fetchApi<AuthTokenResponse>('/api/v1/auth/refresh', {
     method: 'POST',
     body: JSON.stringify({ refreshToken }),
   })
     .then((tokens) => {
+      authSession.assertVersion(version);
       accessToken = tokens.accessToken;
       userContext = tokens.user;
       writeRefreshToken(tokens.refreshToken, persistent);
       return tokens;
     })
     .catch((error) => {
-      authSession.clear();
+      // Transport failures must not erase a still-valid login. Older requests
+      // must never clear a newer login, even when their refresh is rejected.
+      if (version === sessionVersion && error instanceof ApiError && (error.status === 401 || error.status === 403)) {
+        authSession.clear();
+      }
       throw error;
     })
     .finally(() => {
-      refreshPromise = null;
+      if (refreshPromise === pending) refreshPromise = null;
     });
-  return refreshPromise;
+  refreshPromise = pending;
+  return pending;
 }
 
 function readRefreshToken() {
+  if (!acceptsStoredSession) return '';
   return safeGet(localStorage, LOCAL_REFRESH_KEY) || safeGet(sessionStorage, SESSION_REFRESH_KEY);
 }
 

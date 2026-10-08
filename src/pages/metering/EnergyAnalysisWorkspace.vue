@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useLatestRequest } from '@/core/api/useLatestRequest';
 import { Download,Refresh,Search } from '@element-plus/icons-vue';
 import { computed,onMounted,ref } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -18,6 +19,7 @@ const props=defineProps<{titleKey:string}>();
 const {locale,t}=useI18n();
 const auth=useAuthStore();
 const loading=ref(true),exporting=ref(false);
+const { run: runLatest } = useLatestRequest(loading);
 const result=ref<LossAnalysis>({periodStart:'',periodEnd:'',sourceType:'SIMULATED_READING',totalInput:0,totalAllocated:0,totalLoss:0,overallLossRate:0,rows:[]});
 const dates=ref<[string,string]>(defaultRange());
 const analysisRows=computed(()=>result.value.rows);
@@ -31,7 +33,14 @@ function tone(value:string){return value==='NORMAL'?'success':value==='WARNING'?
 function status(value:string){return t(`meteringPages.loss.status.${value}`);}
 function format(value:number){return Number(value||0).toLocaleString(locale.value,{minimumFractionDigits:3,maximumFractionDigits:3});}
 function showError(error:unknown,fallback:string){ElMessage.error(error instanceof ApiError?error.message:fallback);}
-async function load(){if(!canView.value)return;loading.value=true;try{const [from,to]=queryRange();result.value=await lossAnalysisApi.analyze(from,to,'ELECTRICITY');}catch(error){showError(error,t('meteringPages.loss.messages.loadFailed'));}finally{loading.value=false;}}
+async function load() {
+  if (!canView.value) return;
+  await runLatest(
+    () => { const [from, to] = queryRange(); return lossAnalysisApi.analyze(from, to, 'ELECTRICITY'); },
+    (data) => { result.value = data; },
+    (error) => showError(error, t('meteringPages.loss.messages.loadFailed')),
+  );
+}
 async function exportFile(){if(!auth.can(permission.value.export))return;exporting.value=true;try{const [from,to]=queryRange();const blob=await lossAnalysisApi.export(from,to,'ELECTRICITY');const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=`systempro-loss-${new Date().toISOString().slice(0,10)}.xlsx`;link.click();URL.revokeObjectURL(url);}catch(error){showError(error,t('meteringPages.loss.messages.exportFailed'));}finally{exporting.value=false;}}
 onMounted(load);
 </script>
