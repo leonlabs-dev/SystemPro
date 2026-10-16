@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="79" height="20" viewBox="0 0 79 20" role="img" aria-label="Vite: 4.5">
+  <title>Vite: 4.5</title>
+  <defs>
+    <linearGradient id="shine" x2="0" y2="100%"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-opacity=".08"/></linearGradient>
+    <clipPath id="rounded"><rect width="79" height="20" rx="3"/></clipPath>
+  </defs>
+  <g clip-path="url(#rounded)">
+    <rect width="49" height="20" fill="#555"/>
+    <rect x="49" width="30" height="20" fill="#646cff"/>
+    <rect width="79" height="20" fill="url(#shine)"/>
+  </g>
+  <path fill="#fff" transform="translate(5 3) scale(.583333)" d="M13.056 23.238a.57.57 0 0 1-1.02-.355v-5.202c0-.63-.512-1.143-1.144-1.143H5.148a.57.57 0 0 1-.464-.903l3.777-5.29c.54-.753 0-1.804-.93-1.804H.57a.574.574 0 0 1-.543-.746.6.6 0 0 1 .08-.157L5.008.78a.57.57 0 0 1 .467-.24h14.589a.57.57 0 0 1 .466.903l-3.778 5.29c-.54.755 0 1.806.93 1.806h5.745c.238 0 .424.138.513.322a.56.56 0 0 1-.063.603z"/>
+  <g font-family="Verdana,DejaVu Sans,sans-serif" font-size="11" text-anchor="middle">
+    <text x="33.5" y="15" fill="#010101" fill-opacity=".3">Vite</text>
+    <text x="33.5" y="14" fill="#fff">Vite</text>
+    <text x="64" y="15" fill="#010101" fill-opacity=".3">4.5</text>
+    <text x="64" y="14" fill="#fff">4.5</text>
+  </g>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="112" height="20" viewBox="0 0 112 20" role="img" aria-label="Element Plus: 2.4">
+  <title>Element Plus: 2.4</title>
+  <defs>
+    <linearGradient id="shine" x2="0" y2="100%"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-opacity=".08"/></linearGradient>
+    <clipPath id="rounded"><rect width="112" height="20" rx="3"/></clipPath>
+  </defs>
+  <g clip-path="url(#rounded)">
+    <rect width="82" height="20" fill="#555"/>
+    <rect x="82" width="30" height="20" fill="#409eff"/>
+    <rect width="112" height="20" fill="url(#shine)"/>
+  </g>
+  <g font-family="Verdana,DejaVu Sans,sans-serif" font-size="11" text-anchor="middle">
+    <text x="41" y="15" fill="#010101" fill-opacity=".3">Element Plus</text>
+    <text x="41" y="14" fill="#fff">Element Plus</text>
+    <text x="97" y="15" fill="#010101" fill-opacity=".3">2.4</text>
+    <text x="97" y="14" fill="#fff">2.4</text>
+  </g>
+</svg>

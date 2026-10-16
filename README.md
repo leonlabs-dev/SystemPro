@@ -14,11 +14,11 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Vue-3.x-4FC08D?logo=vuedotjs&logoColor=white" alt="Vue 3" />
-  <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white" alt="TypeScript 5" />
-  <img src="https://img.shields.io/badge/Vite-4.x-646CFF?logo=vite&logoColor=white" alt="Vite 4" />
-  <img src="https://img.shields.io/badge/Element%20Plus-UI-409EFF" alt="Element Plus" />
-  <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg?logo=apache&logoColor=white" alt="Apache License 2.0" />
+  <img src="./assets/readme/badges/vue.png" width="79" height="20" alt="Vue 3.3" />
+  <img src="./assets/readme/badges/typescript.png" width="115" height="20" alt="TypeScript 4.9" />
+  <img src="./assets/readme/badges/vite.png" width="79" height="20" alt="Vite 4.5" />
+  <img src="./assets/readme/badges/element-plus.png" width="112" height="20" alt="Element Plus 2.4" />
+  <img src="./assets/readme/badges/license.png" width="143" height="20" alt="Apache License 2.0" />
 </p>
 
 <br/>
@@ -325,12 +325,12 @@ For local development, set `apiBaseUrl` to your own backend or use the official 
 ## Technology Stack
 
 <p align="left">
-  <img src="https://img.shields.io/badge/Vue-3.x-4FC08D?logo=vuedotjs&logoColor=white" />
-  <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white" />
-  <img src="https://img.shields.io/badge/Vite-4.x-646CFF?logo=vite&logoColor=white" />
-  <img src="https://img.shields.io/badge/Element%20Plus-UI-409EFF" />
-  <img src="https://img.shields.io/badge/Pinia-State-FFD859" />
-  <img src="https://img.shields.io/badge/ECharts-Visualization-AA344D" />
+  <img src="./assets/readme/badges/vue.png" width="79" height="20" alt="Vue 3.3" />
+  <img src="./assets/readme/badges/typescript.png" width="115" height="20" alt="TypeScript 4.9" />
+  <img src="./assets/readme/badges/vite.png" width="79" height="20" alt="Vite 4.5" />
+  <img src="./assets/readme/badges/element-plus.png" width="112" height="20" alt="Element Plus 2.4" />
+  <img src="./assets/readme/badges/pinia.png" width="80" height="20" alt="Pinia state management" />
+  <img src="./assets/readme/badges/echarts.png" width="138" height="20" alt="ECharts visualization" />
 </p>
 
 | Layer | Technologies |

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="79" height="20" viewBox="0 0 79 20" role="img" aria-label="Vue: 3.3">
+  <title>Vue: 3.3</title>
+  <defs>
+    <linearGradient id="shine" x2="0" y2="100%"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-opacity=".08"/></linearGradient>
+    <clipPath id="rounded"><rect width="79" height="20" rx="3"/></clipPath>
+  </defs>
+  <g clip-path="url(#rounded)">
+    <rect width="49" height="20" fill="#555"/>
+    <rect x="49" width="30" height="20" fill="#4fc08d"/>
+    <rect width="79" height="20" fill="url(#shine)"/>
+  </g>
+  <path fill="#fff" transform="translate(5 3) scale(.583333)" d="M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39ZM12,14.08,5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z"/>
+  <g font-family="Verdana,DejaVu Sans,sans-serif" font-size="11" text-anchor="middle">
+    <text x="33.5" y="15" fill="#010101" fill-opacity=".3">Vue</text>
+    <text x="33.5" y="14" fill="#fff">Vue</text>
+    <text x="64" y="15" fill="#010101" fill-opacity=".3">3.3</text>
+    <text x="64" y="14" fill="#fff">3.3</text>
+  </g>
+</svg>
